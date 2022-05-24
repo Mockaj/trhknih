@@ -33,8 +33,10 @@ git commit .
 git push
 ```
 **Ideální by bylo vytvořit vždy issue, co se bude jmenovat stejně, jako nová branch, aby bylo vidět, kdo na tom pracuje**
+**Ideální by bylo vytvořit vždy issue s jednoduchým popisem, co se má udělat, a přímo z issue vytvořit branch (případně rovnou i merge request) s tím, že se musí vždy zadat source branch (frontend/backend) a název branche (ideálně stejný jako název issue)**
+**jako assignee na issue se vždy nastavý ten, kdo na tom chce dělat**
 
-po `git push` udělejte merge request v gitu, alespoň 1 další člověk to zkontroluje a buď approvne nebo dá do komentáře vědět, co by tam změnil. Po approvnutí dá někdo (ideálně autor kódu) merge (v merge requestu zaškrtněte **Delete source branch**).
+až bude issue hotové, vytvořte merge request (pokud ještě není) a nastavte alespoň 1 dalšího člověka jako reviewer ten to zkontroluje a buď approvne nebo dá do komentáře vědět, co by tam změnil. Po approvnutí dá někdo (ideálně autor kódu) merge (v merge requestu zaškrtněte **Delete source branch**).
 
 ## Další informace
 
