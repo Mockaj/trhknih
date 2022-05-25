@@ -1,0 +1,16 @@
+:root {
+  --background-color: var(--beige);
+  --beige: #f8f7f1;
+  --secondary-color: var(--readee-green);
+  --readee-green: #59b974;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
