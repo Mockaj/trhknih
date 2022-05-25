@@ -24,8 +24,8 @@ git branch --set-upstream-to=origin/dev
 ```
 git checkout -b frontend
 git pull
-git checkout -b frontend-login-page                 # vytvoření nové lokální branche
-git push set-upstream origin frontend-login-page    # vytvoření nové branche v git repozitáři a spojení s lokální
+git checkout -b frontend-login-page                   # vytvoření nové lokální branche
+git push --set-upstream origin frontend-login-page    # vytvoření nové branche v git repozitáři a spojení s lokální
 
 ***práce na souborech lokálně***
 
