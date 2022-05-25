@@ -1,6 +1,12 @@
 import ReadeePicture from "../../../../assets/ReadeeLogo.png";
-
-export const ReadeeLogo = () => {
-  return <img src={ReadeePicture} className="readee-logo" />;
+export type ReadeeLogoProps = {
+  onAction: () => void;
+};
+export const ReadeeLogo = ({ onAction }: ReadeeLogoProps) => {
+  return (
+    <a onClick={onAction}>
+      <img src={ReadeePicture} className="readee-logo" />
+    </a>
+  );
 };
 export default ReadeeLogo;

@@ -4,8 +4,13 @@ export const SearchBar = () => {
   return (
     <div className="searchbar-container">
       <form>
-        <input placeholder="Search a book..." className="searchbar__input" />
-        <FaSearch className="react-icons fix-to-search" />
+        <input
+          placeholder="Search by book, author or ISBN..."
+          className="searchbar__input"
+        />
+        <button className="search-btn fix-to-search">
+          <FaSearch className="react-icons" />
+        </button>
         <div className="green-background" />
       </form>
     </div>

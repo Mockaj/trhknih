@@ -4,7 +4,6 @@ import { BiBookAdd, BiUser } from "react-icons/bi";
 import ReadeeLogo from "./ReadeeLogo";
 import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
-import { MobileMenu } from "./MobileMenu";
 
 const iconSize: number = 30;
 export const Header = () => {
@@ -31,20 +30,21 @@ export const Header = () => {
   };
 
   const width = useWindowDimensions();
-  const renderMenu = () => {
-    return <MobileMenu />;
-  };
   const [showMenu, setShowMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const showMobMenu = showMenu ? "" : "none";
   const showSearchMenu = showSearch ? "" : "none";
-  if (width < 1000) {
+  const onClick = () => {
+    setShowSearch(false);
+    setShowMenu(false);
+  };
+  if (width < 1038) {
     // Return mobile version of header
     return (
       <>
         <nav className="navbar">
           <div className="upperbar-container">
-            <ReadeeLogo />
+            <ReadeeLogo onAction={onClick} />
             <ul className="upperbar--list">
               <li>
                 <FaSearch onClick={() => setShowSearch(!showSearch)} />
@@ -79,7 +79,7 @@ export const Header = () => {
       <>
         <nav className="navbar">
           <div className="upperbar-container">
-            <ReadeeLogo />
+            <ReadeeLogo onAction={onClick} />
             <ul className="upperbar--list">
               <li>
                 <BiBookAdd size={iconSize} className="react-icons" />

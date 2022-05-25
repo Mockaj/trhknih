@@ -3,6 +3,8 @@
   --beige: #f8f7f1;
   --secondary-color: var(--readee-green);
   --readee-green: #59b974;
+  --icon-background: 35px;
+  --min-value: min(10%, 1000px);
 }
 
 body {
