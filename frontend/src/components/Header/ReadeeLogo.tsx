@@ -1,4 +1,4 @@
-import ReadeePicture from "../../../../assets/ReadeeLogo.png";
+import ReadeePicture from "../../assets/ReadeeLogo.png";
 export type ReadeeLogoProps = {
   onAction: () => void;
 };
