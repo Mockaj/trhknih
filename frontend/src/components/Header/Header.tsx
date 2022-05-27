@@ -4,6 +4,7 @@ import { BiBookAdd, BiUser } from "react-icons/bi";
 import ReadeeLogo from "./ReadeeLogo";
 import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
+import { Link } from "react-router-dom";
 
 const iconSize: number = 30;
 export const Header = () => {
@@ -38,6 +39,15 @@ export const Header = () => {
     setShowSearch(false);
     setShowMenu(false);
   };
+  const onClickSearch = () => {
+    setShowSearch(!showSearch);
+    setShowMenu(false);
+    console.log(showMenu);
+  };
+  const onClickMenu = () => {
+    setShowMenu(!showMenu);
+    setShowSearch(false);
+  };
   if (width < 1038) {
     // Return mobile version of header
     return (
@@ -47,27 +57,42 @@ export const Header = () => {
             <ReadeeLogo onAction={onClick} />
             <ul className="upperbar--list">
               <li>
-                <FaSearch onClick={() => setShowSearch(!showSearch)} />
+                <FaSearch onClick={onClickSearch} />
               </li>
+              <Link to="/">
+                <li>
+                  <FiShoppingCart />
+                </li>
+              </Link>
               <li>
-                <FiShoppingCart />
-              </li>
-              <li>
-                <FaBars onClick={() => setShowMenu(!showMenu)} />
+                <FaBars onClick={onClickMenu} />
               </li>
             </ul>
           </div>
           <div className="mobile-menu" style={{ display: showMobMenu }}>
             <ul className="mobile-menu__list">
-              <li>My account</li>
-              <li>Categories</li>
-              <li>Buy a book</li>
-              <li>Sell a book</li>
-              <li>How to sell a book</li>
-              <li>Contact</li>
+              <Link to="/">
+                <li>My account</li>
+              </Link>
+              <Link to="/">
+                <li>Categories</li>
+              </Link>
+
+              <Link to="/">
+                <li>Buy a book</li>
+              </Link>
+              <Link to="/">
+                <li>Sell a book</li>
+              </Link>
+              <Link to="/">
+                <li>How to sell a book</li>
+              </Link>
+              <Link to="/">
+                <li>Contact</li>
+              </Link>
             </ul>
           </div>
-          <div className="search__mobile" style={{ display: showSearchMenu }}>
+          <div className="search--mobile" style={{ display: showSearchMenu }}>
             <SearchBar />
           </div>
         </nav>
@@ -81,27 +106,41 @@ export const Header = () => {
           <div className="upperbar-container">
             <ReadeeLogo onAction={onClick} />
             <ul className="upperbar--list">
-              <li>
-                <BiBookAdd size={iconSize} className="react-icons" />
-                &nbsp;Sell a book
-              </li>
-              <li>
-                <BiUser size={iconSize} className="react-icons" />
-                &nbsp;Account
-              </li>
-              <li>
-                <FiShoppingCart size={iconSize} className="react-icons" />
-                &nbsp;&nbsp;Cart
-              </li>
+              <Link to="/">
+                <li>
+                  <BiBookAdd size={iconSize} className="react-icons" />
+                  &nbsp;Sell a book
+                </li>
+              </Link>
+              <Link to="/">
+                <li>
+                  <BiUser size={iconSize} className="react-icons" />
+                  &nbsp;Account
+                </li>
+              </Link>
+              <Link to="/">
+                <li>
+                  <FiShoppingCart size={iconSize} className="react-icons" />
+                  &nbsp;&nbsp;Cart
+                </li>
+              </Link>
             </ul>
           </div>
           <hr />
           <div className="lowerbar-container">
             <ul className="lowerbar__list">
-              <li>Categories</li>
-              <li>What is ISBN</li>
-              <li>How to sell a book</li>
-              <li>Free books</li>
+              <Link to="/">
+                <li>Categories</li>
+              </Link>
+              <Link to="/">
+                <li>What is ISBN</li>
+              </Link>
+              <Link to="/">
+                <li>How to sell a book</li>
+              </Link>
+              <Link to="/">
+                <li>Free books</li>
+              </Link>
               <li>
                 <SearchBar />
               </li>
