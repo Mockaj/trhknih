@@ -5,6 +5,7 @@ import ReadeeLogo from "./ReadeeLogo";
 import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
+import "./styles/topbar.css";
 
 const iconSize: number = 30;
 export const Header = () => {
