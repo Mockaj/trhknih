@@ -10,6 +10,7 @@
 
 .footer__grid {
   flex-grow: 1;
+  margin: 0;
 }
 
 .footer__flex-column {
@@ -29,13 +30,14 @@
 }
 
 .footer__text {
-  font-family: Open Sans;
+  font-family: Montserrat;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 30px;
   letter-spacing: 0em;
   text-align: left;
   color: black;
+
 }  
   
 .footer__icon {
@@ -46,6 +48,10 @@
 .footer__img-text {
   display: flex;
   align-items: center;
+}
+
+.footer__img-text:hover {
+  text-decoration: none;
 }
 
 .footer__flex-cell--bottom {

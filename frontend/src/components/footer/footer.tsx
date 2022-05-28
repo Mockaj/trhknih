@@ -1,6 +1,7 @@
 import { ActionIcon, Anchor, Grid } from "@mantine/core";
 import "./footer.css"
 import { Mail, BrandFacebook, BrandInstagram, Phone } from 'tabler-icons-react';
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
 
@@ -12,10 +13,10 @@ export const Footer = () => {
         <Grid.Col className="footer__flex-column" span={4}>
           <Grid columns={1} align="center">
            <Grid.Col className="footer__flex-cell" span={1}>
-              <Anchor href="/faq" className="footer__text">FAQ</Anchor>
+              <Link to="/faq" className="footer__text">FAQ</Link>
             </Grid.Col>
             <Grid.Col className="footer__flex-cell footer__flex-cell--bottom" span={1}>
-              <Anchor href="/careers" className="footer__text">Careers</Anchor>
+              <Link to="/careers" className="footer__text">Careers</Link>
             </Grid.Col>
           </Grid>
         </Grid.Col>
