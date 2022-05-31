@@ -72,7 +72,7 @@ export const Header = () => {
           </div>
           <div className="mobile-menu" style={{ display: showMobMenu }}>
             <ul className="mobile-menu__list">
-              <Link to="/">
+              <Link to="/login">
                 <li>My account</li>
               </Link>
               <Link to="/">
@@ -113,7 +113,7 @@ export const Header = () => {
                   &nbsp;Sell a book
                 </li>
               </Link>
-              <Link to="/">
+              <Link to="/login">
                 <li>
                   <BiUser size={iconSize} className="react-icons" />
                   &nbsp;Account

@@ -6,19 +6,16 @@ interface ContentProps {
   Content: React.ReactNode;
 }
 
-export const MainPage = ({ Content }: ContentProps) => {
+interface ContentProps {
+  Content: React.ReactNode,
+}
+
+export const MainPage = ({Content}: ContentProps) => {
   return (
     <div className="flex-wrapper">
-      {" "}
-      <RecoilRoot>
-        <header className="header-container">
-          <Header />
-        </header>
-        <main className="content-container">{Content}</main>
-      </RecoilRoot>
-      <footer className="footer-container">
-        <Footer />
-      </footer>
+      <header className="header-container"><Header /></header>
+      <main className="content-container">{Content}</main>
+      <footer className="footer-container"><Footer /></footer> 
     </div>
   );
 };
