@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './BookPreview.css'
 
-interface BookPreviewProps {
+export interface BookPreviewProps {
   id: number;
   image: string;
   name: string;
