@@ -1,3 +1,7 @@
+.content-container {
+  justify-content: center;
+}
+
 .accordion-container {
   display: flex;
   margin: 2rem 0;

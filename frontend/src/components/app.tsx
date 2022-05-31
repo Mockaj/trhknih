@@ -4,15 +4,30 @@ import { Error404 } from "./error/error404";
 import { MainPage } from "./MainPage";
 import { Login } from "./Registration&Login/Login";
 import { Registration } from "./Registration&Login/Registration";
-
+import { Faq } from "./FAQ/faq";
 
 export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage Content={<BasePage />} />} />
-        <Route path="/register" element={<MainPage Content={<Registration />} />} />
+        <Route
+          path="/register"
+          element={<MainPage Content={<Registration />} />}
+        />
         <Route path="/login" element={<MainPage Content={<Login />} />} />
+        <Route
+          path="/faq"
+          element={<MainPage Content={<Faq topic="faq" />} />}
+        />
+        <Route
+          path="/how-to-sell-a-book"
+          element={<MainPage Content={<Faq topic="sell" />} />}
+        />
+        <Route
+          path="/what-is-isbn"
+          element={<MainPage Content={<Faq topic="isbn" />} />}
+        />
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>

@@ -130,7 +130,7 @@ export const Header = () => {
           <hr />
           <div className="lowerbar-container">
             <ul className="lowerbar__list">
-              <Link to="/">
+              <Link to="/categories">
                 <li>Categories</li>
               </Link>
               <Link to="/what-is-isbn">
@@ -139,7 +139,7 @@ export const Header = () => {
               <Link to="/how-to-sell-a-book">
                 <li>How to sell a book</li>
               </Link>
-              <Link to="/">
+              <Link to="/categories/free">
                 <li>Free books</li>
               </Link>
               <li>
