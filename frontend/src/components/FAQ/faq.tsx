@@ -3,7 +3,6 @@ import { Footer } from "../footer/footer";
 import "./styles/faq.css";
 import { useState } from "react";
 import { accordion } from "./accordion";
-import { useParams } from "react-router-dom";
 
 interface FaqProps {
   topic: string;
