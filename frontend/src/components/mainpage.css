@@ -1,10 +1,16 @@
 .flex-wrapper {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  
-  .footer-container {
-    margin-top: auto;
-  }
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.content-container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.footer-container {
+  margin-top: auto;
+}
+
