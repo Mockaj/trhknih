@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BasePage } from "./BasePage/BasePage";
 import { Error404 } from "./error/error404";
 import { MainPage } from "./MainPage";
 import { Login } from "./Registration&Login/Login";
@@ -9,7 +10,7 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage Content={<div />} />} />
+        <Route path="/" element={<MainPage Content={<BasePage />} />} />
         <Route path="/register" element={<MainPage Content={<Registration />} />} />
         <Route path="/login" element={<MainPage Content={<Login />} />} />
         <Route path="*" element={<Error404 />} />
