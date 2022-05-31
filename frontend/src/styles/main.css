@@ -3,6 +3,9 @@
   --beige: #f8f7f1;
   --secondary-color: var(--readee-green);
   --readee-green: #59b974;
+  --readee-green-hover: rgba(84, 165, 109, 1);
+  --readee-green-active: rgba(69, 145, 96, 1);
+  --readee-white: rgba(255, 255, 255, 1);
   --icon-background: 35px;
   --min-value: min(10%, 1000px);
 }

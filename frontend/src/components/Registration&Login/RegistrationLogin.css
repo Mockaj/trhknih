@@ -81,17 +81,17 @@
 
 .submit-button--green:hover {
   cursor: pointer;
-  background: rgba(84, 165, 109, 1);
+  background: var(--readee-green-hover);
 
 }
 
 .submit-button--green:active {
-  background: rgba(69, 145, 96, 1);
+  background: var(--readee-green-active);
 }
 
 .submit-button--green {
-  background: rgba(89, 185, 116, 1);
-  color: rgba(255, 255, 255, 1);
+  background: var(--readee-green);
+  color: var(--readee-white);
 }
 
 .buttons-wrapper {
