@@ -85,7 +85,7 @@ export const Header = () => {
               <Link to="/">
                 <li>Sell a book</li>
               </Link>
-              <Link to="/">
+              <Link to="/how-to-sell-a-book">
                 <li>How to sell a book</li>
               </Link>
               <Link to="/">
@@ -133,10 +133,10 @@ export const Header = () => {
               <Link to="/">
                 <li>Categories</li>
               </Link>
-              <Link to="/">
+              <Link to="/what-is-isbn">
                 <li>What is ISBN</li>
               </Link>
-              <Link to="/">
+              <Link to="/how-to-sell-a-book">
                 <li>How to sell a book</li>
               </Link>
               <Link to="/">
