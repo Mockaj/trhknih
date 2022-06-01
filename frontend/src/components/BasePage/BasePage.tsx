@@ -65,24 +65,24 @@ export const BasePage = () => {
             <h1 className="big-text"><span className="big-text--green">Buy</span> and <span className="big-text--green">sell</span> books</h1>
             <p>Save money and the planet</p>
             <ul className="buttons">
-              <li>
-                <Link to="/categories/newlyAdded">
-                  <button type="button" className="green-button">Newly added</button>
+              <li className="list-button">
+                <Link to="/categories/newlyAdded" className="green-button">
+                  Newly Added
                 </Link>
               </li>
-              <li>
-                <Link to="/sellbook">
-                  <button type="button" className="green-button">Sell books</button>
+              <li className="list-button">
+                <Link to="/sellbook" className="green-button">
+                  Sell Books
                 </Link>
               </li>
-              <li>
-                <Link to="/categories/bestsellers">
-                  <button type="button" className="green-button">Bestsellers</button>
+              <li className="list-button">
+                <Link to="/categories/bestsellers" className="green-button">
+                  Bestsellers
                 </Link>
               </li>
-              <li>
-                <Link to="/categories/freeBooks">
-                  <button type="button" className="green-button">Free books</button>
+              <li className="list-button">
+                <Link to="/categories/freeBooks" className="green-button">
+                  Free Books
                 </Link>
               </li>
             </ul>
@@ -90,8 +90,8 @@ export const BasePage = () => {
         </div>
         <div className='basepage__category'>
           <h2>Bestsellers</h2>
-          <Link to="/categories/bestsellers">
-            <button type="button" className="green-button green-button--smaller">Show More</button>
+          <Link to="/categories/bestsellers" className="green-button green-button--smaller">
+            Show More
           </Link>
         </div>
         <div className="books-wrapper">
@@ -100,8 +100,8 @@ export const BasePage = () => {
   
         <div className='basepage__category'>
             <h2>Free Books</h2>
-            <Link to="/categories/freeBooks">
-              <button type="button" className="green-button green-button--smaller">Show More</button>
+            <Link to="/categories/freeBooks" className="green-button green-button--smaller">
+              Show More
             </Link>
           </div>
         <div className="books-wrapper">
@@ -110,8 +110,8 @@ export const BasePage = () => {
   
         <div className='basepage__category'>
           <h2>Newly Added</h2>
-          <Link to="/categories/newlyAdded">
-            <button type="button" className="green-button green-button--smaller">Show More</button>
+          <Link to="/categories/newlyAdded" className="green-button green-button--smaller">
+            Show More
           </Link>
         </div>
         <div className="books-wrapper">
@@ -126,8 +126,8 @@ export const BasePage = () => {
         <div className="sell-books-wrapper">
           <div className='big-text-wrapper'>
             <h1 className="big-text">Put your old <span className="big-text--green">books</span><br />into <span className="big-text--green">circulation</span></h1>
-            <Link to="/sellbook">
-              <button type="button" className="green-button">Sell books</button>
+            <Link to="/sellbook" className="green-button">
+              Sell books
             </Link>
           </div>
           <img src={image1} alt="" />
@@ -136,16 +136,16 @@ export const BasePage = () => {
           <img src={image2} alt="" />
           <div className='big-text-wrapper'>
             <h1 className="big-text">Save <span className="big-text--green">money</span> and<br /><span className="big-text--green">environment</span></h1>
-            <Link to="/categories">
-              <button type="button" className="green-button">Buy books</button>
+            <Link to="/categories" className="green-button">
+              Buy books
             </Link>
           </div>
         </div>
 
         <div className='basepage__category'>
           <h2>Bestsellers</h2>
-          <Link to="/categories/bestsellers">
-            <button type="button" className="green-button green-button--smaller">Show More</button>
+          <Link to="/categories/bestsellers" className="green-button green-button--smaller">
+            Show More
           </Link>
         </div>
         <div className="books-wrapper">
@@ -157,8 +157,8 @@ export const BasePage = () => {
   
           <div className='basepage__category'>
             <h2>Free Books</h2>
-            <Link to="/categories/freeBooks">
-              <button type="button" className="green-button green-button--smaller">Show More</button>
+            <Link to="/categories/freeBooks" className="green-button green-button--smaller">
+              Show More
             </Link>
           </div>
         <div className="books-wrapper">
@@ -170,8 +170,8 @@ export const BasePage = () => {
   
         <div className='basepage__category'>
           <h2>Newly Added</h2>
-          <Link to="/categories/newlyAdded">
-            <button type="button" className="green-button green-button--smaller">Show More</button>
+          <Link to="/categories/newlyAdded" className="green-button green-button--smaller">
+            Show More
           </Link>
         </div>
         <div className="books-wrapper">
