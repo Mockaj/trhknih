@@ -9,7 +9,12 @@
 }
 
 .card:hover {
-  background-color: gainsboro;
+  background-color: #dcdcdc;
+  transition: linear 100ms;
+}
+
+.card:active {
+  background-color: #bbbbbb;
   transition: linear 100ms;
 }
 

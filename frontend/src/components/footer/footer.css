@@ -1,6 +1,6 @@
 .footer {
   margin-top: auto;
-  background-color: #F8F7F1;
+  background-color: var(--background-color);
   padding-right: 10%;
   padding-left: 10%;
   height: 7rem;
