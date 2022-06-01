@@ -2,6 +2,7 @@ import { Accordion, AccordionProps, createStyles } from "@mantine/core";
 import ISBN from "./assets/ISBN.png";
 import { Link } from "react-router-dom";
 import "./styles/accordion.css";
+
 const useStyles = createStyles((theme, _params, getRef) => ({
   icon: { ref: getRef("icon") },
 
@@ -55,7 +56,7 @@ export const accordion = (questions: string, setQuestions: any) => {
   switch (questions) {
     case "faq":
       return (
-        <StyledAccordion initialItem={0}>
+        <StyledAccordion initialItem={1}>
           <Accordion.Item label="Why use Readee?">
             We take 0% commission from the sales you make. Simply offer a book,
             pick your price and wait for an applicant.
@@ -89,19 +90,17 @@ export const accordion = (questions: string, setQuestions: any) => {
       );
     case "isbn":
       return (
-        <StyledAccordion initialItem={0}>
-          <Accordion.Item label="What is ISBN?">
-            ISBN is an abbreviation for International Standard Book Number. It
-            is a numeric commercial book identifier that is intended to be
-            unique.
-          </Accordion.Item>
-
+        <StyledAccordion initialItem={1}>
           <Accordion.Item label="What for do we use ISBN?">
             By providing us with ISBN of your book we are able to find all the
             important data about the item that you own and save your time during
             the process of offering the book online.
           </Accordion.Item>
-
+          <Accordion.Item label="What is ISBN?">
+            ISBN is an abbreviation for International Standard Book Number. It
+            is a numeric commercial book identifier that is intended to be
+            unique.
+          </Accordion.Item>
           <Accordion.Item label="Why would I care to provide ISBN?">
             During the process of posting the book for sale, you will be asked
             to fill out essential information about the book you wish to sell.
@@ -119,12 +118,12 @@ export const accordion = (questions: string, setQuestions: any) => {
       );
     case "sell":
       return (
-        <StyledAccordion initialItem={0}>
+        <StyledAccordion initialItem={1}>
           <Accordion.Item label="Take a picture of the book">
             Take anything from 1 up to 5 pictures of the book you wish to sell.
             For safety reason, when selling a book more expensive than 50$, a
-            picture containnig ISBN of a book is required. That way we can
-            verify that you are the owner of the book.
+            picture containig ISBN of a book is required. That way we can verify
+            that you are the owner of the book.
           </Accordion.Item>
 
           <Accordion.Item label="Fill out the form">
