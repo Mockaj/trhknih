@@ -1,10 +1,9 @@
 /*
 ---------------- MOBILE STYLES ----------------
 */
-a:visited {
-  color: black;
-}
-li:not(.search-bar):hover {
+
+.upperbar__list li:not(.search-bar):hover,
+.lowerbar__list li:not(.search-bar):hover {
   opacity: 0.6;
 }
 .navbar {
