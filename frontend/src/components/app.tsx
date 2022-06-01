@@ -5,12 +5,14 @@ import { MainPage } from "./MainPage";
 import { Login } from "./Registration&Login/Login";
 import { Registration } from "./Registration&Login/Registration";
 import { Faq } from "./FAQ/faq";
+import { Cart } from "./Cart/Cart";
 
 export const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage Content={<BasePage />} />} />
+        <Route path="/cart" element={<MainPage Content={<Cart />} />} />
         <Route
           path="/register"
           element={<MainPage Content={<Registration />} />}
