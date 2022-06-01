@@ -1,7 +1,12 @@
 /*
 ---------------- MOBILE STYLES ----------------
 */
-
+a:visited {
+  color: black;
+}
+li:not(.search-bar):hover {
+  opacity: 0.6;
+}
 .navbar {
   background-color: var(--background-color);
   font-family: "Montserrat";
@@ -17,15 +22,16 @@
 .readee-logo {
   width: 9rem;
 }
-.upperbar--list {
+.upperbar__list {
   display: flex;
   flex-direction: row;
   list-style: none;
   font-size: 1.5rem;
 }
 
-.upperbar--list li {
+.upperbar__list li {
   margin: 0 1rem;
+  cursor: pointer;
 }
 
 .mobile-menu {
@@ -111,19 +117,22 @@
   padding: 0.8rem 0.75rem;
   cursor: pointer;
 }
+.search-btn:hover {
+  opacity: 0.5;
+}
 
 /*
 ---------------- DESKTOP STYLES ----------------
 */
 
-@media screen and (min-width: 1038px) {
+@media screen and (min-width: 600px) {
   .navbar {
     padding: 0 15vw;
   }
   .readee-logo {
     width: 14rem;
   }
-  .upperbar--list {
+  .upperbar__list {
     font-size: 1rem;
   }
   .react-icons {
@@ -139,6 +148,9 @@
     justify-content: space-between;
     font-weight: 500;
     align-items: center;
+  }
+  .test:not(.nohover):hover {
+    border: 1px solid #0814bf;
   }
   .searchbar-container {
     display: flex;
@@ -175,5 +187,36 @@
 @media screen and (min-width: 1038px) and (max-width: 1200px) {
   .lowerbar__list {
     font-size: 0.875rem;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1050px) {
+  .navbar {
+    padding: 0 5vw;
+  }
+  .lowerbar__list {
+    font-size: 0.875rem;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 800px) {
+  .lowerbar__list {
+    font-size: 0.7rem;
+  }
+  .upperbar__list {
+    font-size: 0.7rem;
+  }
+  .readee-logo {
+    width: 10rem;
+  }
+  .searchbar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: flex-end;
+    height: 5vh;
+    width: 20vw;
+    min-width: 190px;
   }
 }

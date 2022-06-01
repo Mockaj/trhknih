@@ -49,14 +49,14 @@ export const Header = () => {
     setShowMenu(!showMenu);
     setShowSearch(false);
   };
-  if (width < 1038) {
+  if (width < 600) {
     // Return mobile version of header
     return (
       <>
         <nav className="navbar">
           <div className="upperbar-container">
             <ReadeeLogo onAction={onClick} />
-            <ul className="upperbar--list">
+            <ul className="upperbar__list">
               <li>
                 <FaSearch onClick={onClickSearch} />
               </li>
@@ -72,23 +72,23 @@ export const Header = () => {
           </div>
           <div className="mobile-menu" style={{ display: showMobMenu }}>
             <ul className="mobile-menu__list">
-              <Link to="/login">
+              <Link to="/login" onClick={onClickMenu}>
                 <li>My account</li>
               </Link>
-              <Link to="/">
+              <Link to="/categories" onClick={onClickMenu}>
                 <li>Categories</li>
               </Link>
 
-              <Link to="/">
+              <Link to="/buy" onClick={onClickMenu}>
                 <li>Buy a book</li>
               </Link>
-              <Link to="/">
+              <Link to="/sell" onClick={onClickMenu}>
                 <li>Sell a book</li>
               </Link>
-              <Link to="/how-to-sell-a-book">
+              <Link to="/how-to-sell-a-book" onClick={onClickMenu}>
                 <li>How to sell a book</li>
               </Link>
-              <Link to="/">
+              <Link to="/contact" onClick={onClickMenu}>
                 <li>Contact</li>
               </Link>
             </ul>
@@ -100,13 +100,15 @@ export const Header = () => {
       </>
     );
   } else {
+    const placeholderText =
+      width < 800 ? "Search..." : "Search by book, author, ISBN...";
     // Return desktop version of header
     return (
       <>
         <nav className="navbar">
           <div className="upperbar-container">
             <ReadeeLogo onAction={onClick} />
-            <ul className="upperbar--list">
+            <ul className="upperbar__list">
               <Link to="/">
                 <li>
                   <BiBookAdd size={iconSize} className="react-icons" />
@@ -142,8 +144,8 @@ export const Header = () => {
               <Link to="/categories/free">
                 <li>Free books</li>
               </Link>
-              <li>
-                <SearchBar />
+              <li className="search-bar">
+                <SearchBar placeholder={placeholderText} />
               </li>
             </ul>
           </div>

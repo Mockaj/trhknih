@@ -1,11 +1,17 @@
 import { FaSearch } from "react-icons/fa";
 
-export const SearchBar = () => {
+interface SearchBarProps {
+  placeholder?: string;
+}
+
+export const SearchBar = ({
+  placeholder = "Search by book, author, ISBN...",
+}: SearchBarProps) => {
   return (
     <div className="searchbar-container">
       <form className="searchbar__form">
         <input
-          placeholder="Search by book, author or ISBN..."
+          placeholder={placeholder}
           className="searchbar__input"
           type="search"
         />
