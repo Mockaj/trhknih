@@ -60,7 +60,7 @@ export const Header = () => {
               <li>
                 <FaSearch onClick={onClickSearch} />
               </li>
-              <Link to="/">
+              <Link to="/cart">
                 <li>
                   <FiShoppingCart />
                 </li>

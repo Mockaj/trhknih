@@ -67,7 +67,7 @@
   font-size: 1rem;
   border: none;
   border-radius: 10px;
-  background-color: #dfeae5;
+  background-color: var(--light-green);
   cursor: pointer;
   transition: linear 100ms;
 }
@@ -196,4 +196,135 @@
 .radio-container label {
   font-family: "Montserrat";
   font-weight: 500;
+}
+.emptycart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+}
+.emptycart__img {
+  width: 20vw;
+  min-width: 10rem;
+  margin: 5rem 0;
+}
+.emptycart__heading {
+  text-transform: capitalize;
+}
+.emptycart__btn {
+  margin-top: 2rem;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 560px) {
+  .emptycart__heading {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .content-container {
+    margin: 0 5vw;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .remove-btn {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .address__form {
+    width: 90vw;
+  }
+  .col-1-input {
+    margin-right: 1rem;
+  }
+  .col-2-input {
+    width: 20vw;
+  }
+  .remove-btn {
+    font-size: 0.8rem;
+    padding: 0.8rem 0.8rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .col-1-input {
+    flex-grow: 1;
+  }
+  .col-2-input {
+    flex-grow: 1;
+  }
+}
+@media screen and (max-width: 340px) {
+  .col-1-input {
+    flex-grow: 0;
+    width: 50vw;
+  }
+  .col-2-input {
+    flex-grow: 0;
+    width: 30vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .cart-row {
+    justify-content: space-between;
+  }
+  .item-info-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 10;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 20vh;
+  }
+  .img-container {
+    height: 13vh;
+  }
+  .row-text {
+    font-family: "Montserrat";
+  }
+  .col-2 {
+    width: 100%;
+    text-align: end;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+  .col-3 {
+    font-size: 0.9rem;
+    font-weight: 400;
+    width: fit-content;
+  }
+  .col-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-weight: 500;
+  }
+  .price-btn-wrapper {
+    width: fit-content;
+  }
+  .remove-btn {
+    padding: 0.5rem 1rem;
+    vertical-align: middle;
+    font-weight: 600;
+    font-family: "Montserrat";
+    display: flex;
+    justify-content: space-between;
+    border-radius: 4px;
+    width: 35vw;
+    max-width: 6.5rem;
+    margin: 1rem 0;
+  }
+  .remove-btn:active {
+    background-color: #b6c0bb;
+  }
+  .remove-btn:focus {
+    background-color: var(--light-green);
+  }
+  .payment-container {
+    padding-top: 0;
+  }
 }
