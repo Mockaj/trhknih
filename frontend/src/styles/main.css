@@ -8,6 +8,7 @@
   --readee-white: rgba(255, 255, 255, 1);
   --icon-background: 35px;
   --min-value: min(10%, 1000px);
+  --light-green: #dfeae5;
 }
 
 body {

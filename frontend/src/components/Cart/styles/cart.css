@@ -46,8 +46,7 @@
   display: flex;
   flex-direction: row;
 }
-.img-container {
-}
+
 .cart__img {
   width: 4rem;
   padding-left: 0.5rem;
@@ -74,4 +73,127 @@
 }
 .remove-btn:hover {
   background-color: #acb4b1;
+}
+.remove-btn:active {
+  background-color: #858b89;
+}
+.total-price {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 60%;
+  width: 11.5rem;
+  font-weight: 600;
+}
+.delivery-form-container {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.small-header {
+  text-align: center;
+}
+.address__form {
+  margin: 2rem 0;
+  width: 70%;
+}
+.address__form-items {
+  list-style: none;
+}
+.address__form-items li:last-child {
+  margin-bottom: 2rem;
+}
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-left: 0;
+  margin-bottom: 3px;
+}
+.address__text-field {
+  border: none;
+  border-radius: 8px;
+  height: 2.5rem;
+  background-color: var(--light-green);
+  padding: 0 0.5rem;
+  transition: linear 100ms;
+}
+.address__text-field:hover {
+  background-color: #bdc9c3;
+}
+.address__text-field:focus {
+  background-color: var(--light-green);
+  transition: linear 100ms;
+}
+.required-symbol {
+  color: red;
+}
+.double-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.m-top {
+  margin-top: 1.3rem;
+}
+.col-1-input {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 6;
+  margin-right: 3rem;
+}
+.col-2-input {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+}
+
+.note {
+  max-width: 98%;
+  min-width: 98%;
+  height: 5rem;
+  padding: 0.5rem;
+}
+.submit-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.submit-button {
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: var(--readee-green);
+  color: white;
+  font-weight: 600;
+  font-family: "Montserrat";
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 1rem 0;
+  padding: 0.5rem 2rem;
+}
+.submit-button:hover {
+  background-color: #45915b;
+}
+.submit-button:active {
+  background-color: #316b41;
+}
+.payment-container {
+  padding-top: 2rem;
+}
+.radio-container {
+  margin: 1rem 0;
+}
+.radio-container input {
+  margin-right: 1rem;
+  cursor: pointer;
+}
+.radio-container label {
+  font-family: "Montserrat";
+  font-weight: 500;
 }
