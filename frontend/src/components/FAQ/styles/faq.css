@@ -76,6 +76,12 @@
   align-items: center;
 }
 
+@media screen and (max-width: 1038px) {
+  .wrapper {
+    width: 60vw;
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .faq-nav__label {
     font-size: 14px;
@@ -86,5 +92,10 @@
   .faq-nav {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .wrapper {
+    width: 80vw;
   }
 }
