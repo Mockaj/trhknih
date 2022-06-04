@@ -60,7 +60,7 @@ export const Header = () => {
               <li>
                 <FaSearch onClick={onClickSearch} />
               </li>
-              <Link to="/">
+              <Link to="/cart">
                 <li>
                   <FiShoppingCart />
                 </li>
@@ -121,7 +121,7 @@ export const Header = () => {
                   &nbsp;Account
                 </li>
               </Link>
-              <Link to="/">
+              <Link to="/cart">
                 <li>
                   <FiShoppingCart size={iconSize} className="react-icons" />
                   &nbsp;&nbsp;Cart
