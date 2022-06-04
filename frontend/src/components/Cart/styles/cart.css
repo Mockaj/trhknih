@@ -113,7 +113,7 @@
   font-size: 1rem;
   font-weight: 500;
   margin-left: 0;
-  margin-bottom: 3px;
+  margin-bottom: 0.2rem;
 }
 .address__text-field {
   border: none;
@@ -178,10 +178,10 @@
   padding: 0.5rem 2rem;
 }
 .submit-button:hover {
-  background-color: #45915b;
+  background-color: var(--readee-green-hover);
 }
 .submit-button:active {
-  background-color: #316b41;
+  background-color: var(--readee-green-active);
 }
 .payment-container {
   padding-top: 2rem;
@@ -319,7 +319,7 @@
     margin: 1rem 0;
   }
   .remove-btn:active {
-    background-color: #b6c0bb;
+    background-color: var(--light-green-active);
   }
   .remove-btn:focus {
     background-color: var(--light-green);
