@@ -72,18 +72,20 @@
   transition: linear 100ms;
 }
 .remove-btn:hover {
-  background-color: #acb4b1;
+  background-color: var(--light-green-hover);
 }
 .remove-btn:active {
-  background-color: #858b89;
+  background-color: var(--light-green-active);
 }
 .total-price {
   margin: 2rem 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-left: 60%;
-  width: 11.5rem;
   font-weight: 600;
+}
+.total-price__label {
+  width: 38%;
 }
 .delivery-form-container {
   margin: 2rem 0;
@@ -124,7 +126,7 @@
   transition: linear 100ms;
 }
 .address__text-field:hover {
-  background-color: #bdc9c3;
+  background-color: var(--light-green-hover);
 }
 .address__text-field:focus {
   background-color: var(--light-green);
@@ -216,13 +218,6 @@
   border-radius: 20px;
 }
 
-@media screen and (max-width: 560px) {
-  .emptycart__heading {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-}
-
 @media screen and (max-width: 1050px) {
   .content-container {
     margin: 0 5vw;
@@ -250,25 +245,7 @@
     padding: 0.8rem 0.8rem;
   }
 }
-@media screen and (max-width: 500px) {
-  .col-1-input {
-    flex-grow: 1;
-  }
-  .col-2-input {
-    flex-grow: 1;
-  }
-}
-@media screen and (max-width: 340px) {
-  .col-1-input {
-    flex-grow: 0;
-    width: 50vw;
-  }
-  .col-2-input {
-    flex-grow: 0;
-    width: 30vw;
-  }
-}
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
   .cart-row {
     justify-content: space-between;
   }
@@ -324,7 +301,45 @@
   .remove-btn:focus {
     background-color: var(--light-green);
   }
+  .total-price {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .total-price__label {
+    margin-right: 1rem;
+    width: fit-content;
+    white-space: nowrap;
+  }
+  .total-price__span {
+    display: flex;
+    align-items: center;
+  }
   .payment-container {
     padding-top: 0;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .emptycart__heading {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 500px) {
+  .col-1-input {
+    flex-grow: 1;
+  }
+  .col-2-input {
+    flex-grow: 1;
+  }
+}
+@media screen and (max-width: 340px) {
+  .col-1-input {
+    flex-grow: 0;
+    width: 50vw;
+  }
+  .col-2-input {
+    flex-grow: 0;
+    width: 30vw;
   }
 }

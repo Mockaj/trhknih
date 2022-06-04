@@ -31,7 +31,7 @@ export const Cart = () => {
     );
   }
   // Mobile version
-  if (width() < 600) {
+  if (width() < 650) {
     return (
       <>
         <h1 className="heading">Cart and Order</h1>
@@ -55,6 +55,10 @@ export const Cart = () => {
             </div>
           );
         })}
+        <div className="total-price">
+          <label className="total-price__label">Total price:</label>
+          <span className="total-price__span">{totalPrice}$</span>
+        </div>
         <CartForm />
       </>
     );
@@ -90,7 +94,7 @@ export const Cart = () => {
             );
           })}
           <div className="total-price">
-            <label>Total price:</label>
+            <label className="total-price__label">Total price:</label>
             <span>{totalPrice}$</span>
           </div>
         </div>

@@ -9,7 +9,8 @@
   --icon-background: 35px;
   --min-value: min(10%, 1000px);
   --light-green: #dfeae5;
-  --light-green-active: #b6c0bb;
+  --light-green-hover: #acb4b1;
+  --light-green-active: #858b89;
 }
 
 body {
