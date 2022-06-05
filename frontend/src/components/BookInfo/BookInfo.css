@@ -1,0 +1,134 @@
+.book-info {
+  display: flex;
+  flex-direction: column;
+  font-family: Montserrat;
+  margin: 2vh 5vw;
+  flex-grow: 1;
+}
+
+.book-info__picture-part {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-info__categories {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.book-info__category {
+  background: #006E90;
+  color: var(--readee-white);
+  border-radius: 2rem;
+  padding: 0.3rem 0.6rem;
+  margin: 0.5rem;
+
+  font-family: Montserrat;
+  width: fit-content;
+}
+
+.book-cover-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.book-info__text-part {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-wrapper {
+  display: flex;
+  justify-content: space-between;
+  background: #EFF4F1;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  align-items: center;
+  margin-top: 1rem
+}
+
+.price-wrapper__button {
+  background: var(--readee-green);
+  color: var(--readee-white);
+  border: 0;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  font-family: Montserrat;
+  font-weight: 600;
+}
+.price-wrapper__button:hover {
+  background: var(--readee-green-hover);
+  cursor: pointer;
+}
+
+.price-wrapper__button:active {
+  background: var(--readee-green-active);
+}
+
+.info__info-part {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.info__part-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info__label {
+  font-family: Montserrat;
+  font-weight: 300;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.info__label-value {
+  font-family: Montserrat;
+  font-weight: 500;
+  text-align: left;
+}
+
+.desktop-only {
+  display: none;
+}
+@media only screen and (min-width: 750px) {
+  .desktop-only {
+    display: block;
+  }
+  .mobile-only {
+    display: none;
+  }
+
+  .book-info {
+    flex-direction: row;
+    align-items: stretch;
+    margin: 2vh 15vw;
+  }
+
+  .book-info__picture-part {
+    padding-right: 12vw;
+    display: flex;
+    justify-content: center;
+  }
+
+  .book-info__text-part {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 40rem;
+  }
+
+  .book-info__text-part-wrapper {
+    margin-right: 3rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-info__categories {
+    display: flex;
+    flex-direction: row;
+  }
+}

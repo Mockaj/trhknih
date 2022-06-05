@@ -8,12 +8,12 @@ interface ContentProps {
 
 export const MainPage = ({ Content }: ContentProps) => {
   return (
-    <div className="flex-wrapper">
-      <header className="header-container">
+    <div className="main-page__flex-wrapper">
+      <header className="main-page__header-container">
         <Header />
       </header>
-      <main className="content-container">{Content}</main>
-      <footer className="footer-container">
+      <main className="main-page__content-container">{Content}</main>
+      <footer className="main-page__footer-container">
         <Footer />
       </footer>
     </div>
