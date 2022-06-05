@@ -1,0 +1,27 @@
+.account-content-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2rem;
+}
+.personal-info-container,
+.password-container {
+  width: 45%;
+  margin-left: 2rem;
+}
+
+.personal-info-container h3,
+.password-container h3 {
+  background-color: #f8f7f1;
+  padding: 1rem 0.75rem;
+  border-radius: 7px;
+}
+.delivery-form-container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.address__form {
+  margin: 2rem 0;
+  width: 85%;
+}
