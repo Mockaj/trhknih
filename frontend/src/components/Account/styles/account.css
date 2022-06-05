@@ -41,7 +41,7 @@
   color: #459362;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 730px) {
   .account-navbar-container {
     background-color: white;
   }
