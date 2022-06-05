@@ -82,7 +82,7 @@ export const Header = () => {
               <Link to="/buy" onClick={onClickMenu}>
                 <li>Buy a book</li>
               </Link>
-              <Link to="/sell" onClick={onClickMenu}>
+              <Link to="/sell-a-book" onClick={onClickMenu}>
                 <li>Sell a book</li>
               </Link>
               <Link to="/how-to-sell-a-book" onClick={onClickMenu}>
@@ -109,7 +109,7 @@ export const Header = () => {
           <div className="upperbar-container">
             <ReadeeLogo onAction={onClick} />
             <ul className="upperbar__list">
-              <Link to="/">
+              <Link to="/sell-a-book">
                 <li>
                   <BiBookAdd size={iconSize} className="react-icons" />
                   &nbsp;Sell a book

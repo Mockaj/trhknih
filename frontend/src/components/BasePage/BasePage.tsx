@@ -71,7 +71,7 @@ export const BasePage = () => {
                 </Link>
               </li>
               <li className="list-button">
-                <Link to="/sellbook" className="green-button">
+                <Link to="/sell-a-book" className="green-button">
                   Sell Books
                 </Link>
               </li>
@@ -126,7 +126,7 @@ export const BasePage = () => {
         <div className="sell-books-wrapper">
           <div className='big-text-wrapper'>
             <h1 className="big-text">Put your old <span className="big-text--green">books</span><br />into <span className="big-text--green">circulation</span></h1>
-            <Link to="/sellbook" className="green-button">
+            <Link to="/sell-a-book" className="green-button">
               Sell books
             </Link>
           </div>
