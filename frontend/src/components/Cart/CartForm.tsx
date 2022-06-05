@@ -269,7 +269,11 @@ export const CartForm = () => {
           </span>
         </div>
         <div className="submit-container">
-          <input className="submit-button" type="submit" value="Place order" />
+          <input
+            className="cart-page-submit-button"
+            type="submit"
+            value="Place order"
+          />
         </div>
       </form>
     </div>

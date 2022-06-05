@@ -25,7 +25,7 @@ export const Cart = () => {
         <img src={emptyCart} className="emptycart__img" />
         <h1 className="emptycart__heading">Your cart is empty</h1>
         <Link to="/categories">
-          <button className="submit-button emptycart__btn">Buy books</button>
+          <button className="cart-page-submit-button emptycart__btn">Buy books</button>
         </Link>
       </div>
     );
@@ -33,7 +33,7 @@ export const Cart = () => {
   // Mobile version
   if (width() < 650) {
     return (
-      <>
+      <div className="cart-page-container">
         <h1 className="heading">Cart and Order</h1>
         {bestsellers.map((item, index) => {
           return (
@@ -60,46 +60,48 @@ export const Cart = () => {
           <span className="total-price__span">{totalPrice}$</span>
         </div>
         <CartForm />
-      </>
+      </div>
     );
   }
   // Desktop version
   return (
-    <>
-      <h1 className="heading">Cart and Order</h1>
-      <div className="cart-container">
-        <div className="cart-wrapper">
-          <div className="cart-header">
-            <div className="col-1">Preview</div>
-            <div className="col-2">Item</div>
-            <div className="col-3">Language</div>
-            <div className="col-4">Price</div>
-          </div>
-          {bestsellers.map((item, index) => {
-            return (
-              <div className="cart-row">
-                <div className="col-1 img-container">
-                  <img src={item.image} className="cart__img" />
+    <div className="cart-page-justify-center">
+      <div className="cart-page-container">
+        <h1 className="heading">Cart and Order</h1>
+        <div className="cart-container">
+          <div className="cart-wrapper">
+            <div className="cart-header">
+              <div className="col-1">Preview</div>
+              <div className="col-2">Item</div>
+              <div className="col-3">Language</div>
+              <div className="col-4">Price</div>
+            </div>
+            {bestsellers.map((item, index) => {
+              return (
+                <div className="cart-row">
+                  <div className="col-1 img-container">
+                    <img src={item.image} className="cart__img" />
+                  </div>
+                  <div className="col-2 row-text item-name">{item.name}</div>
+                  <div className="col-3 row-text">English</div>
+                  <div className="col-4 row-text price-btn-wrapper">
+                    <span>{item.price}$</span>
+                    <button className="remove-btn">
+                      <MdDelete />
+                      &nbsp; Remove
+                    </button>
+                  </div>
                 </div>
-                <div className="col-2 row-text item-name">{item.name}</div>
-                <div className="col-3 row-text">English</div>
-                <div className="col-4 row-text price-btn-wrapper">
-                  <span>{item.price}$</span>
-                  <button className="remove-btn">
-                    <MdDelete />
-                    &nbsp; Remove
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-          <div className="total-price">
-            <label className="total-price__label">Total price:</label>
-            <span>{totalPrice}$</span>
+              );
+            })}
+            <div className="total-price">
+              <label className="total-price__label">Total price:</label>
+              <span>{totalPrice}$</span>
+            </div>
           </div>
         </div>
+        <CartForm />
       </div>
-      <CartForm />
-    </>
+    </div>
   );
 };
