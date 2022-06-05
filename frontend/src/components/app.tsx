@@ -6,6 +6,7 @@ import { Login } from "./Registration&Login/Login";
 import { Registration } from "./Registration&Login/Registration";
 import { Faq } from "./FAQ/faq";
 import { Cart } from "./Cart/Cart";
+import { SellBook } from "./SellBook/SellBook";
 
 export const App = () => {
   return (
@@ -30,6 +31,11 @@ export const App = () => {
           path="/what-is-isbn"
           element={<MainPage Content={<Faq topic="isbn" />} />}
         />
+        <Route
+          path="/sell-a-book"
+          element={<MainPage Content={<SellBook />} />}
+        />
+
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
