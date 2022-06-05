@@ -174,7 +174,7 @@ input[type=number] {
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 3.79rem;
+  min-height: 3.79rem;
 }
 
 @media only screen and (min-width: 950px) {
