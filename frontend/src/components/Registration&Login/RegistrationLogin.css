@@ -59,7 +59,7 @@
   margin-left: 1rem;
 }
 
-.submit-button {
+.submit-button-round {
   border-radius: 2rem;
   width: fit-content;
   padding: 0.5rem 3rem;
@@ -74,24 +74,20 @@
   letter-spacing: 0em;
   text-align: center;
 }
-
-.submit-button:hover {
+.submit-button-round:hover {
   cursor: pointer;
 }
-
-.submit-button--green:hover {
+.submit-button-round--green {
+  background: var(--readee-green);
+  color: var(--readee-white);
+}
+.submit-button-round--green:hover {
   cursor: pointer;
   background: var(--readee-green-hover);
 
 }
-
-.submit-button--green:active {
+.submit-button-round--green:active {
   background: var(--readee-green-active);
-}
-
-.submit-button--green {
-  background: var(--readee-green);
-  color: var(--readee-white);
 }
 
 .buttons-wrapper {

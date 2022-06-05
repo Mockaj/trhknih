@@ -54,7 +54,7 @@ export default function SellBookList() {
       ))}
       </ul>
       <div className="sell-book__buttons">
-        <input className="sell-book__smaller-button submit-button submit-button--green" type="submit" value="Submit" onSubmit={(data) => {console.log(data)}} />
+        <input className="sell-book__smaller-button submit-button-round submit-button-round--green" type="submit" value="Submit" onSubmit={(data) => {console.log(data)}} />
         <NewBook />
       </div>
     </form>

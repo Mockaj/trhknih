@@ -54,9 +54,9 @@ export const Login = () => {
           </li>
         </ul>
         <div className="buttons-wrapper">
-          <input className="submit-button submit-button--green" type="submit" value="Login" />
+          <input className="submit-button-round submit-button-round--green" type="submit" value="Login" />
           <Link to="/register">
-            <button className="submit-button">Register</button>
+            <button className="submit-button-round">Register</button>
           </Link>
         </div>
       </form>

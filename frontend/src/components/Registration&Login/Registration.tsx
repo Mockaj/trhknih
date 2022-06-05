@@ -88,7 +88,7 @@ export const Registration = () => {
           </li>
         </ul>
 
-       <input className="submit-button submit-button--green" type="submit" value="Register" />
+       <input className="submit-button-round submit-button-round--green" type="submit" value="Register" />
       </form>
     </div>
   )

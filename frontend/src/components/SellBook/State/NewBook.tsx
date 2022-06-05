@@ -10,6 +10,6 @@ export default function NewBook() {
     setSellBookList((sellBooks) => [...sellBooks, newBookObj]);
   }
     return (
-        <button type="button" className="sell-book__smaller-button submit-button" onClick={() => addBook()}>Add&nbsp;another</button>
+        <button type="button" className="sell-book__smaller-button submit-button-round" onClick={() => addBook()}>Add&nbsp;another</button>
     )
 }
