@@ -1,7 +1,7 @@
 import { Header } from "../Header/Header";
 import { Footer } from "../footer/footer";
 import "./styles/faq.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { accordion } from "./accordion";
 
 interface FaqProps {
@@ -10,6 +10,9 @@ interface FaqProps {
 
 export const Faq = ({ topic }: FaqProps) => {
   const [questions, setQuestions] = useState(topic);
+  useEffect(() => {
+    setQuestions(topic)
+  }, [topic])
   const handleChange = (event: any) => {
     setQuestions(event.target.value);
   };
