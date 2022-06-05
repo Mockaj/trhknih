@@ -25,9 +25,7 @@ export const AccountContent = () => {
           <form className="address__form" onSubmit={handleSubmit(onSubmit)}>
             <ul className="address__form-items">
               <li className="form-item">
-                <label className="label">
-                  First name<span className="required-symbol">*</span>
-                </label>
+                <label className="label">First name</label>
                 <input
                   className={`address__text-field ${
                     !errors.firstName ? "text-field--error" : ""
@@ -57,9 +55,7 @@ export const AccountContent = () => {
               </li>
 
               <li className="form-item">
-                <label className="label">
-                  Last name<span className="required-symbol">*</span>
-                </label>
+                <label className="label">Last name</label>
                 <input
                   className={`address__text-field ${
                     !errors.lastName ? "text-field--error" : ""
@@ -89,9 +85,7 @@ export const AccountContent = () => {
               </li>
 
               <li className="form-item">
-                <label className="label">
-                  Email<span className="required-symbol">*</span>
-                </label>
+                <label className="label">Email</label>
                 <input
                   className={`address__text-field ${
                     !errors.email ? "text-field--error" : ""
