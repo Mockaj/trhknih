@@ -14,8 +14,6 @@ export const RenderContent = ({ content, setContent }: AccountContentProps) => {
       return <OffersContent />;
     case "orders":
       return <Orders />;
-    case "reviews":
-      return <p>reviews</p>;
     case "edit":
       return <AccountContent disabled={false} />;
     default:

@@ -56,18 +56,7 @@ export const Account = () => {
               />
               Orders
             </label>
-            <label className={isChecked("reviews")} htmlFor="reviews">
-              <input
-                type="radio"
-                id="reviews"
-                className="faq-nav__input"
-                name="content"
-                value="reviews"
-                checked={content === "reviews"}
-                onChange={handleChange}
-              />
-              Reviews
-            </label>
+
             <label className={isChecked("edit")} htmlFor="edit">
               <input
                 type="radio"
