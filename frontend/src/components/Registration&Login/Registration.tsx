@@ -1,3 +1,4 @@
+import { useDocumentTitle } from "@mantine/hooks";
 import { useForm, SubmitHandler } from "react-hook-form";
 import "./RegistrationLogin.css"
 
@@ -9,6 +10,7 @@ interface IFormInput {
 }
 
 export const Registration = () => {
+  useDocumentTitle("Register \u00B7 Readee - recycle books")
   const {
     register,
     formState: { errors },

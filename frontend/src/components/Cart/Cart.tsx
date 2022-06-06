@@ -5,8 +5,10 @@ import { CartForm } from "./CartForm";
 import emptyCart from "../../assets/empty_cart.png";
 import { Link } from "react-router-dom";
 import width from "../widthCalculator";
+import { useDocumentTitle } from "@mantine/hooks";
 
 export const Cart = () => {
+  useDocumentTitle("Cart and Order \u00B7 Readee - recycle books")
   // prettier-ignore
   const bestsellers:BookPreviewProps[] = [
   {id: 0, name: "Mistborn: The Final Empire", author: "Brandon Sanderson", price: 12.9, image: "https://www.slovart.cz/buxus/images/image_27864_19_v1.jpeg" },

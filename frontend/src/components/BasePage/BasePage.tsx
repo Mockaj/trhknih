@@ -1,3 +1,4 @@
+import { useDocumentTitle } from "@mantine/hooks";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import image1 from "../../assets/basePage/image1.png";
@@ -6,6 +7,7 @@ import { BookPreview, BookPreviewProps } from "../BookPreview/BookPreview";
 import "./BasePage.css";
 
 export const BasePage = () => {
+  useDocumentTitle("Readee - recycle books");
   const bestsellers: BookPreviewProps[] = [
     {
       id: 0,

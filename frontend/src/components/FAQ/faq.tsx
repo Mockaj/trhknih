@@ -1,14 +1,14 @@
-import { Header } from "../Header/Header";
-import { Footer } from "../footer/footer";
 import "./styles/faq.css";
 import { useState, useEffect } from "react";
 import { accordion } from "./accordion";
+import { useDocumentTitle } from "@mantine/hooks";
 
 interface FaqProps {
   topic: string;
 }
 
 export const Faq = ({ topic }: FaqProps) => {
+  useDocumentTitle("FAQ \u00B7 Readee - recycle books")
   const [questions, setQuestions] = useState(topic);
   useEffect(() => {
     setQuestions(topic)
