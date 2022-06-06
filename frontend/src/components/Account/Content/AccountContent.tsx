@@ -3,8 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 
 interface IFormInputAccount {
   email: string;
-  firstName: string;
-  lastName: string;
+  username: string;
 }
 interface AccountContentProps {
   disabled?: boolean;
@@ -12,8 +11,7 @@ interface AccountContentProps {
 
 export const AccountContent = ({ disabled = true }: AccountContentProps) => {
   const accountDetails = {
-    firstName: "Alan",
-    lastName: "Turing",
+    username: "AlanTuring",
     email: "alan@turing.com",
   };
   const {
@@ -40,14 +38,14 @@ export const AccountContent = ({ disabled = true }: AccountContentProps) => {
           >
             <ul className="address__form-items">
               <li className="form-item">
-                <label className="label">First name</label>
+                <label className="label">Username</label>
                 <input
                   className={`address__text-field ${
-                    !errors.firstName ? "text-field--error" : ""
+                    !errors.username ? "text-field--error" : ""
                   }`}
-                  defaultValue={accountDetails.firstName}
+                  defaultValue={accountDetails.username}
                   disabled={disabled}
-                  {...register("firstName", {
+                  {...register("username", {
                     required: true,
                     minLength: 2,
                     maxLength: 30,
@@ -55,50 +53,18 @@ export const AccountContent = ({ disabled = true }: AccountContentProps) => {
                 />
                 <p
                   className={`registration__error ${
-                    !errors.firstName ? "registration__error--hide" : ""
+                    !errors.username ? "registration__error--hide" : ""
                   }`}
                 >
-                  {errors.firstName &&
-                    errors.firstName.type === "required" &&
+                  {errors.username &&
+                    errors.username.type === "required" &&
                     "First name is required"}
-                  {errors.firstName &&
-                    errors.firstName.type === "minLength" &&
+                  {errors.username &&
+                    errors.username.type === "minLength" &&
                     "First name must be at least 2 characters long"}
-                  {errors.firstName &&
-                    errors.firstName.type === "maxLength" &&
+                  {errors.username &&
+                    errors.username.type === "maxLength" &&
                     "First name maximum length is 30 characters"}
-                  .
-                </p>
-              </li>
-
-              <li className="form-item">
-                <label className="label">Last name</label>
-                <input
-                  className={`address__text-field ${
-                    !errors.lastName ? "text-field--error" : ""
-                  }`}
-                  defaultValue={accountDetails.lastName}
-                  disabled={disabled}
-                  {...register("lastName", {
-                    required: true,
-                    minLength: 2,
-                    maxLength: 30,
-                  })}
-                />
-                <p
-                  className={`registration__error ${
-                    !errors.lastName ? "registration__error--hide" : ""
-                  }`}
-                >
-                  {errors.lastName &&
-                    errors.lastName.type === "required" &&
-                    "Last name is required"}
-                  {errors.lastName &&
-                    errors.lastName.type === "minLength" &&
-                    "Last name must be at least 2 characters long"}
-                  {errors.lastName &&
-                    errors.lastName.type === "maxLength" &&
-                    "Last name maximum length is 30 characters"}
                   .
                 </p>
               </li>
@@ -126,7 +92,7 @@ export const AccountContent = ({ disabled = true }: AccountContentProps) => {
               </li>
             </ul>
             <div className={submitButtonContainer}>
-              <input type="submit" className="submit-button" />
+              <input type="submit" className="submit-button" value="Submit" />
             </div>
           </form>
         </div>

@@ -56,6 +56,18 @@ export const Account = () => {
               />
               Orders
             </label>
+            <label className={isChecked("password")} htmlFor="password">
+              <input
+                type="radio"
+                id="password"
+                className="faq-nav__input"
+                name="content"
+                value="password"
+                checked={content === "password"}
+                onChange={handleChange}
+              />
+              Change password
+            </label>
 
             <label className={isChecked("edit")} htmlFor="edit">
               <input
