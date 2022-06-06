@@ -19,7 +19,7 @@ export const Account = () => {
     <>
       <div className="account-navbar-container">
         <div className="wrapper">
-          <div className="account-navbar">
+          <nav className="account-navbar">
             <label className={isChecked("account")} htmlFor="account">
               <input
                 type="radio"
@@ -81,7 +81,7 @@ export const Account = () => {
               Edit Account
               <AiOutlineSetting size={24} style={{ marginLeft: 5 }} />
             </label>
-          </div>
+          </nav>
         </div>
       </div>
       <RenderContent content={content} setContent={setContent} />

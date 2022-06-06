@@ -53,8 +53,6 @@
   background-color: aliceblue;
   border-radius: 10px;
   font-family: "Montserrat";
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
 }
 .offers-address--hide {
   display: none;
@@ -69,7 +67,78 @@
 .cart-row-border--hide {
   border: none;
 }
+.offer-address-message {
+  line-height: 1.5rem;
+}
+.offers-navbar {
+  list-style: none;
+  display: flex;
+  background-color: #e2e0d1;
+  margin: 0 1rem;
+  padding: 0.5rem 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 25%;
+  justify-content: space-evenly;
+  font-family: "Montserrat";
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.offers-navbar__label {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 120px;
+}
+.offers-delivery-info-container {
+  width: 75%;
+}
+.offers-sent-books-text {
+  width: 80%;
+}
+.full-width {
+  width: 100%;
+}
+.offers-delivery__heading {
+  margin: 1rem 0;
+  background-color: #f8f7f1;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.offers-address__heading {
+  margin: 1rem 0;
+}
+.orders-received-button {
+  padding: 1rem;
+  font-size: 1rem;
+}
+.orders-received-button-container {
+  justify-content: flex-end;
+}
+@media screen and (max-width: 1290px) {
+  .offers-navbar {
+    width: 35%;
+  }
+}
+@media screen and (max-width: 1010px) {
+  .offers-navbar {
+    width: 35%;
+  }
+}
 @media screen and (max-width: 730px) {
+  .orders-received-button {
+    width: 100%;
+    white-space: nowrap;
+  }
+  .offers-navbar {
+    margin: 0 auto;
+    background-color: white;
+    flex-direction: row;
+  }
+  .offers-navbar__label {
+    width: 10vw;
+  }
   .offers-content-container--mobile {
     display: flex;
     flex-direction: column;

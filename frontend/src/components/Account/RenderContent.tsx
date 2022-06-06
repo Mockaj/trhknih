@@ -1,5 +1,6 @@
 import { AccountContent } from "./Content/AccountContent";
 import { OffersContent } from "./Content/OffersContent";
+import { Orders } from "./Content/Orders";
 interface AccountContentProps {
   content: string;
   setContent: Function;
@@ -12,7 +13,7 @@ export const RenderContent = ({ content, setContent }: AccountContentProps) => {
     case "offers":
       return <OffersContent />;
     case "orders":
-      return <p>orders</p>;
+      return <Orders />;
     case "reviews":
       return <p>reviews</p>;
     case "edit":

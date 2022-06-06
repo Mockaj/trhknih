@@ -11,7 +11,7 @@ interface AcceptedOfferProps {
     price: number;
   };
 }
-export const AcceptedOffer = ({ item }: AcceptedOfferProps) => {
+export const AcceptedOrder = ({ item }: AcceptedOfferProps) => {
   const [showAddress, setShowAddress] = useState(false);
   const onAddressClick = () => {
     setShowAddress(!showAddress);
@@ -22,9 +22,9 @@ export const AcceptedOffer = ({ item }: AcceptedOfferProps) => {
   const displayBorder = showAddress ? "cart-row-border--hide" : "";
   const onMarkSentClick = () =>
     toast.success(
-      "Thank you for using your books effectively! You will be notified when the buyer receives the book"
+      "Thank you for using your books effectively! We will now notify the sender 😊"
     );
-  const onCancelClick = () => toast.info("You have removed your book offer");
+
   return (
     <div className="cart-row-container">
       <div
@@ -40,29 +40,15 @@ export const AcceptedOffer = ({ item }: AcceptedOfferProps) => {
               {item.price}$ + delivery
             </span>
           </div>
-          <div className="col-4 row-text price-btn-wrapper cart-offers-name-price-container">
+          <div className="col-4 row-text price-btn-wrapper cart-offers-name-price-container orders-received-button-container">
             <button
-              className="remove-btn remove-btn-offers--mobile remove-btn-offers-tosent"
-              onClick={onCancelClick}
-            >
-              <MdDelete />
-              &nbsp; Cancel
-            </button>
-            <button
-              className="remove-btn remove-btn-offers--mobile remove-btn-offers-tosent"
+              className="remove-btn remove-btn-offers--mobile remove-btn-offers-tosent orders-received-button"
               onClick={onMarkSentClick}
             >
               <GrDeliver />
-              &nbsp; Mark sent
+              &nbsp; Mark received
             </button>
             <ToastContainer delay={6000} />
-            <button
-              className="remove-btn remove-btn-offers--mobile remove-btn-offers-tosent"
-              onClick={onAddressClick}
-            >
-              <BiShow />
-              &nbsp; Address
-            </button>
           </div>
         </div>
       </div>
