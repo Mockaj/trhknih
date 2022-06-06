@@ -1,3 +1,4 @@
+import { useDocumentTitle } from "@mantine/hooks";
 import { Link, useParams } from "react-router-dom";
 import "./BookInfo.css"
 
@@ -10,6 +11,8 @@ export interface BookInfoProps {
 }
 
 export const BookInfo = () => {
+  useDocumentTitle("BookNameFromApi \u00B7 Readee - recycle books")
+
   const params = useParams()
   // params.id --> API get request
   const categories = [ "category1", "category2", "category3", "category4" ]

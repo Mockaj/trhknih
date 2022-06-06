@@ -1,3 +1,4 @@
+import { useDocumentTitle } from "@mantine/hooks";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ interface IFormInput {
 }
 
 export const Login = () => {
+  useDocumentTitle("Login \u00B7 Readee - recycle books")
   const {
     register,
     formState: { errors },
