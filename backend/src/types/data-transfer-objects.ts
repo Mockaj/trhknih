@@ -9,7 +9,6 @@ export default interface SeedFileStructure {
   offers: OfferDTO[];
   addresses: AddressDTO[];
   orders: OrderDTO[];
-  reviews: ReviewDTO[]
 }
 
 export interface TagDTO {
@@ -49,14 +48,12 @@ export interface UserDTO {
   username: string;
   password: string;
   email: string;
-  name: string;
 }
 
 export interface OfferDTO {
   id: string;
   price: number;
   bookCondition: string;
-  photo?: string;
   createTime: string
   sellerId: string;
   bookId: string;
@@ -70,7 +67,8 @@ export interface OrderDTO {
   customerId: string;
   phoneNumber: string;
   createTime: string;
-  finished: boolean;
+  sent?: boolean;
+  finished?: boolean;
   addressId: string;
 }
 
@@ -80,12 +78,4 @@ export interface AddressDTO {
   houseNumber: string;
   city: string;
   postalCode: string
-}
-
-export interface ReviewDTO {
-  sellerId: string
-  reviewerId: string
-  text: string
-  points: number
-  createTime: string
 }

@@ -79,7 +79,6 @@ const seedDb = async (
             username: user.username,
             password: hash,
             email: user.email,
-            name: user.name
           },
         });
       }),
@@ -90,7 +89,6 @@ const seedDb = async (
             id: offer.id,
             price: offer.price,
             bookCondition: offer.bookCondition,
-            photo: offer.photo ?? null,
             createTime: new Date(offer.createTime),
             seller: {
               connect: {
@@ -141,27 +139,8 @@ const seedDb = async (
             },
             phoneNumber: order.phoneNumber,
             createTime: new Date(order.createTime),
-            finished: order.finished,
-          },
-        });
-      }),
-
-      ...yamlParsed.reviews.map((review) => {
-        return prisma.review.create({
-          data: {
-            seller: {
-              connect: {
-                id: review.sellerId,
-              },
-            },
-            reviewer: {
-              connect: {
-                id: review.reviewerId,
-              },
-            },
-            text: review.text,
-            points: review.points,
-            createTime: new Date(review.createTime),
+            sent: order.sent ?? false,
+            finished: order.finished ?? false,
           },
         });
       }),

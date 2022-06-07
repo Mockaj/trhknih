@@ -84,22 +84,18 @@ users:
     username: "jozo123"
     password: "hesloheslo"
     email: "jozko.mrkvicka@gmail.com"
-    name: "Jožko Mrkvička"
   - id: "dfd27398-5f40-44b0-b6cc-d1ca79c97996"
     username: "jozo_na_motorke69"
     password: "stuzkova"
     email: "jozo.raz69@elan.sk"
-    name: "Jozef Ráž"
   - id: "3a55af0f-fa69-45a2-a051-bad941186683"
     username: "bozsky_karel"
     password: "kavu-si-osladim"
     email: "bozsky.karel@karel.cz"
-    name: "Karel Gott"
   - id: "02a4c4fd-949c-458e-8709-6372c56470bc"
     username: "hellokitty34"
     password: "ILoveKitten666"
     email: "adel.rum@seznam.cz"
-    name: "Adéla Rumlová"
 
 offers:
   - id: "d5699016-dceb-469b-a0e0-0afdcc5f05f5"
@@ -115,7 +111,6 @@ offers:
   - id: "6c0796cb-7cef-4e46-9c23-9e7fb4982f48"
     price: 12.75
     bookCondition: "Zachovaná"
-    photo: "https://cdn.shopify.com/s/files/1/0490/1657/0022/products/AStormofSwords01_1400x.jpg?v=1637856668"
     createTime: "2021-12-25T10:00:00.000Z"
     sellerId: "02a4c4fd-949c-458e-8709-6372c56470bc"
     bookId: "209794e8-21cf-49f4-b22a-74758508fcd7"
@@ -201,39 +196,26 @@ orders:
     addressId: "a0e68322-aa32-4aa4-b30b-73b2a656b85b"
     phoneNumber: "534243307"
     createTime: "2021-12-18T10:00:00.000Z"
-    finished: false
+    sent: true
   - offerId: "d5699016-dceb-469b-a0e0-0afdcc5f05f5"
     customerId: "3a55af0f-fa69-45a2-a051-bad941186683"
     addressId: "aacb01a5-3c0e-4abb-8835-7817a3c7b98a"
     phoneNumber: "774742369"
     createTime: "2022-01-02T10:00:00.000Z"
+    sent: true
     finished: true
   - offerId: "944c2b0c-f9d6-4458-b531-3efcfa09cca6"
     customerId: "653c558d-0358-4e13-a049-797f3346cc0f"
     addressId: "0380cd34-a233-4eb6-a4c3-2bc6a6c8e18a"
     phoneNumber: "515221913"
     createTime: "2022-01-05T10:00:00.000Z"
+    sent: true
     finished: true
   - offerId: "6c0796cb-7cef-4e46-9c23-9e7fb4982f48"
     customerId: "3a55af0f-fa69-45a2-a051-bad941186683"
     addressId: "aacb01a5-3c0e-4abb-8835-7817a3c7b98a"
     phoneNumber: "257414444"
     createTime: "2022-02-28T10:00:00.000Z"
+    sent: true
     finished: true
 
-reviews: 
-  - sellerId: "653c558d-0358-4e13-a049-797f3346cc0f"
-    reviewerId: "02a4c4fd-949c-458e-8709-6372c56470bc"
-    text: "Predávajúci knihu vôbec nedoručil. Neodporúčam objednávať od tejto osoby"
-    points: 0
-    createTime: "2022-01-30T10:00:00.000Z"
-  - sellerId: "dfd27398-5f40-44b0-b6cc-d1ca79c97996"
-    reviewerId: "3a55af0f-fa69-45a2-a051-bad941186683"
-    text: "Skvelé. Knižka prišla na druhý deň a dokonca poštovné je v cene. Milujem."
-    points: 9.75
-    createTime: "2022-01-03T10:00:00.000Z"
-  - sellerId: "02a4c4fd-949c-458e-8709-6372c56470bc"
-    reviewerId: "3a55af0f-fa69-45a2-a051-bad941186683"
-    text: "Kniha prišla poškodenejšia ako na fotke. Naštastie bola veľmi lacná."
-    points: 4.7
-    createTime: "2022-04-10T10:00:00.000Z"

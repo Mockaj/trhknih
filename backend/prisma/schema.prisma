@@ -62,20 +62,16 @@ model User {
   username String
   password String
   email String
-  name String
 
   orders Order[]
   offers Offer[]
-  writedReviews Review[] @relation("userReview")
-  getReviews Review[] @relation("sellerReview")
 }
 
 model Offer {
   id String @id @default(uuid())
   price Float
   bookCondition String
-  photo String?
-  createTime DateTime
+  createTime DateTime @default(now())
   sellerId String
   bookId String
 
@@ -98,8 +94,9 @@ model Address {
 model Order {
   id String @id @default(uuid())
   phoneNumber String
-  createTime DateTime
-  finished Boolean
+  createTime DateTime @default(now())
+  sent Boolean @default(false)
+  finished Boolean @default(false)
   offerId String
   addressId String
   customerId String
@@ -109,18 +106,3 @@ model Order {
   address Address @relation(fields: [addressId], references: [id])
   @@unique([offerId, customerId])
 }
-
-model Review {
-  id String @id @default(uuid())
-  text String
-  points Float
-  createTime DateTime
-  sellerId String
-  reviewerId String
-
-  seller User @relation("sellerReview",fields: [sellerId], references: [id])
-  reviewer User @relation("userReview",fields: [reviewerId], references: [id])
-  @@unique([sellerId, reviewerId])
-}
-
-
