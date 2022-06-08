@@ -36,6 +36,7 @@ export const Password = ({ disabled = true }: AccountContentProps) => {
               <li className="form-item">
                 <label className="label">Current password</label>
                 <input
+                  type="password"
                   className={`address__text-field ${
                     !errors.currentPassword ? "text-field--error" : ""
                   }`}
@@ -52,11 +53,16 @@ export const Password = ({ disabled = true }: AccountContentProps) => {
                   }`}
                 >
                   {/*TODO: Check if password match current password */}
+                  {errors.currentPassword &&
+                    errors.currentPassword.type === "required" &&
+                    "Current password is required"}
+                  .
                 </p>
               </li>
               <li className="form-item">
                 <label className="label">New password</label>
                 <input
+                  type="password"
                   className={`address__text-field ${
                     !errors.newPassword ? "text-field--error" : ""
                   }`}
@@ -88,11 +94,11 @@ export const Password = ({ disabled = true }: AccountContentProps) => {
               <li className="form-item">
                 <label className="label">Confirm new password</label>
                 <input
+                  type="password"
                   className={`address__text-field ${
                     !errors.newPasswordConfirm ? "text-field--error" : ""
                   }`}
                   disabled={disabled}
-                  type="newPasswordConfirm"
                   {...register("newPasswordConfirm", {
                     required: true,
                   })}

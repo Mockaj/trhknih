@@ -116,6 +116,19 @@
 .orders-received-button-container {
   justify-content: flex-end;
 }
+.offer-address-message-have-sent {
+  margin-left: auto;
+}
+.remove-btn-offers-havesent {
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+}
+.cart-row-sent-offers:nth-last-child(2) {
+  border-bottom: none;
+}
+@media screen and (max-width: 1420px) {
+}
+
 @media screen and (max-width: 1290px) {
   .offers-navbar {
     width: 35%;
@@ -170,6 +183,12 @@
   .remove-btn-offers-tosent {
     font-size: 0.7rem;
   }
+  .remove-btn-offers-havesent {
+    padding: 0.5rem 1.2rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+  }
 }
 @media screen and (max-width: 835px) {
   .remove-btn-offers-tosent {
@@ -188,7 +207,8 @@
     flex-direction: row;
   }
   .cart-offers-name-price-container button {
-    margin: 0;
+    margin: 0.2rem 0;
+    align-items: flex-end;
   }
   .cart-offers-name-price-container {
     flex-direction: column;

@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toast";
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 
-interface AcceptedOfferProps {
+export interface AcceptedOfferProps {
   item: {
     image: string;
     name: string;
@@ -22,9 +22,10 @@ export const AcceptedOffer = ({ item }: AcceptedOfferProps) => {
   const displayBorder = showAddress ? "cart-row-border--hide" : "";
   const onMarkSentClick = () =>
     toast.success(
-      "Thank you for using your books effectively! You will be notified when the buyer receives the book"
+      "Thank you for using your books effectively! You will be notified when the buyer receives the book 😊"
     );
-  const onCancelClick = () => toast.info("You have removed your book offer");
+  const onCancelClick = () =>
+    toast.info("You have canceled an order for one of your books");
   return (
     <div className="cart-row-container">
       <div

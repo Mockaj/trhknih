@@ -1,4 +1,8 @@
 import { BookPreviewProps } from "../../BookPreview/BookPreview";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toast";
+import { BiShow } from "react-icons/bi";
+import { SentOffers } from "./SentOffers";
 export const OffersDelivery = () => {
   // prettier-ignore
   const bestsellers:BookPreviewProps[] = [
@@ -12,27 +16,11 @@ export const OffersDelivery = () => {
       <div className="offers-delivery-info-container">
         <h3 className="offers-delivery__heading"> Books you have sent</h3>
         <div className="delivery-form-container">
-          {bestsellers.map((item, index) => {
+          {bestsellers.map((item: BookPreviewProps, index) => {
             return (
-              <div className="cart-row full-width">
-                <div className="col-1 img-container">
-                  <img src={item.image} className="cart__img" />
-                </div>
-                <div className="item-info-container offers-sent-books-text">
-                  <div className="col-2 row-text item-name cart-page-name-price-container ">
-                    <span className="offers-name-price__span">{item.name}</span>
-                    <span className="offers-name-price__span">
-                      {item.price}$
-                    </span>
-                  </div>
-                  <div className="col-4 row-text price-btn-wrapper">
-                    <h5 className="offers-address__heading">
-                      Delivery Address:
-                    </h5>
-                    <span>ADRESS</span>
-                  </div>
-                </div>
-              </div>
+              <>
+                <SentOffers item={item} />
+              </>
             );
           })}
         </div>
