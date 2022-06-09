@@ -125,6 +125,8 @@ const requestSchema = array().of(object({
   offerId: string().required().uuid(),
   customerId: string().required().uuid(),
   address: object({
+    firstName: string().required(),
+    lastName: string().required(),
     street: string().default(""),
     houseNumber: string().required(),
     city: string().required(),
@@ -226,6 +228,8 @@ const updateSchema = object({
   finished: boolean().required(),
   phoneNumber: string().required(),
   address: object({
+    firstName: string().required(),
+    lastName: string().required(),
     street: string().required(),
     houseNumber: string().required(),
     city: string().required(),
