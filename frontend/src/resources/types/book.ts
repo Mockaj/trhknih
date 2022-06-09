@@ -17,7 +17,7 @@ export interface Book {
   key: string,
   notes: string,
   number_of_pages: number,
-  published_date: string,
+  publish_date: string,
   publish_places: {
     name: string,
   }[],
