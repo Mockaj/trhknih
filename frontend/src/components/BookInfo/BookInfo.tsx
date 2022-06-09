@@ -12,7 +12,7 @@ export interface BookInfoProps {
 }
 
 const getBookInfo = async (id:string) => {
-  const result = await axios.get(`http://localhost:5432/api/offers/${id}`);
+  const result = await axios.get(`http://localhost:4000/api/offers/${id}`);
   return result
 }
 
@@ -22,8 +22,7 @@ export const BookInfo = () => {
   const params = useParams()
   
   // params.id --> API get request
-  console.log(getBookInfo("bd1488cd-cadc-4c3f-8402-c09274969d84"))
-
+  console.log(getBookInfo("802e22be-7094-4165-8996-dfa7c9f2c7cd"));
 
   const categories = [ "category1", "category2", "category3", "category4" ]
   const image = "https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/5750/9780575089914.jpg"
