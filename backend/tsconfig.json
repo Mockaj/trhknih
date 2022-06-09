@@ -4,6 +4,7 @@
 		"sourceMap": true,
 		"outDir": "dist",
 		"strict": true,
+		"importsNotUsedAsValues": "preserve",
 		"lib": ["esnext"],
 		"esModuleInterop": true
 	}
