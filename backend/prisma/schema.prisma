@@ -1,0 +1,110 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model Tag {
+  id   String @id @default(uuid())
+  name String
+
+  Offers Offer[]
+}
+
+model Book {
+  id String @id @default(uuid())
+  isbn String
+  title String
+  subtitle String?
+  numberOfPages Int
+  publishedDate String
+  notes String?
+  photo String
+  publisherId String
+
+  offered Offer[]
+  fromAutors BookAuthor[]
+  publisher Publisher @relation(fields: [publisherId], references: [id])
+}
+
+model Author {
+  id String @id @default(uuid())
+  name String
+
+  writenBooks BookAuthor[]
+}
+
+model BookAuthor {
+  id String @id @default(uuid())
+  bookId String
+  authorId String
+
+  book Book @relation(fields: [bookId], references: [id])
+  author Author @relation(fields: [authorId], references: [id])
+
+  @@unique([bookId, authorId])
+}
+
+model Publisher {
+  id String @id @default(uuid())
+  name String
+
+  books Book[]
+}
+
+model User {
+  id String @id @default(uuid())
+  username String
+  password String
+  email String
+
+  orders Order[]
+  offers Offer[]
+}
+
+model Offer {
+  id String @id @default(uuid())
+  price Float
+  bookCondition String
+  createTime DateTime @default(now())
+  sellerId String
+  bookId String
+
+  seller User @relation(fields: [sellerId], references: [id])
+  book Book @relation(fields: [bookId], references: [id])
+  tags Tag[]
+  order Order?
+}
+
+model Address {
+  id String @id @default(uuid())
+  firstName String
+  lastName String
+  street String
+  houseNumber String
+  city String
+  postalCode String
+
+  orders Order[]
+}
+
+model Order {
+  id String @id @default(uuid())
+  phoneNumber String
+  createTime DateTime @default(now())
+  sent Boolean @default(false)
+  finished Boolean @default(false)
+  offerId String
+  addressId String
+  customerId String
+
+  customer User @relation(fields: [customerId], references: [id])
+  offer Offer @relation(fields: [offerId], references: [id])
+  address Address @relation(fields: [addressId], references: [id])
+  @@unique([offerId, customerId])
+}

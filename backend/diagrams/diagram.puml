@@ -1,0 +1,102 @@
+@startuml trh-knih-data
+
+hide circle
+skinparam Linetype ortho
+
+entity Tag {
+    *id: <<uuid>>
+    --
+    *name: String
+}
+
+entity Book {
+    *id: <<uuid>>
+    --
+    *isbn: String
+    *title: String
+    subtitle: String
+    *numberOfPages: Int
+    *publishedDate: String
+    *photo: url
+    notes: String
+}
+
+entity OfferTag {
+    *id: <<uuid>>
+    --
+}
+
+entity Author {
+    *id: <<uuid>>
+    --
+    *name: String
+}
+
+entity BookAuthor {
+    *id: <<uuid>>
+    --
+}
+
+entity Publisher {
+    *id: <<uuid>>
+    --
+    *name: String
+}
+
+entity User {
+    *id: <<uuid>>
+    --
+    *name: String
+    *username: String
+    *email: String
+    *password: String
+}
+
+entity Offer {
+    *id: <<uuid>>
+    --
+    *price: Float
+    *bookCondition: String
+    *createTime: DateTime
+    photo: url
+}
+
+entity Address {
+    *id: <<uuid>>
+    --
+    *street: String
+    *houseNumber: String
+    *city: String
+    *postalCode: String
+}
+
+entity Order {
+    *id: <<uuid>>
+    --
+    *phoneNumber: String
+    *createTime: DateTime
+    *finished: Boolean
+}
+
+entity ReviewUser {
+    *id: <<uuid>>
+    --
+    *text: String
+    *points: Float
+    *createTime: DateTime
+}
+
+Book ||--o{ BookAuthor
+Author ||--o{ BookAuthor
+Publisher ||--o{ Book
+User ||--o{ Offer
+Offer }o--|| Book
+User ||--o{ ReviewUser
+ReviewUser }o--|| User
+Offer ||--o{ OfferTag
+Tag ||--o{ OfferTag
+Order |o--|| Offer
+Order ||--||Address
+User ||--o{ Order
+
+@enduml

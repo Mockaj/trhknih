@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  admin:
+    image: docker.io/adminer
+    ports:
+      - 8084:8080
+  database:
+    image: docker.io/postgres:alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: trhknih
+      POSTGRES_PASSWORD: UltimatePassword
+    volumes:
+      - database-storage:/var/lib/postgresql/data
+volumes:
+  database-storage:
