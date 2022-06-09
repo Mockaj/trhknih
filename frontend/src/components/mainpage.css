@@ -1,0 +1,16 @@
+.main-page__flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.main-page__content-container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.main-page__footer-container {
+  margin-top: auto;
+}
+

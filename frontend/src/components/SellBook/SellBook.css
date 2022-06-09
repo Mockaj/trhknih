@@ -1,0 +1,213 @@
+.sell-book {
+  display: flex;
+  flex-direction: column;
+  margin: 5vh 15vw 0 15vw;
+  flex-grow: 2;
+}
+
+li:not(.search-bar):hover {
+  opacity: 100%;
+}
+
+.sell-book__form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5vh;
+}
+
+.sell-book__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  list-style: none;
+}
+
+.sell-book__item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.sell-book__input-wrapper {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.sell-book__input-wrapper--textarea {
+  width: 100%;
+}
+
+.sell-book__label {
+  font-family: Montserrat;
+  font-weight: 300;
+  font-size: 1.2rem;
+  margin: 0 1rem 0.8rem 1rem;
+}
+.sell-book__label--red {
+  color: darkred;
+}
+
+.sell-book__error {
+  font-size: 0.8rem;
+  color: rgb(144, 69, 69);
+  margin-top: 0;
+  white-space: nowrap
+}
+
+.sell-book__error--hide {
+  visibility: hidden;
+}
+
+.text-field {
+  border-radius: 0.5rem;
+  color: #505050;
+  width: 13ch;
+  height: 2.5rem;
+  font-size: 1.3rem;
+  border: none;
+
+  padding: 0 0.5rem;
+  transition: linear 100ms;
+
+  font-family: Montserrat;
+  font-weight: 300;
+  letter-spacing: 0em;
+  text-align: left;
+  background-color: var(--light-green);
+
+}
+
+.text-field:hover {
+  background-color: var(--light-green-hover);
+}
+.text-field:focus {
+  background-color: var(--light-green);
+  transition: linear 100ms;
+}
+
+.text-field--textarea {
+  width: 90%;
+  min-width: 13ch;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  height: 2rem;
+
+}
+
+.text-field--price {
+  width: 4ch;
+}
+
+.button-remove {
+  display: flex;
+  padding: 0.78rem 1.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--light-green);
+  cursor: pointer;
+  transition: linear 100ms;
+  margin-left: 0.5rem;
+}
+
+.button-remove:hover {
+  cursor: pointer;
+  background: var(--light-green-hover);
+
+}
+
+.button-remove:active {
+  background: var(--light-green-active);
+}
+
+.list-top-item {
+  visibility: hidden;
+}
+
+.sell-book__buttons {
+  display: flex;
+}
+
+.text-field::placeholder {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+/* hide arrows in <input type="number"> */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.mobile-oneline {
+  display: flex;
+  align-items: center;
+}
+
+.sell-book__wrapper {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.sell-book__input-item {
+  flex-grow: 1;
+}
+
+.sell-book__smaller-button {
+  font-size: 1.2rem;
+}
+
+.sell-book__label-input-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 3.79rem;
+}
+
+@media only screen and (min-width: 950px) {
+  .sell-book__wrapper {
+    flex-direction: row;
+  }
+}
+
+@media only screen and (max-width: 510px) {
+  .sell-book {
+    margin: 5vh 5vw 0 5vw;
+  }
+
+  .sell-book__wrapper {
+    align-items: stretch;
+  }
+
+  .mobile-oneline {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sell-book__buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sell-book__smaller-button {
+    margin-top: 0.2rem;
+  }
+
+  .sell-book__label-input-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}

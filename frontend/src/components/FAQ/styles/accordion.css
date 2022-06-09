@@ -1,0 +1,29 @@
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 0.5rem;
+
+  /* Position the tooltip */
+  position: absolute;
+  bottom: 20px;
+  right: -50px;
+  z-index: 100;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.accordion-links {
+  color: rgb(0, 195, 255);
+  cursor: pointer;
+}
