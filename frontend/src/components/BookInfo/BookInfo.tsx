@@ -7,7 +7,7 @@ import "./BookInfo.css"
 
 
 export const BookInfo = () => {
-  useDocumentTitle("BookNameFromApi \u00B7 Readee - recycle books")
+  useDocumentTitle("Book Info \u00B7 Readee - recycle books")
   const params = useParams()
 
   const [data, setData] = useState()

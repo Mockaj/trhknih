@@ -4,11 +4,10 @@ export const BookContent = (props) => {
 
   const BookPage = (props) => {
     const {data} = props
-    const categories: any[] = []
-
+    
     if (data) {
       console.log(data)
-      console.log(data.data.book)
+      const categories = data.data.tags.map((tag) => tag.name)
       return (
         <div className="book-info">
       <div className="book-info__picture-part">
