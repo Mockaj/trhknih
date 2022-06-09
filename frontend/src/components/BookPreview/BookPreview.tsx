@@ -12,7 +12,7 @@ export interface BookPreviewProps {
 
 export const BookPreview = ({ id, image, name, author, price }: BookPreviewProps) => {
   return (
-    <Link to={`books/${id}`}>
+    <Link to={`/books/${id}`}>
     <div className="card">
       <div className="card__image-wrapper">
         <img src={image} alt="BookImage" className="card__image"/>

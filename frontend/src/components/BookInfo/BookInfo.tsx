@@ -13,7 +13,7 @@ export const BookInfo = () => {
   const [data, setData] = useState()
   // params.id
   const id = "802e22be-7094-4165-8996-dfa7c9f2c7cd"
-  const url = `http://localhost:4000/api/offers/${id}`
+  const url = `http://localhost:4000/api/offers/${params.id}`
 
   useEffect(() => {
     getData();
