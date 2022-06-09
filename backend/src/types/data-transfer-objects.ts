@@ -74,6 +74,8 @@ export interface OrderDTO {
 
 export interface AddressDTO {
   id: string;
+  firstName: string;
+  lastName: string;
   street: string;
   houseNumber: string;
   city: string;

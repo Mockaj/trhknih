@@ -83,6 +83,8 @@ model Offer {
 
 model Address {
   id String @id @default(uuid())
+  firstName String
+  lastName String
   street String
   houseNumber String
   city String
