@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "Readee API",
   "scripts": {
-    "start": "PORT=3000 nodemon src/index.ts",
+    "start": "PORT=4000 nodemon src/index.ts",
     "seed": "ts-node src/seed/seed.ts"
   },
   "devDependencies": {

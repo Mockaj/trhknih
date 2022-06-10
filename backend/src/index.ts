@@ -7,6 +7,10 @@ const api = express();
 
 api.use(express.json());
 api.use(express.urlencoded({ extended: true }));
+api.use(function(_: Request, res: Response, next) {
+  res.set('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 api.use(express.static("public"));
 
