@@ -14,6 +14,7 @@ export const MobileBookShowcase = (props) => {
 
 export const BookShowcase = (props) => {
   const books = props.props
+  console.log("books", books)
   return (
     <div className="books-wrapper">
     {getWidth() < 1200

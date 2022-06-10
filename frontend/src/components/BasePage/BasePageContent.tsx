@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { BookPreview, BookPreviewProps } from "../BookPreview/BookPreview"
 import {width as getWidth} from "../widthCalculator"
 import { BookShowcase, MobileBookShowcase } from "./BookShowcase"
 import image1 from "../../assets/basePage/image1.png";

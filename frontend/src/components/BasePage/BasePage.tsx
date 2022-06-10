@@ -24,7 +24,7 @@ export const BasePage = () => {
           id: offer.id,
           image: offer.book.photo,
           name: offer.book.title,
-          author: offer.book.fromAutors.map((author) => {return(author.author.name)}),
+          authors: offer.book.fromAutors.map((author) => {return(author.author.name)}),
           price: offer.price
         })
       })
@@ -44,7 +44,7 @@ export const BasePage = () => {
           id: offer.id,
           image: offer.book.photo,
           name: offer.book.title,
-          author: offer.book.fromAutors.map((author) => {return(author.author.name)}),
+          authors: offer.book.fromAutors.map((author) => {return(author.author.name)}),
           price: offer.price
         })
       })
@@ -64,7 +64,7 @@ export const BasePage = () => {
           id: offer.id,
           image: offer.book.photo,
           name: offer.book.title,
-          author: offer.book.fromAutors.map((author) => {return(author.author.name)}),
+          authors: offer.book.fromAutors.map((author) => {return(author.author.name)}),
           price: offer.price
         })
       })
