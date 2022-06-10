@@ -140,7 +140,6 @@ export const list = async (req: Request, res: Response) => {
 
 export const show = async (req: Request, res: Response) => {
   try {
-    res.set('Access-Control-Allow-Origin', '*');
     const offerId = req.params["id"] || "";
     const offer = await prisma.offer.findFirst({
       where: {

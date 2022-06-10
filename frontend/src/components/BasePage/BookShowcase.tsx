@@ -6,7 +6,7 @@ export const MobileBookShowcase = (props) => {
   return (
     <div className="books-wrapper">
     {books.slice(0, 2).map((b) => (
-      <BookPreview {...b} />
+      <BookPreview key={b.id} {...b} />
     ))}
   </div>
   )
@@ -18,8 +18,8 @@ export const BookShowcase = (props) => {
   return (
     <div className="books-wrapper">
     {getWidth() < 1200
-      ? books.slice(0, 4).map((b) => <BookPreview {...b} />)
-      : books.map((b) => <BookPreview {...b} />)}
+      ? books.slice(0, 4).map((b) => <BookPreview key={b.id} {...b} />)
+      : books.map((b) => <BookPreview key={b.id} {...b} />)}
   </div>
   )
 }

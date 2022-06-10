@@ -14,7 +14,7 @@ export const BookContent = (props) => {
         <div className="mobile-only book-info__title-author-wrapper">
           <h2 className="book-info__title">{data.data.book.title}</h2>
           {data.data.book.fromAutors.map((author) => { return (
-            <p className="book-info__author">{author.author.name}</p> ) })
+            <p key={author.author.name} className="book-info__author">{author.author.name}</p> ) })
           }
 
         </div>
@@ -28,7 +28,7 @@ export const BookContent = (props) => {
         <div className="desktop-only book-info__title-author-wrapper">
           <h2 className="book-info__title">{data.data.book.title}</h2>
           {data.data.book.fromAutors.map((author) => { return (
-            <p className="book-info__author">{author.author.name}</p> ) })
+            <p key={author.author.name} className="book-info__author">{author.author.name}</p> ) })
           }
         </div>
         <div className="price-wrapper">
@@ -60,7 +60,7 @@ export const BookContent = (props) => {
         </div>
         <div className="book-info__categories">
           {categories.map((category) => 
-            <Link  className="book-info__category" to={`/categories?category=${category}`}>{category}</Link>)
+            <Link key={category} className="book-info__category" to={`/categories?category=${category}`}>{category}</Link>)
           }
         </div>
         <div className="book-info__note">

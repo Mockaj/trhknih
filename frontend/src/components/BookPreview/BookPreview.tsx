@@ -22,7 +22,7 @@ export const BookPreview = ({ id, image, name, authors, price }: BookPreviewProp
         <img src={image} alt="BookImage" className="card__image"/>
       </div>
       <div className="card__book-name">{name}</div>
-      {authors.map((author) => <div className="card__book-author">{author}</div>)}
+      {authors.map((author) => <div key={author} className="card__book-author">{author}</div>)}
       
       <div className="card__price">{price===0 ? "Free" : `${price} €`}</div>
     </div>
