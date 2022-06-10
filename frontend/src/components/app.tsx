@@ -9,6 +9,7 @@ import { Cart } from "./Cart/Cart";
 import { SellBook } from "./SellBook/SellBook";
 import { RecoilRoot } from "recoil";
 import { BookInfo } from "./BookInfo/BookInfo";
+import { Categories } from "./categories/Categories";
 
 export const App = () => {
   return (
@@ -42,7 +43,10 @@ export const App = () => {
             path="/books/:id"
             element={<MainPage Content={<BookInfo />} />}
           />
-
+          <Route
+            path="/categories/:category/:page"
+            element={<MainPage Content={<Categories />} />}
+          />
 
           <Route path="*" element={<Error404 />} />
         </Routes>

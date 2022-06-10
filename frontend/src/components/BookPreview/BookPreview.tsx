@@ -11,10 +11,6 @@ export interface BookPreviewProps {
 
 
 export const BookPreview = ({ id, image, name, authors, price }: BookPreviewProps) => {
-  console.log(id)
-  console.log(name)
-  console.log(authors)
-  console.log(price)
   return (
     <Link to={`/books/${id}`}>
     <div className="card">

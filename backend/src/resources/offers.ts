@@ -84,11 +84,12 @@ export const list = async (req: Request, res: Response) => {
     }
 
     if (isbn || author || bookName) {
-      offers = offers.filter(offer => 
+      offers = offers.filter(offer =>
         (isbn && offer.book.isbn === isbn) ||
         (author && offer.book.fromAutors.map(x => x.author.name).includes(author)) ||
         (bookName && offer.book.title === bookName));
-    } else if (bestsellers) {
+    } 
+    if (bestsellers) {
       offers = offers.sort((a, b) => {
         const offerDiff = a.book.offered.filter(x => x.order).length - b.book.offered.filter(x => x.order).length;
         if (offerDiff > -5 && offerDiff < 5) {
@@ -100,26 +101,24 @@ export const list = async (req: Request, res: Response) => {
         }
         return a.price - b.price;
       });
-    } else {
-      offers = offers.filter(offer => (freeBooks && offer.price == 0) || (!freeBooks && offer.price > 0))
-
-      if (newlyAdded) {
-        offers.sort((a, b) => {
-          if (a.createTime > b.createTime) {
-            return -1;
-          } else if (a.createTime < b.createTime) {
-            return 1;
-          }
-          return 0;
-        });
-      }
+    } else if (freeBooks) {
+      offers = offers.filter(offer => offer.price == 0);
+    } else if (newlyAdded) {
+      offers.sort((a, b) => {
+        if (a.createTime > b.createTime) {
+          return -1;
+        } else if (a.createTime < b.createTime) {
+          return 1;
+        }
+        return 0;
+      });
     }
 
-    const pages = Math.ceil(offers.length/50);
+    const pages = Math.ceil(offers.length / 50);
     if (page > 0) {
-      offers = offers.slice((page-1)*50, page*50);
+      offers = offers.slice((page - 1) * 50, page * 50);
     }
-    
+
     return res.status(httpStatusCode.ok).send({
       status: "success",
       data: {
@@ -290,7 +289,7 @@ export const add = async (req: Request, res: Response) => {
                 publisherId: existingPublisher.id,
                 fromAutors: {
                   createMany: {
-                    data: authors.map(x => ({bookId : existingBook?.id, authorId : x.id})),
+                    data: authors.map(x => ({ bookId: existingBook?.id, authorId: x.id })),
                   },
                 },
               },

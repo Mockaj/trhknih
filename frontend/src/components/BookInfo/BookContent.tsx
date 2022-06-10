@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom"
 
 export const BookContent = (props) => {
-
   const BookPage = (props) => {
     const {data} = props
     
     if (data) {
-      console.log(data)
       const categories = data.data.tags.map((tag) => tag.name)
       return (
         <div className="book-info">

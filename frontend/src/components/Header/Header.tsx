@@ -75,11 +75,11 @@ export const Header = () => {
               <Link to="/login" onClick={onClickMenu}>
                 <li>My account</li>
               </Link>
-              <Link to="/categories" onClick={onClickMenu}>
+              <Link to="/categories/bestsellers/1" onClick={onClickMenu}>
                 <li>Categories</li>
               </Link>
 
-              <Link to="/buy" onClick={onClickMenu}>
+              <Link to="/categories/freeBooks/1" onClick={onClickMenu}>
                 <li>Buy a book</li>
               </Link>
               <Link to="/sell-a-book" onClick={onClickMenu}>
@@ -132,7 +132,7 @@ export const Header = () => {
           <hr />
           <div className="lowerbar-container">
             <ul className="lowerbar__list">
-              <Link to="/categories">
+              <Link to="/categories/bestsellers/1">
                 <li>Categories</li>
               </Link>
               <Link to="/what-is-isbn">
@@ -141,7 +141,7 @@ export const Header = () => {
               <Link to="/how-to-sell-a-book">
                 <li>How to sell a book</li>
               </Link>
-              <Link to="/categories/free">
+              <Link to="/categories/freeBooks/1">
                 <li>Free books</li>
               </Link>
               <li className="search-bar">
