@@ -11,6 +11,10 @@
   flex-direction: column;
 }
 
+.book-info__title-author-wrapper {
+  margin-bottom: 1rem;
+}
+
 .book-info__categories {
   display: flex;
   justify-content: flex-start;
@@ -46,7 +50,7 @@
   border-radius: 0.6rem;
   font-weight: 600;
   align-items: center;
-  margin-top: 1rem
+  margin-top: 1rem;
 }
 
 .price-wrapper__button {
@@ -89,6 +93,10 @@
   font-family: Montserrat;
   font-weight: 500;
   text-align: left;
+}
+
+.book-info__note {
+  margin: 0.5rem 0.5rem 0.5rem 0.9rem;
 }
 
 .desktop-only {
