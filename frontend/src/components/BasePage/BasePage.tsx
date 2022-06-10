@@ -3,8 +3,11 @@ import { useState, useEffect } from "react";
 import { BookPreviewProps } from "../BookPreview/BookPreview";
 import { BasePageContent } from "./BasePageContent";
 import "./BasePage.css";
+import { useDocumentTitle } from "@mantine/hooks";
 
 export const BasePage = () => {
+  useDocumentTitle("Readee - recycle books");
+
   const [bestsellers, setBestsellers] = useState<BookPreviewProps[]>()
   const [newlyAdded, setNewlyAdded] = useState<BookPreviewProps[]>()
   const [freeBooks, setFreeBooks] = useState<BookPreviewProps[]>()
