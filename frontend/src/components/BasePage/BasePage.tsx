@@ -31,11 +31,9 @@ export const BasePage = () => {
           price: offer.price
         })
       })
-      console.log("pre", data.data.offers)
-      console.log("books", books)
       setBestsellers(books);
     })
-    .catch(error => console.log(`Error: ${error}`));
+    .catch(error => console.log(`Error: ${error}`)); // <-- change this
   }
 
   const getNewlyAdded = () => {
@@ -51,11 +49,9 @@ export const BasePage = () => {
           price: offer.price
         })
       })
-      console.log("pre", data.data.offers)
-      console.log("books", books)
       setNewlyAdded(books);
     })
-    .catch(error => console.log(`Error: ${error}`));
+    .catch(error => console.log(`Error: ${error}`)); // <-- change this
   }
 
   const getFreeBooks = () => {
@@ -71,11 +67,9 @@ export const BasePage = () => {
           price: offer.price
         })
       })
-      console.log("pre", data.data.offers)
-      console.log("books", books)
       setFreeBooks(books);
     })
-    .catch(error => console.log(`Error: ${error}`));
+    .catch(error => console.log(`Error: ${error}`)); // <-- change this
   }
   
   return(

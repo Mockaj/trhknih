@@ -6,11 +6,15 @@ export const list = async (_: Request, res: Response)  => {
   try {
     var tags = await prisma.tag.findMany({
       include: {
-        Offers: true,
+        Offers: {
+          include: {
+            order: true,
+          },
+        },
       }
     });
 
-    tags = tags.filter(x => x.Offers?.length > 0);
+    tags = tags.filter(x => x.Offers?.length > 0).filter(x => x.Offers.map(o => o.order == null).reduce((a, b) => a || b));
 
     return res.status(httpStatusCode.ok).send({
       status: "success",

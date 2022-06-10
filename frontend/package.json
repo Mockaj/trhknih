@@ -24,6 +24,8 @@
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.31.3",
     "react-icons": "^4.3.1",
+    "react-multi-select-component": "^4.2.9",
+    "react-pro-sidebar": "^0.7.1",
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.3-alpha.2",
     "tabler-icons-react": "^1.48.0"

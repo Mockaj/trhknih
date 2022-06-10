@@ -1,0 +1,122 @@
+.categories-flex-wrap {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 5vw;
+  flex-grow: 1;
+}
+.categories-multiselect {
+  min-width: 10vw;
+}
+.categories-sidebar-container {
+  font-family: "Montserrat";
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.categories__subheading {
+  margin: 2rem 0 0 0.5rem;
+}
+.categories-featured__list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 1rem 0 0 0.5rem;
+}
+
+.categories-apply-filters {
+  margin: 0.8rem;
+  background: var(--readee-green);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-color: lightgray;
+  border-width: 1px;
+  display: flex;
+  justify-content: center;
+}
+
+.categories-apply-filters:hover {
+  background: var(--readee-green-hover);
+}
+.categories-apply-filters:active {
+  background: var(--readee-green-active);
+}
+.categories-featured__item {
+  margin-bottom: 0.3rem;
+}
+
+.categories-featured__item-link:hover {
+  opacity: 0.6;
+}
+
+
+.categories-book-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: space-evenly;
+}
+
+.categories__book-preview-wrapper {
+  margin: 0.5rem;
+}
+
+.page-choice__list {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.page-choice__item {
+  margin: 0.8rem;
+  background: var(--readee-white);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-color: lightgray;
+  border-width: 1px;
+  width: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.page-choice__item:hover {
+  background: lightgray;
+}
+.page-choice__item:active {
+  background: var(--readee-green-active);
+}
+
+.page-choice__item--active {
+  background: var(--readee-green);
+}
+
+.page-choice__item--active:hover {
+  background: var(--readee-green-hover);
+}
+
+.page-choice__item--active:active {
+  background: var(--readee-green-active);
+}
+
+@media screen and (min-width: 822px) {
+  .categories-flex-wrap {
+    display: flex;
+    flex-direction: row;
+    margin: 2rem 15vw;
+  }
+  .categories-multiselect {
+    max-width: 15vw;
+  }
+  .categories-sidebar-container {
+    width: 20vw;
+    margin-right: 1rem;
+    flex-direction: column;
+  }
+
+  .categories-sidebar-filters {
+    width: 15vw;
+  }
+}
