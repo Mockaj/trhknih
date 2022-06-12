@@ -92,7 +92,11 @@ export const AccountContent = ({ disabled = true }: AccountContentProps) => {
               </li>
             </ul>
             <div className={submitButtonContainer}>
-              <input type="submit" className="submit-button" value="Submit" />
+              <input
+                type="submit"
+                className="account-submit-button"
+                value="Submit"
+              />
             </div>
           </form>
         </div>

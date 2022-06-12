@@ -16,7 +16,7 @@ export const Account = () => {
     }
   };
   return (
-    <>
+    <div className="account-content">
       <div className="account-navbar-container">
         <div className="wrapper">
           <nav className="account-navbar">
@@ -30,7 +30,7 @@ export const Account = () => {
                 checked={content === "account"}
                 onChange={handleChange}
               ></input>
-              Account
+              <span>Account</span>
             </label>
             <label className={isChecked("offers")} htmlFor="offers">
               <input
@@ -86,6 +86,6 @@ export const Account = () => {
         </div>
       </div>
       <RenderContent content={content} setContent={setContent} />
-    </>
+    </div>
   );
 };
