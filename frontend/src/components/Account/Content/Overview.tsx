@@ -15,7 +15,7 @@ export const Overview = () => {
   return (
     <div className="account-content-container offers-content-container offers-content-container--mobile">
       <div className="personal-info-container offers-info-container--mobile">
-        <h3 className="offers-heading"> Active offers</h3>
+        <h3 className="offers-heading"> Active Offers</h3>
         {bestsellers.map((item, index) => {
           return (
             <div className="cart-row">

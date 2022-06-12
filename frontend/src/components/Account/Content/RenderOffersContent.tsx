@@ -15,6 +15,6 @@ export const RenderOffersContent = ({
     case "sent":
       return <OffersDelivery />;
     default:
-      return <p>Bad reqquest</p>;
+      return <p>Bad request</p>;
   }
 };
