@@ -1,0 +1,104 @@
+.main-page__content-container {
+  display: block;
+}
+.account-content {
+  padding: 0 15vw;
+}
+.account-navbar-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 2rem;
+  border: none;
+  background-color: #eeecdd;
+  border-radius: 10px;
+  font: "Montserrat";
+}
+.wrapper {
+  width: 100%;
+  margin-left: 1rem;
+}
+.account-navbar {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+  margin: 1rem 0;
+  vertical-align: middle;
+}
+.account-navbar__label:last-child {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+.account-navbar__label {
+  display: flex;
+  margin: 0 1rem;
+  padding: 0.5rem;
+  font-family: "Montserrat";
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  transition: ease-out 100ms;
+  align-items: center;
+  justify-content: center;
+}
+.account-navbar__label--checked {
+  color: #459362;
+}
+.account-navbar__label:hover {
+  color: #459362;
+}
+.account-submit-button {
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: var(--readee-green);
+  color: white;
+  font-weight: 600;
+  font-family: "Montserrat";
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 1rem 0;
+  padding: 0.5rem 2rem;
+  border: none;
+}
+.account-submit-button:hover {
+  background-color: var(--readee-green-hover);
+}
+.account-submit-button:active {
+  background-color: var(--readee-green-active);
+}
+@media screen and (max-width: 1050px) {
+  .account-content {
+    padding: 0 5vw;
+  }
+}
+@media screen and (max-width: 730px) {
+  .account-navbar-container {
+    background-color: white;
+  }
+  .account-navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .account-navbar__label {
+    width: 80vw;
+    min-width: 280px;
+    margin: 0.1rem 0;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 10px;
+    background: #f8f7f1;
+    border: 1px solid #eeecdd;
+    box-sizing: border-box;
+    border-radius: 6px;
+  }
+  .account-navbar__label:last-child {
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -115,7 +115,7 @@ export const Header = () => {
                   &nbsp;Sell a book
                 </li>
               </Link>
-              <Link to="/login">
+              <Link to="/account">
                 <li>
                   <BiUser size={iconSize} className="react-icons" />
                   &nbsp;Account

@@ -1,0 +1,236 @@
+.price-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.item-info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 74%;
+}
+.offers-content-container {
+  justify-content: space-between;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.cart-page-name-price-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-weight: 500;
+}
+
+.remove-btn-offers {
+  margin: 0.5rem;
+}
+.remove-btn {
+  font-family: "Montserrat";
+}
+.tosent-info-container {
+  display: flex;
+  flex-direction: column;
+}
+.cart-offers-name-price-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+.remove-btn-offers-tosent {
+  padding: 0.3rem 0.5rem;
+  margin: 0 0.1rem;
+}
+.cart-row-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.offers-address {
+  padding: 1rem 0;
+  padding: 1rem;
+  background-color: aliceblue;
+  border-radius: 10px;
+  font-family: "Montserrat";
+}
+.offers-address--hide {
+  display: none;
+}
+.cart-row-container:nth-child(2) {
+  border: none;
+}
+.cart-row-container:last-child .cart-row,
+.cart-row:last-child {
+  border: none;
+}
+.cart-row-border--hide {
+  border: none;
+}
+.offer-address-message {
+  line-height: 1.5rem;
+}
+.offers-navbar {
+  list-style: none;
+  display: flex;
+  background-color: #e2e0d1;
+  margin: 0 1rem;
+  padding: 0.5rem 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 25%;
+  justify-content: space-evenly;
+  font-family: "Montserrat";
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.offers-navbar__label {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 120px;
+}
+.offers-delivery-info-container {
+  width: 75%;
+}
+.offers-sent-books-text {
+  width: 80%;
+}
+.full-width {
+  width: 100%;
+}
+.offers-delivery__heading {
+  margin: 1rem 0;
+  background-color: #f8f7f1;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.offers-address__heading {
+  margin: 1rem 0;
+}
+.orders-received-button {
+  padding: 1rem;
+  font-size: 1rem;
+}
+.orders-received-button-container {
+  justify-content: flex-end;
+}
+.offer-address-message-have-sent {
+  margin-left: auto;
+}
+.remove-btn-offers-havesent {
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+}
+.cart-row-sent-offers:nth-last-child(2) {
+  border-bottom: none;
+}
+@media screen and (max-width: 1420px) {
+}
+
+@media screen and (max-width: 1290px) {
+  .offers-navbar {
+    width: 35%;
+  }
+}
+@media screen and (max-width: 1010px) {
+  .offers-navbar {
+    width: 35%;
+  }
+}
+@media screen and (max-width: 730px) {
+  .orders-received-button {
+    width: 100%;
+    white-space: nowrap;
+  }
+  .offers-navbar {
+    margin: 0 auto;
+    background-color: white;
+    flex-direction: row;
+  }
+  .offers-navbar__label {
+    width: 10vw;
+  }
+  .offers-content-container--mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .offers-info-container--mobile {
+    width: 80vw;
+  }
+  .offers-heading {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .remove-btn-offers--mobile {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .item-info-container {
+    align-items: center;
+  }
+  .cart-page-name-price-container {
+    align-items: flex-start;
+    margin: 0 0.5rem;
+  }
+  .offers-name-price__span {
+    text-align: left;
+  }
+}
+@media screen and (max-width: 1420px) {
+  .remove-btn-offers-tosent {
+    font-size: 0.7rem;
+  }
+  .remove-btn-offers-havesent {
+    padding: 0.5rem 1.2rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 835px) {
+  .remove-btn-offers-tosent {
+    font-size: 0.6rem;
+  }
+}
+@media screen and (max-width: 730px) {
+  .remove-btn-offers-tosent {
+    font-size: 0.8rem;
+    justify-content: center;
+  }
+  .cart-row--mobile {
+    padding-top: 1rem;
+  }
+  .tosent-info-container {
+    flex-direction: row;
+  }
+  .cart-offers-name-price-container button {
+    margin: 0.2rem 0;
+    align-items: flex-end;
+  }
+  .cart-offers-name-price-container {
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+  }
+  .offers__img {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .cart-page-name-price-container {
+    margin-left: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cart-offers-name-price-container {
+    font-size: 1rem;
+    margin-left: 1rem;
+  }
+  .cart-page-name-price-container {
+    font-size: 1rem;
+  }
+}
