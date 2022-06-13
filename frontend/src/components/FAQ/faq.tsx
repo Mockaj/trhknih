@@ -8,11 +8,11 @@ interface FaqProps {
 }
 
 export const Faq = ({ topic }: FaqProps) => {
-  useDocumentTitle("FAQ \u00B7 Readee - recycle books")
+  useDocumentTitle("FAQ \u00B7 Readee - recycle books");
   const [questions, setQuestions] = useState(topic);
   useEffect(() => {
-    setQuestions(topic)
-  }, [topic])
+    setQuestions(topic);
+  }, [topic]);
   const handleChange = (event: any) => {
     setQuestions(event.target.value);
   };
@@ -25,7 +25,7 @@ export const Faq = ({ topic }: FaqProps) => {
   };
   return (
     <div className="accordion-container">
-      <div className="wrapper">
+      <div className="faq-wrapper">
         <div className="heading-container">
           <h1 className="heading">Frequently asked questions</h1>
         </div>
