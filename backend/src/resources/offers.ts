@@ -85,9 +85,9 @@ export const list = async (req: Request, res: Response) => {
 
     if (isbn || author || bookName) {
       offers = offers.filter(offer =>
-        (isbn && offer.book.isbn === isbn) ||
-        (author && offer.book.fromAutors.map(x => x.author.name).includes(author)) ||
-        (bookName && offer.book.title === bookName));
+        (isbn && offer.book.isbn.toLowerCase().includes(isbn.toLowerCase())) ||
+        (author && offer.book.fromAutors.map(x => x.author.name.toLowerCase().includes(author.toLowerCase())).reduce((a, b) => a || b)) ||
+        (bookName && offer.book.title.toLowerCase().includes(bookName.toLowerCase())));
     } 
     if (bestsellers) {
       offers = offers.sort((a, b) => {
