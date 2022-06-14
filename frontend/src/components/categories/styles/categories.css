@@ -17,6 +17,9 @@
 .categories__subheading {
   margin: 2rem 0 0 0.5rem;
 }
+.categories__subheading:nth-last-child(2) {
+  margin-bottom: 0.5rem;
+}
 .categories-featured__list {
   display: flex;
   flex-direction: column;
@@ -49,7 +52,6 @@
 .categories-featured__item-link:hover {
   opacity: 0.6;
 }
-
 
 .categories-book-list {
   display: flex;

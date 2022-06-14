@@ -10,8 +10,8 @@ export const Faq = () => {
   const topic = query.get("topic") || "faq";
   const [questions, setQuestions] = useState(topic);
   useEffect(() => {
-    setQuestions(topic)
-  }, [topic])
+    setQuestions(topic);
+  }, [topic]);
   const handleChange = (event: any) => {
     setQuestions(event.target.value);
   };
@@ -24,7 +24,7 @@ export const Faq = () => {
   };
   return (
     <div className="accordion-container">
-      <div className="wrapper">
+      <div className="faq-wrapper">
         <div className="heading-container">
           <h1 className="heading">Frequently asked questions</h1>
         </div>

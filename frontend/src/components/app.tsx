@@ -11,6 +11,7 @@ import { RecoilRoot } from "recoil";
 import { BookInfo } from "./BookInfo/BookInfo";
 import { Categories } from "./categories/Categories";
 import { Account } from "./Account/Account";
+import { ResultsPage } from "./Header/Search/ResultsPage";
 
 export const App = () => {
   return (
@@ -40,10 +41,11 @@ export const App = () => {
             path="/categories/:category/:page"
             element={<MainPage Content={<Categories />} />}
           />
-        <Route
-          path="/account"
-          element={<MainPage Content={<Account />} />}
-        />
+          <Route path="/account" element={<MainPage Content={<Account />} />} />
+          <Route
+            path="/search"
+            element={<MainPage Content={<ResultsPage />} />}
+          />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>

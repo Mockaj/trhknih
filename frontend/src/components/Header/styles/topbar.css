@@ -119,6 +119,23 @@
 .search-btn:hover {
   opacity: 0.5;
 }
+.searchbar__input-button-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+.header-clear__btn {
+  position: relative;
+  right: 60px;
+  border: none;
+  background-color: #f8f7f1;
+  cursor: pointer;
+  padding: 0 0.5rem;
+}
+input[type="search"]::-webkit-search-cancel-button {
+  position: relative;
+  right: 30px;
+  cursor: pointer;
+}
 
 /*
 ---------------- DESKTOP STYLES ----------------
@@ -166,6 +183,15 @@
     flex-direction: row;
     margin: 0;
   }
+  .searchbar__input-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .searchbar__flex-column {
+    display: flex;
+    flex-direction: column;
+  }
   .searchbar__input {
     padding: 0.75rem 1.5rem 0.75rem 0.5rem;
     background-image: -webkit-linear-gradient(
@@ -180,6 +206,9 @@
   .fix-to-search {
     position: relative;
     right: 2.8em;
+  }
+  input[type="search"]::-webkit-search-cancel-button {
+    right: 15px;
   }
 }
 

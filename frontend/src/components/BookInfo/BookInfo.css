@@ -22,7 +22,7 @@
 }
 
 .book-info__category {
-  background: #006E90;
+  background: #006e90;
   color: var(--readee-white);
   border-radius: 2rem;
   padding: 0.3rem 0.6rem;
@@ -45,7 +45,7 @@
 .price-wrapper {
   display: flex;
   justify-content: space-between;
-  background: #EFF4F1;
+  background: #eff4f1;
   padding: 0.5rem 1.5rem;
   border-radius: 0.6rem;
   font-weight: 600;
@@ -75,6 +75,7 @@
   display: flex;
   flex-direction: column;
   margin: 1rem;
+  width: 30%;
 }
 
 .info__part-wrapper {
