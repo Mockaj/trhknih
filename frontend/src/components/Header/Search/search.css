@@ -33,6 +33,9 @@
   background-color: #eeeeee;
   cursor: pointer;
 }
+.search-results-container {
+  margin: 2rem 15vw;
+}
 @media screen and (max-width: 1050px) {
   .search-results {
     margin-right: 1rem;

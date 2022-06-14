@@ -2,6 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import { Search } from "./Search/Search";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 interface SearchBarProps {
   placeholder?: string;
   data?: string;
@@ -17,8 +18,8 @@ export const SearchBar = ({
     setSearchBarContent("");
     document.getElementById("searchBarInput").value = "";
   };
+  const searchButton = document.getElementById("searchButton");
   useEffect(() => {
-    // runs on location, i.e. route, change
     clearSearch();
   }, [location]);
   return (
@@ -32,9 +33,12 @@ export const SearchBar = ({
             onChange={(e) => setSearchBarContent(e.target.value)}
             id="searchBarInput"
           />
-          <button className="search-btn fix-to-search">
-            <FaSearch className="react-icons" />
-          </button>
+          <Link
+            to={`/search?searchBarContent=${searchBarContent}`}
+            className="search-btn fix-to-search"
+          >
+            <FaSearch className="react-icons" id="searchButton" />
+          </Link>
           <Search searchBarContent={searchBarContent} />
         </div>
       </form>

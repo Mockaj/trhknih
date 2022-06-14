@@ -6,7 +6,7 @@ interface SearchProps {
   searchBarContent: string;
 }
 export const Search = ({ searchBarContent }: SearchProps) => {
-  const [offers, setOffers] = useState([]);
+  const [offers, setOffers] = useState<any[]>([]);
   useEffect(() => {
     getOffers();
   }, [searchBarContent]);
@@ -21,7 +21,6 @@ export const Search = ({ searchBarContent }: SearchProps) => {
         setOffers(offers);
       });
   };
-  console.log(offers, searchBarContent);
   if (searchBarContent.length > 0) {
     return (
       <div className="search-results">

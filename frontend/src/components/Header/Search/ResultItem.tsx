@@ -6,7 +6,6 @@ interface ResultItemProps {
 }
 export const ResultItem = ({ bookName, subtitle, id }: ResultItemProps) => {
   const subtitleText = subtitle !== null ? `: ${subtitle}` : "";
-  console.log(id);
   return (
     <>
       <Link
