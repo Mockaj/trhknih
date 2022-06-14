@@ -21,6 +21,7 @@ export const Search = ({ searchBarContent }: SearchProps) => {
         setOffers(offers);
       });
   };
+  console.log(offers);
   if (searchBarContent.length > 0) {
     return (
       <div className="search-results">
@@ -30,6 +31,7 @@ export const Search = ({ searchBarContent }: SearchProps) => {
               bookName={offer.book.title}
               subtitle={offer.book.subtitle}
               id={offer.id}
+              price={offer.price}
             />
           );
         })}

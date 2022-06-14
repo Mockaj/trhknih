@@ -18,7 +18,6 @@ export const SearchBar = ({
     setSearchBarContent("");
     document.getElementById("searchBarInput").value = "";
   };
-  const searchButton = document.getElementById("searchButton");
   useEffect(() => {
     clearSearch();
   }, [location]);
@@ -30,6 +29,7 @@ export const SearchBar = ({
             placeholder={placeholder}
             className="searchbar__input"
             type="search"
+            onBlur={() => setSearchBarContent("")}
             onChange={(e) => setSearchBarContent(e.target.value)}
             id="searchBarInput"
           />
@@ -39,8 +39,8 @@ export const SearchBar = ({
           >
             <FaSearch className="react-icons" id="searchButton" />
           </Link>
-          <Search searchBarContent={searchBarContent} />
         </div>
+        <Search searchBarContent={searchBarContent} />
       </form>
     </div>
   );
