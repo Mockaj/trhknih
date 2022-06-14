@@ -114,6 +114,7 @@
   .book-info {
     flex-direction: row;
     align-items: stretch;
+    justify-content: center;
     margin: 2vh 15vw;
   }
 

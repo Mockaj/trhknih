@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
 import "./styles/topbar.css";
+import { useRecoilState } from "recoil";
+import { showSearchAtom } from "../../states/atoms/showSearchAtom";
 
 const iconSize: number = 30;
 export const Header = () => {
@@ -33,7 +35,7 @@ export const Header = () => {
 
   const width = useWindowDimensions();
   const [showMenu, setShowMenu] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
+  const [showSearch, setShowSearch] = useRecoilState(showSearchAtom);
   const showMobMenu = showMenu ? "" : "none";
   const showSearchMenu = showSearch ? "" : "none";
   const onClick = () => {
@@ -43,7 +45,6 @@ export const Header = () => {
   const onClickSearch = () => {
     setShowSearch(!showSearch);
     setShowMenu(false);
-    console.log(showMenu);
   };
   const onClickMenu = () => {
     setShowMenu(!showMenu);
@@ -60,7 +61,7 @@ export const Header = () => {
               <li>
                 <FaSearch onClick={onClickSearch} />
               </li>
-              <Link to="/cart">
+              <Link to="/cart" onClick={onClick}>
                 <li>
                   <FiShoppingCart />
                 </li>
@@ -88,13 +89,10 @@ export const Header = () => {
               <Link to="/how-to-sell-a-book" onClick={onClickMenu}>
                 <li>How to sell a book</li>
               </Link>
-              <Link to="/contact" onClick={onClickMenu}>
-                <li>Contact</li>
-              </Link>
             </ul>
           </div>
           <div className="search--mobile" style={{ display: showSearchMenu }}>
-            <SearchBar />
+            <SearchBar onClick={onClick} />
           </div>
         </nav>
       </>

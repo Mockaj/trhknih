@@ -1,5 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import width from "../widthCalculator";
+import axios from "axios";
 
 interface IFormInput {
   firstName: string;
@@ -23,9 +24,19 @@ export const CartForm = () => {
     watch,
     handleSubmit,
   } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data), console.log("POST REQUEST");
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    };
+
+    const response = await fetch("/api/orders", requestOptions);
+    const jsonData = await response.json();
+
+    console.log(jsonData);
   };
+
   return (
     <div className="delivery-form-container">
       <h3 className="small-header">Enter delivery address</h3>
