@@ -12,8 +12,8 @@ export const SearchBar = ({
   placeholder = "Search by book, author, ISBN...",
 }: SearchBarProps) => {
   const [searchBarContent, setSearchBarContent] = useState("");
+  const [displaySearchResults, setDisplaySearchResults] = useState(false);
   const location = useLocation();
-
   const clearSearch = () => {
     setSearchBarContent("");
     document.getElementById("searchBarInput").value = "";
@@ -21,6 +21,7 @@ export const SearchBar = ({
   useEffect(() => {
     clearSearch();
   }, [location]);
+
   return (
     <div className="searchbar-container">
       <form className="searchbar__form searchbar__flex-column">
@@ -29,10 +30,12 @@ export const SearchBar = ({
             placeholder={placeholder}
             className="searchbar__input"
             type="search"
-            onBlur={() => setSearchBarContent("")}
             onChange={(e) => setSearchBarContent(e.target.value)}
+            onClick={() => setDisplaySearchResults(true)}
+            onBlur={() => setDisplaySearchResults(false)}
             id="searchBarInput"
           />
+
           <Link
             to={`/search?searchBarContent=${searchBarContent}`}
             className="search-btn fix-to-search"
@@ -40,7 +43,11 @@ export const SearchBar = ({
             <FaSearch className="react-icons" id="searchButton" />
           </Link>
         </div>
-        <Search searchBarContent={searchBarContent} />
+
+        <Search
+          searchBarContent={searchBarContent}
+          style={displaySearchResults}
+        />
       </form>
     </div>
   );

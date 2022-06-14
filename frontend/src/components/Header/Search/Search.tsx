@@ -4,8 +4,9 @@ import "./search.css";
 import { ResultItem } from "./ResultItem";
 interface SearchProps {
   searchBarContent: string;
+  style: string;
 }
-export const Search = ({ searchBarContent }: SearchProps) => {
+export const Search = ({ searchBarContent, style }: SearchProps) => {
   const [offers, setOffers] = useState<any[]>([]);
   useEffect(() => {
     getOffers();
@@ -21,24 +22,5 @@ export const Search = ({ searchBarContent }: SearchProps) => {
         setOffers(offers);
       });
   };
-  console.log(offers);
-  if (searchBarContent.length > 0) {
-    return (
-      <div className="search-results">
-        {offers.map((offer) => {
-          return (
-            <ResultItem
-              bookName={offer.book.title}
-              subtitle={offer.book.subtitle}
-              id={offer.id}
-              price={offer.price}
-            />
-          );
-        })}
-      </div>
-    );
-  } else {
-    return <></>;
-  }
 };
 export default Search;

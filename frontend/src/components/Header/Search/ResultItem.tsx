@@ -12,6 +12,7 @@ export const ResultItem = ({
   price,
 }: ResultItemProps) => {
   const subtitleText = subtitle !== null ? `: ${subtitle}` : "";
+
   return (
     <>
       <Link to={`/books/${id}`} className="result-item">
