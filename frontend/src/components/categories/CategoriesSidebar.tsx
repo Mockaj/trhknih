@@ -4,7 +4,8 @@ import { Link, useLocation } from "react-router-dom"
 
 export const CategoriesSidebar = (props) => {
   const {options, selected, setSelected} = props
-  const query = useLocation()
+  const location = useLocation()
+  const query = new URLSearchParams(location.search);
 
   const categories = [
     ["Bestsellers", "bestsellers"],
@@ -20,7 +21,7 @@ export const CategoriesSidebar = (props) => {
           <ul className="categories-featured__list">
             {categories.map((category) => (
               <li key={category[0]} className="categories-featured__item">
-                <Link className="categories-featured__item-link" to={`/categories/${category[1]}/1${query.search}`}>
+                <Link className="categories-featured__item-link" to={`/categories/${category[1]}/1${location.search}`}>
                   {category[0]}
                 </Link>
               </li>
@@ -38,8 +39,11 @@ export const CategoriesSidebar = (props) => {
             onChange={setSelected}
             labelledBy="Select"
           />
-          <Link className="categories-apply-filters" to={`?${selected.map((tag) => `${tag.label}`)}`} >
+          <Link className="categories-apply-filters" to={`?search=${query.get("search")}&tags=${selected.map((tag) => `${tag.label}`)}`} >
             Apply filters
+          </Link>
+          <Link className="categories-apply-filters" to={"?"} >
+            Clear filters
           </Link>
         </div>
       </div>

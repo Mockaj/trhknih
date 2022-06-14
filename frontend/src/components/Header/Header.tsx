@@ -79,7 +79,7 @@ export const Header = () => {
                 <li>Categories</li>
               </Link>
 
-              <Link to="/categories/freeBooks/1" onClick={onClickMenu}>
+              <Link to="/categories/bestsellers/1" onClick={onClickMenu}>
                 <li>Buy a book</li>
               </Link>
               <Link to="/sell-a-book" onClick={onClickMenu}>
