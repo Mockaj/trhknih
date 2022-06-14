@@ -37,7 +37,7 @@ export const SearchBar = ({
           />
 
           <Link
-            to={`/search?searchBarContent=${searchBarContent}`}
+            to={`/categories/bestsellers/1?search=${searchBarContent}`}
             className="search-btn fix-to-search"
           >
             <FaSearch className="react-icons" id="searchButton" />
