@@ -13,7 +13,7 @@ export const Footer = () => {
         <Grid.Col className="footer__flex-column" span={4}>
           <Grid columns={1} align="center">
            <Grid.Col className="footer__flex-cell" span={1}>
-              <Link to="/faq" className="footer__text">FAQ</Link>
+              <Link to="/faq?topic=faq" className="footer__text">FAQ</Link>
             </Grid.Col>
           </Grid>
         </Grid.Col>

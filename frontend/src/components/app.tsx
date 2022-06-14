@@ -27,15 +27,7 @@ export const App = () => {
           <Route path="/login" element={<MainPage Content={<Login />} />} />
           <Route
             path="/faq"
-            element={<MainPage Content={<Faq topic="faq" />} />}
-          />
-          <Route
-            path="/how-to-sell-a-book"
-            element={<MainPage Content={<Faq topic="sell" />} />}
-          />
-          <Route
-            path="/what-is-isbn"
-            element={<MainPage Content={<Faq topic="isbn" />} />}
+            element={<MainPage Content={<Faq />} />}
           />
           <Route
             path="/sell-a-book"
