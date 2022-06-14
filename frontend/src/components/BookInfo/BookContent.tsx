@@ -13,12 +13,13 @@ export const BookContent = (props: any) => {
 
     const addItem = () => {
       const newItemObj = {
-        id: randomId(),
+        id: data.data.id,
         image: data.data.book.photo,
         title: data.data.book.title,
         language: "English",
         price: data.data.price,
       };
+
       setCartItemList((cartItemList) => [...cartItemList, newItemObj]);
       toast.success("Item succesfully added to your cart");
     };

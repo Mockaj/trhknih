@@ -118,7 +118,7 @@ export const Cart = () => {
                 </div>
               </div>
             </div>
-            <CartForm />
+            <CartForm offer={cartItemList} />
           </div>
         </div>
       );

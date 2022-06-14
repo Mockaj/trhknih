@@ -1,5 +1,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import width from "../widthCalculator";
+import { useRecoilState } from "recoil";
+import { cartItemListAtom } from "../../states/atoms/cartItemAtom";
+import { CartItem } from "./CartItem";
 import axios from "axios";
 
 interface IFormInput {
@@ -16,6 +19,7 @@ interface IFormInput {
 }
 
 export const CartForm = () => {
+  const [cartItemList, setCartItemList] = useRecoilState(cartItemListAtom);
   const shortLabels =
     width() < 650 ? ["House n.", "ZIP"] : ["House number", "Postal code"];
   const {
@@ -24,17 +28,39 @@ export const CartForm = () => {
     watch,
     handleSubmit,
   } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+  console.log(cartItemList);
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    const headers = {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
     };
+    const formatedData = cartItemList.map((item) => {
+      return {
+        phoneNumber: data.phone,
+        offerId: item.id,
+        customerId: "----------TO BE ADDED----------",
+        address: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          street: data.street,
+          houseNumber: data.houseNumber,
+          city: data.city,
+          postalCode: data.postalCode,
+        },
+      };
+    });
+    console.log("Formated DATA", formatedData);
 
-    const response = await fetch("/api/orders", requestOptions);
-    const jsonData = await response.json();
-
-    console.log(jsonData);
+    axios
+      .post("http://localhost:4000/api/orders", formatedData, { headers })
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
 
   return (
