@@ -2,13 +2,12 @@ import "./styles/faq.css";
 import { useState, useEffect } from "react";
 import { accordion } from "./accordion";
 import { useDocumentTitle } from "@mantine/hooks";
+import { useLocation } from "react-router-dom";
 
-interface FaqProps {
-  topic: string;
-}
-
-export const Faq = ({ topic }: FaqProps) => {
+export const Faq = () => {
   useDocumentTitle("FAQ \u00B7 Readee - recycle books")
+  const query = new URLSearchParams(useLocation().search);
+  const topic = query.get("topic") || "faq";
   const [questions, setQuestions] = useState(topic);
   useEffect(() => {
     setQuestions(topic)
