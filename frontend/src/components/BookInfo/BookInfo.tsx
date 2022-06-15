@@ -22,7 +22,13 @@ export const BookInfo = () => {
     axios.get(`${url}`)
     .then((response) => {
       const data = response.data;
-      setData(data);
+      axios.get(`http://localhost:4000/api/users/${data.data.seller.id}/info`)
+      .then((res) => {
+        const username = res.data.data.username;
+        console.log(username);
+        setData({...data, username});
+      }).catch(error => console.log(`Error: ${error}`));
+      
     })
     .catch(error => console.log(`Error: ${error}`));
   }
