@@ -8,12 +8,10 @@ import { showSearchAtom } from "../../states/atoms/showSearchAtom";
 interface SearchBarProps {
   placeholder?: string;
   data?: string;
-  onClick: Function;
 }
 
 export const SearchBar = ({
   placeholder = "Search by book, author, ISBN...",
-  onClick,
 }: SearchBarProps) => {
   const [searchBarContent, setSearchBarContent] = useState("");
   const [displaySearchResults, setDisplaySearchResults] = useState(false);
@@ -50,10 +48,7 @@ export const SearchBar = ({
           </Link>
         </div>
 
-        <Search
-          searchBarContent={searchBarContent}
-          style={displaySearchResults}
-        />
+        <Search searchBarContent={searchBarContent} />
       </form>
     </div>
   );

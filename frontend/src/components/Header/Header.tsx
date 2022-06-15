@@ -175,13 +175,7 @@ export const Header = () => {
               <li>
                 <FaSearch onClick={onClickSearch} />
               </li>
-<<<<<<< frontend/src/components/Header/Header.tsx
-              <Link to="/cart" onClick={onClick}>
-                <li>
-                  <FiShoppingCart />
-                </li>
-              </Link>
-=======
+
               <li
                 onClick={() =>
                   loginWithRedirect({
@@ -191,7 +185,6 @@ export const Header = () => {
               >
                 <FiShoppingCart />
               </li>
->>>>>>> frontend/src/components/Header/Header.tsx
               <li>
                 <FaBars onClick={onClickMenu} />
               </li>
