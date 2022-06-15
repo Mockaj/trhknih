@@ -37,9 +37,11 @@ export const Categories = () => {
       setTags(tags);
     })
   }
+
+  const queryParams = new URLSearchParams(query.search);
   
   const getBooks = () => {
-    axios.get(`http://localhost:4000/api/offers?${params.category}=true&page=${params.page}&tags=${query.search}`)
+    axios.get(`http://localhost:4000/api/offers?${params.category}=true&page=${params.page}&tags=${queryParams.get("tags")}&search=${queryParams.get("search")}`)
     .then((response) => {
       const data = response.data;
       const books: BookPreviewProps[] = data.data.offers.map((offer) => { 

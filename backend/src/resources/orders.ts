@@ -12,8 +12,7 @@ export const list = async (req: Request, res: Response) => {
       include: {
         customer: {
           select: {
-            username: true,
-            email: true,
+            id: true
           },
         },
         address: true,
@@ -21,8 +20,7 @@ export const list = async (req: Request, res: Response) => {
           include: {
             seller: {
               select: {
-                username: true,
-                email: true,
+                id: true,
               },
             },
             book: {
@@ -67,8 +65,7 @@ export const show = async (req: Request, res: Response) => {
       include: {
         customer: {
           select: {
-            username: true,
-            email: true,
+            id: true
           },
         },
         address: true,
@@ -76,8 +73,7 @@ export const show = async (req: Request, res: Response) => {
           include: {
             seller: {
               select: {
-                username: true,
-                email: true,
+                id: true
               },
             },
             book: {
@@ -173,8 +169,7 @@ export const add = async (req: Request, res: Response) => {
           include: {
             customer: {
               select: {
-                username: true,
-                email: true,
+                id: true
               },
             },
             offer: {

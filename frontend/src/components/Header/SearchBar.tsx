@@ -16,8 +16,8 @@ export const SearchBar = ({
   onClick,
 }: SearchBarProps) => {
   const [searchBarContent, setSearchBarContent] = useState("");
+  const [displaySearchResults, setDisplaySearchResults] = useState(false);
   const location = useLocation();
-
   const clearSearch = () => {
     setSearchBarContent("");
     document.getElementById("searchBarInput").value = "";
@@ -36,17 +36,24 @@ export const SearchBar = ({
             className="searchbar__input"
             type="search"
             onChange={(e) => setSearchBarContent(e.target.value)}
+            onClick={() => setDisplaySearchResults(true)}
+            onBlur={() => setDisplaySearchResults(false)}
             id="searchBarInput"
           />
+
           <Link
-            to={`/search?searchBarContent=${searchBarContent}`}
+            to={`/categories/bestsellers/1?search=${searchBarContent}`}
             className="search-btn fix-to-search"
             onClick={() => setShowSearch(false)}
           >
             <FaSearch className="react-icons" id="searchButton" />
           </Link>
-          <Search searchBarContent={searchBarContent} />
         </div>
+
+        <Search
+          searchBarContent={searchBarContent}
+          style={displaySearchResults}
+        />
       </form>
     </div>
   );

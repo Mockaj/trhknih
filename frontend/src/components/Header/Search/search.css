@@ -21,6 +21,9 @@
   width: 100%;
   overflow: auto;
   text-transform: capitalize;
+  justify-content: space-between;
+  display: flex;
+  flex: row;
 }
 .result-item:first-child {
   padding-top: 1rem;
@@ -36,6 +39,13 @@
 .search-results-container {
   margin: 2rem 15vw;
 }
+.search-result__price {
+  text-align: end;
+  color: var(--readee-green);
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
 @media screen and (max-width: 1050px) {
   .search-results {
     margin-right: 1rem;

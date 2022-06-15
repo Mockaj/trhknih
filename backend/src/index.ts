@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { auth } from "express-oauth2-jwt-bearer";
-import { offers, orders, tags, users } from "./resources";
+import { users, offers, orders, tags } from "./resources";
 import { httpStatusCode } from "./resources/httpStatusCodes";
 
 const api = express();
@@ -34,12 +34,9 @@ api.get("/api/tags", tags.list);
 api.use(checkJwt);
 
 // Resource users
-api.get("/api/users", users.list);
 api.get("/api/users/:id", users.show);
 api.post("/api/users", users.add);
-api.post("/api/login", users.login);
 api.put("/api/users/:id", users.update);
-api.put("/api/changePassword/:id", users.changePassword);
 
 // Resource offers
 api.post("/api/offers", offers.add);

@@ -35,9 +35,7 @@ export const list = async (req: Request, res: Response) => {
     }
 
     const tags: string[] | undefined = req.query["tags"] == undefined ? undefined : JSON.parse(JSON.stringify(req.query["tags"]));
-    const isbn = req.query["isbn"]?.toString().trim();
-    const author = req.query["author"]?.toString().trim();
-    const bookName = req.query["bookName"]?.toString().trim();
+    const search = req.query["search"]?.toString().trim();
     const page = +(req.query["page"]?.toString().trim() || 1);
 
     var offers = await prisma.offer.findMany({
@@ -47,8 +45,7 @@ export const list = async (req: Request, res: Response) => {
       include: {
         seller: {
           select: {
-            username: true,
-            email: true,
+            id: true
           },
         },
         book: {
@@ -70,7 +67,7 @@ export const list = async (req: Request, res: Response) => {
       },
     });
 
-    if (tags != undefined && tags.length > 0) {
+    if (tags != undefined && tags.length > 0 && !tags.includes("null")) {
       offers = offers.filter(offer => {
         var included = false;
         for (let i = 0; i < offer.tags.length; i++) {
@@ -83,11 +80,12 @@ export const list = async (req: Request, res: Response) => {
       });
     }
 
-    if (isbn || author || bookName) {
-      offers = offers.filter(offer =>
-        (isbn && offer.book.isbn.toLowerCase().includes(isbn.toLowerCase())) ||
-        (author && offer.book.fromAutors.map(x => x.author.name.toLowerCase().includes(author.toLowerCase())).reduce((a, b) => a || b)) ||
-        (bookName && offer.book.title.toLowerCase().includes(bookName.toLowerCase())));
+    if (search && search != "null") {
+      offers = offers.filter(offer => search && (
+        offer.book.isbn.toLowerCase().includes(search.toLowerCase()) ||
+        offer.book.fromAutors.map(x => x.author.name.toLowerCase().includes(search.toLowerCase())).reduce((a, b) => a || b) ||
+        offer.book.title.toLowerCase().includes(search.toLowerCase())
+      ));
     } 
     if (bestsellers) {
       offers = offers.sort((a, b) => {
@@ -343,8 +341,7 @@ export const add = async (req: Request, res: Response) => {
             tags: true,
             seller: {
               select: {
-                username: true,
-                email: true,
+                id: true
               },
             },
             book: {
