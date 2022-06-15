@@ -145,10 +145,10 @@ export const Header = () => {
                 <Link to="/categories/bestsellers/1">
                   <li>Categories</li>
                 </Link>
-                <Link to="/what-is-isbn">
+                <Link to="/faq?topic=isbn">
                   <li>What is ISBN</li>
                 </Link>
-                <Link to="/how-to-sell-a-book">
+                <Link to="/faq?topic=sell">
                   <li>How to sell a book</li>
                 </Link>
                 <Link to="/categories/freeBooks/1">
@@ -218,7 +218,7 @@ export const Header = () => {
             </ul>
           </div>
           <div className="search--mobile" style={{ display: showSearchMenu }}>
-            <SearchBar onClick={onClick} />
+            <SearchBar />
           </div>
         </nav>
       </>
