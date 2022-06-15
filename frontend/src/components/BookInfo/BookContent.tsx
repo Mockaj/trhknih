@@ -3,6 +3,8 @@ import { useRecoilState } from "recoil";
 import { randomId } from "@mantine/hooks";
 import { cartItemListAtom } from "../../states/atoms/cartItemAtom";
 import { ToastContainer, toast } from "react-toast";
+import { Alert } from "@mantine/core";
+import { AlertCircle } from "tabler-icons-react";
 
 export const BookContent = (props: any) => {
   const [cartItemList, setCartItemList] = useRecoilState(cartItemListAtom);
@@ -10,7 +12,7 @@ export const BookContent = (props: any) => {
   console.log("Props", props);
   const BookPage = (props: any) => {
     const { data } = props;
-
+    let showAlert = false;
     const addItem = () => {
       const newItemObj = {
         id: data.data.id,
@@ -19,9 +21,14 @@ export const BookContent = (props: any) => {
         language: "English",
         price: data.data.price,
       };
-
-      setCartItemList((cartItemList) => [...cartItemList, newItemObj]);
-      toast.success("Item succesfully added to your cart");
+      if (cartItemList.filter((item) => item.id === newItemObj.id).length > 0) {
+        toast.error(
+          "This item cannot be added to your cart, because it is already there and the user only offers one piece of this book"
+        );
+      } else {
+        setCartItemList((cartItemList) => [...cartItemList, newItemObj]);
+        toast.success("Item succesfully added to your cart");
+      }
     };
     console.log("CartItems", cartItemList);
     if (data) {
