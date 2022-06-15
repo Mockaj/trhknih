@@ -23,7 +23,7 @@ export const BookContent = (props: any) => {
       };
       if (cartItemList.filter((item) => item.id === newItemObj.id).length > 0) {
         toast.error(
-          "This item cannot be added to your cart, because it is already there and the user only offers one piece of this book"
+          "This item cannot be added to your cart, because it is already there and the user offers only one piece of this book"
         );
       } else {
         setCartItemList((cartItemList) => [...cartItemList, newItemObj]);
