@@ -5,6 +5,57 @@ import { object, string, ValidationError } from "yup";
 import axios from "axios";
 
 
+export const info = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params["id"] || "";
+    const token = await axios.post(
+      'https://readee.eu.auth0.com/oauth/token',
+      {
+        "client_id":"TfztdIfzI3dFBSfANqZrmZx1Stt1D7hZ",
+        "client_secret":"YijV4Ra40dtFpawUo5SwGyao4_zq1hEZNdMXXSk1x0gd4ZtDl70IfeWbhQtLw9C7",
+        "audience":"https://readee.eu.auth0.com/api/v2/",
+        "grant_type":"client_credentials"
+      },
+      {headers: { 'content-type': 'application/json' }}
+      );
+    const response = await axios.get(`https://readee.eu.auth0.com/api/v2/users/${userId}`,
+    {headers: { "authorization": `Bearer ${token.data.access_token}` }}
+    );
+    if (response.status == 404) {
+      return res.status(httpStatusCode.notFound).send({
+        status: "not found",
+        data: {},
+        message: `No user found with id = '${userId}'.`,
+      });
+    }
+    if (response.status != 200) {
+      return res.status(httpStatusCode.notFound).send({
+        status: "not found",
+        data: {},
+        message: `Internal server error.`,
+      });
+    }
+    const responseData = response.data;
+    const user = {
+      id: responseData.user_id,
+      username: responseData.username,
+      email: responseData.email,
+    }  
+
+    return res.status(httpStatusCode.ok).send({
+      status: "success",
+      data: user,
+      message: "User successfully found.",
+    });
+  } catch (error) {
+    return res.status(httpStatusCode.serverError).send({
+      status: "error",
+      data: {},
+      message: "Something went wrong.",
+    });
+  }
+};
+
 export const show = async (req: Request, res: Response) => {
   try {
     const userId = req.params["id"] || "";
