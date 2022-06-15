@@ -2,18 +2,17 @@ import { AcceptedOffer } from "./AcceptedOffer";
 import { BookPreviewProps } from "../../BookPreview/BookPreview";
 import { ToastContainer, toast } from "react-toast";
 import { MdDelete } from "react-icons/md";
-import { AcceptedOrder } from "./AcceptedOrder";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { userId } from "../../../store/user";
-export const Orders = () => {
+export const OffersOverview = () => {
   const onCancelClick = () => toast.info("You have removed your book offer");
   const [userData, setUserData] = useState();
   useEffect(() => {
-    getUserOrdes();
+    getUserOffers();
   }, []);
 
-  const getUserOrdes = () => {
+  const getUserOffers = () => {
     axios
       .get(`http://localhost:4000/api/users/${userId}`)
       .then((response) => {
@@ -26,22 +25,22 @@ export const Orders = () => {
   return (
     <div className="account-content-container offers-content-container offers-content-container--mobile">
       <div className="personal-info-container offers-info-container--mobile">
-        <h3 className="offers-heading"> Active Orders</h3>
-        {userData?.orders
-          .filter((order) => order.finished === false && order.sent === false)
+        <h3 className="offers-heading"> Active Offers</h3>
+        {userData?.offers
+          .filter((offer) => offer.order === null)
           .map((item, index) => {
             return (
               <div className="cart-row">
                 <div className="col-1 img-container">
-                  <img src={item.offer.book.photo} className="cart__img" />
+                  <img src={item.book.photo} className="cart__img" />
                 </div>
                 <div className="item-info-container">
                   <div className="col-2 row-text item-name cart-page-name-price-container">
                     <span className="offers-name-price__span">
-                      {item.offer.book.title}
+                      {item.book.title}
                     </span>
                     <span className="offers-name-price__span">
-                      {item.offer.price}$
+                      {item.price}$
                     </span>
                   </div>
                   <div className="col-4 row-text price-btn-wrapper">
@@ -59,11 +58,11 @@ export const Orders = () => {
           })}
       </div>
       <div className="personal-info-container offers-info-container--mobile">
-        <h3 className="offers-heading"> Books travelling to you</h3>
-        {userData?.orders
-          .filter((order) => order.finished === false && order.sent === true)
+        <h3 className="offers-heading"> Books waiting to be sent</h3>
+        {userData?.offers
+          .filter((offer) => offer.order !== null && offer.order.sent === false)
           .map((item, index) => {
-            return <AcceptedOrder item={item} />;
+            return <AcceptedOffer item={item} />;
           })}
       </div>
     </div>

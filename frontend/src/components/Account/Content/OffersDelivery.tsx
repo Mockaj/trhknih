@@ -1,8 +1,10 @@
 import { BookPreviewProps } from "../../BookPreview/BookPreview";
-import { useState } from "react";
 import { ToastContainer, toast } from "react-toast";
 import { BiShow } from "react-icons/bi";
 import { SentOffers } from "./SentOffers";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { userId } from "../../../store/user";
 export const OffersDelivery = () => {
   // prettier-ignore
   const bestsellers:BookPreviewProps[] = [
@@ -11,18 +13,36 @@ export const OffersDelivery = () => {
     {id: 2, name: "Mistborn: Hero of Ages", author: "Brandon Sanderson", price: 14.9, image: "http://www.slovart.cz/buxus/images/image_27866_19_v1.jpeg" },
     {id: 3, name: "Mistborn: Alloy of Law", author: "Brandon Sanderson", price: 16.9, image: "http://www.slovart.cz/buxus/images/image_27867_19_v1.jpeg" }
   ]
+  const [userData, setUserData] = useState();
+  useEffect(() => {
+    getUserOffers();
+  }, []);
+
+  const getUserOffers = () => {
+    axios
+      .get(`http://localhost:4000/api/users/${userId}`)
+      .then((response) => {
+        const data = response.data.data;
+        setUserData(data);
+      })
+      .catch((error) => console.log(`Error: ${error}`));
+  };
   return (
     <div className="account-content-container">
       <div className="offers-delivery-info-container">
         <h3 className="offers-delivery__heading"> Books you have sent</h3>
         <div className="delivery-form-container">
-          {bestsellers.map((item: BookPreviewProps, index) => {
-            return (
-              <>
-                <SentOffers item={item} />
-              </>
-            );
-          })}
+          {userData?.offers
+            .filter(
+              (offer: any) => offer.order !== null && offer.order.sent === true
+            )
+            .map((item, index) => {
+              return (
+                <>
+                  <SentOffers item={item} />
+                </>
+              );
+            })}
         </div>
       </div>
     </div>
