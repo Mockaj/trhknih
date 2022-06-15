@@ -9,7 +9,7 @@ interface IFormInput {
   firstName: string;
   lastName: string;
   email: string;
-  phone?: number;
+  phone: number;
   street?: string;
   houseNumber: string;
   city: string;
@@ -32,13 +32,13 @@ export const CartForm = () => {
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     const headers = {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
     };
     const formatedData = cartItemList.map((item) => {
       return {
         phoneNumber: data.phone,
         offerId: item.id,
-        customerId: "----------TO BE ADDED----------",
+        // TODO: use actual customerId instead of this hardcoded one
+        customerId: "02a4c4fd-949c-458e-8709-6372c56470bc",
         address: {
           firstName: data.firstName,
           lastName: data.lastName,
@@ -156,7 +156,7 @@ export const CartForm = () => {
 
           <li className="form-item">
             <label className="label" htmlFor="phone">
-              Phone number
+              Phone number <span className="required-symbol">*</span>
             </label>
             <input
               className={`address__text-field ${
@@ -167,9 +167,16 @@ export const CartForm = () => {
               pattern="[0-9\s\+]{0,17}"
               title="Phone number can consist only from '+' sign and numbers, maximum of 17 characters is allowed"
               {...register("phone", {
-                required: false,
+                required: true,
               })}
             />
+            <p
+              className={`registration__error ${
+                !errors.phone ? "registration__error--hide" : ""
+              }`}
+            >
+              Phone is required.
+            </p>
           </li>
           <li className="form-item m-top">
             <div className="double-input-container">
