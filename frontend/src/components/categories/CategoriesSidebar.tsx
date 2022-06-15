@@ -50,11 +50,7 @@ export const CategoriesSidebar = (props) => {
           >
             Apply filters
           </Link>
-          <Link
-            className="categories-apply-filters"
-            to={"?"}
-            onClick={() => clearButton?.click()}
-          >
+          <Link className="categories-apply-filters" to={"?"}>
             Clear filters
           </Link>
         </div>
