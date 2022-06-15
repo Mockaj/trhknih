@@ -58,11 +58,7 @@ model Publisher {
 }
 
 model User {
-  id String @id @default(uuid())
-  username String
-  password String
-  email String
-
+  id String @id
   orders Order[]
   offers Offer[]
 }

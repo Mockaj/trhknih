@@ -80,19 +80,19 @@ bookAuthors:
     authorId: "0a298e52-6809-4338-ac31-13e001f9dcb1"
 
 users:
-  - id: "653c558d-0358-4e13-a049-797f3346cc0f"
+  - id: "auth0|62a8898d28254cf2c1249bd6"
     username: "jozo123"
-    password: "hesloheslo"
-    email: "jozko.mrkvicka@gmail.com"
-  - id: "dfd27398-5f40-44b0-b6cc-d1ca79c97996"
-    username: "jozo_na_motorke69"
-    password: "stuzkova"
+    password: "Hesloheslo123"
+    email: "jozko.mrkvicka@mail.ex"
+  - id: "auth0|62a88b44f118515391804553"
+    username: "jozo_na_motorke"
+    password: "Stuzkova1969"
     email: "jozo.raz69@elan.sk"
-  - id: "3a55af0f-fa69-45a2-a051-bad941186683"
+  - id: "auth0|62a88c03a51718dbb9799c8d"
     username: "bozsky_karel"
-    password: "kavu-si-osladim"
+    password: "Kavu-Si2-Osladim"
     email: "bozsky.karel@karel.cz"
-  - id: "02a4c4fd-949c-458e-8709-6372c56470bc"
+  - id: "auth0|62a88cd1a51718dbb9799cdb"
     username: "hellokitty34"
     password: "ILoveKitten666"
     email: "adel.rum@seznam.cz"
@@ -102,7 +102,7 @@ offers:
     price: 0.0
     bookCondition: "Rozpadáva sa"
     createTime: "2021-12-14T10:00:00.000Z"
-    sellerId: "dfd27398-5f40-44b0-b6cc-d1ca79c97996"
+    sellerId: "auth0|62a88b44f118515391804553"
     bookId: "bd1488cd-cadc-4c3f-8402-c09274969d84"
     tags:
       - tagId: "361cae29-e3f9-4a7d-b3d1-128230846952"
@@ -112,7 +112,7 @@ offers:
     price: 12.75
     bookCondition: "Zachovaná"
     createTime: "2021-12-25T10:00:00.000Z"
-    sellerId: "02a4c4fd-949c-458e-8709-6372c56470bc"
+    sellerId: "auth0|62a88cd1a51718dbb9799cdb"
     bookId: "209794e8-21cf-49f4-b22a-74758508fcd7"
     tags:
       - tagId: "8fbcab22-6fa4-4d3f-b962-484446fa699f"
@@ -122,7 +122,7 @@ offers:
     price: 18.0
     bookCondition: "Ako nová"
     createTime: "2021-12-24T10:00:00.000Z"
-    sellerId: "dfd27398-5f40-44b0-b6cc-d1ca79c97996"
+    sellerId: "auth0|62a88b44f118515391804553"
     bookId: "ec6c540d-4bc0-49d1-8fb1-e41d42679bbc"
     tags:
       - tagId: "8fbcab22-6fa4-4d3f-b962-484446fa699f"
@@ -131,7 +131,7 @@ offers:
     price: 20.0
     bookCondition: "Zašpinený obal, stránky v poriadku"
     createTime: "2021-11-11T10:00:00.000Z"
-    sellerId: "653c558d-0358-4e13-a049-797f3346cc0f"
+    sellerId: "auth0|62a8898d28254cf2c1249bd6"
     bookId: "9100894d-7664-4f2e-bae4-581a5e4807d4"
     tags:
       - tagId: "a654dea9-21c8-408b-b5aa-eb03853f9c9c"
@@ -140,7 +140,7 @@ offers:
     price: 27.25
     bookCondition: "Raz čítaná"
     createTime: "2022-01-15T10:00:00.000Z"
-    sellerId: "02a4c4fd-949c-458e-8709-6372c56470bc"
+    sellerId: "auth0|62a88cd1a51718dbb9799cdb"
     bookId: "9100894d-7664-4f2e-bae4-581a5e4807d4"
     tags:
       - tagId: "a654dea9-21c8-408b-b5aa-eb03853f9c9c"
@@ -149,7 +149,7 @@ offers:
     price: 5.0
     bookCondition: "Poškodená"
     createTime: "2022-04-01T10:00:00.000Z"
-    sellerId: "dfd27398-5f40-44b0-b6cc-d1ca79c97996"
+    sellerId: "auth0|62a88b44f118515391804553"
     bookId: "ec6c540d-4bc0-49d1-8fb1-e41d42679bbc"
     tags:
       - tagId: "8fbcab22-6fa4-4d3f-b962-484446fa699f"
@@ -158,7 +158,7 @@ offers:
     price: 8.50
     bookCondition: "Staršia, trochu ošuchaná"
     createTime: "2022-03-07T10:00:00.000Z"
-    sellerId: "653c558d-0358-4e13-a049-797f3346cc0f"
+    sellerId: "auth0|62a8898d28254cf2c1249bd6"
     bookId: "209794e8-21cf-49f4-b22a-74758508fcd7"
     tags:
       - tagId: "8fbcab22-6fa4-4d3f-b962-484446fa699f"
@@ -167,7 +167,7 @@ offers:
     price: 15.99
     bookCondition: "Nová"
     createTime: "2022-01-01T10:00:00.000Z"
-    sellerId: "dfd27398-5f40-44b0-b6cc-d1ca79c97996"
+    sellerId: "auth0|62a88b44f118515391804553"
     bookId: "bd1488cd-cadc-4c3f-8402-c09274969d84"
     tags:
       - tagId: "361cae29-e3f9-4a7d-b3d1-128230846952"
@@ -198,27 +198,27 @@ addresses:
 
 orders:
   - offerId: "802e22be-7094-4165-8996-dfa7c9f2c7cd"
-    customerId: "02a4c4fd-949c-458e-8709-6372c56470bc"
+    customerId: "auth0|62a88cd1a51718dbb9799cdb"
     addressId: "a0e68322-aa32-4aa4-b30b-73b2a656b85b"
     phoneNumber: "534243307"
     createTime: "2021-12-18T10:00:00.000Z"
     sent: true
   - offerId: "d5699016-dceb-469b-a0e0-0afdcc5f05f5"
-    customerId: "3a55af0f-fa69-45a2-a051-bad941186683"
+    customerId: "auth0|62a88c03a51718dbb9799c8d"
     addressId: "aacb01a5-3c0e-4abb-8835-7817a3c7b98a"
     phoneNumber: "774742369"
     createTime: "2022-01-02T10:00:00.000Z"
     sent: true
     finished: true
   - offerId: "944c2b0c-f9d6-4458-b531-3efcfa09cca6"
-    customerId: "653c558d-0358-4e13-a049-797f3346cc0f"
+    customerId: "auth0|62a8898d28254cf2c1249bd6"
     addressId: "0380cd34-a233-4eb6-a4c3-2bc6a6c8e18a"
     phoneNumber: "515221913"
     createTime: "2022-01-05T10:00:00.000Z"
     sent: true
     finished: true
   - offerId: "6c0796cb-7cef-4e46-9c23-9e7fb4982f48"
-    customerId: "3a55af0f-fa69-45a2-a051-bad941186683"
+    customerId: "auth0|62a88c03a51718dbb9799c8d"
     addressId: "aacb01a5-3c0e-4abb-8835-7817a3c7b98a"
     phoneNumber: "257414444"
     createTime: "2022-02-28T10:00:00.000Z"

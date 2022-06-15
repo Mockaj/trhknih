@@ -45,8 +45,7 @@ export const list = async (req: Request, res: Response) => {
       include: {
         seller: {
           select: {
-            username: true,
-            email: true,
+            id: true
           },
         },
         book: {
@@ -342,8 +341,7 @@ export const add = async (req: Request, res: Response) => {
             tags: true,
             seller: {
               select: {
-                username: true,
-                email: true,
+                id: true
               },
             },
             book: {
