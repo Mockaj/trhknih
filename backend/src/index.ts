@@ -30,6 +30,7 @@ api.get("/", (_: Request, res: Response) => res.status(httpStatusCode.ok).send({
 api.get("/api/offers", offers.list);
 api.get("/api/offers/:id", offers.show);
 api.get("/api/tags", tags.list);
+api.get("/api/users/:id/info", users.info)
 
 api.use(checkJwt);
 
