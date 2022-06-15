@@ -95,7 +95,7 @@ export const BookContent = (props: any) => {
                   <div className="info__info-part">
                     <p className="info__label">Seller:</p>
                     <p className="info__label-value">
-                      {data.data.seller.username}
+                      {data.username}
                     </p>
                   </div>
                 </div>
