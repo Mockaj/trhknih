@@ -2,8 +2,6 @@ import prisma from "../../client";
 import { Result } from "@badrap/result";
 import type SeedFileStructure from "../../types/data-transfer-objects";
 
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 const seedDb = async (
   yamlParsed: SeedFileStructure
@@ -72,13 +70,9 @@ const seedDb = async (
       }),
 
       ...yamlParsed.users.map((user) => {
-        const hash: string = bcrypt.hashSync(user.password, saltRounds);
         return prisma.user.create({
           data: {
             id: user.id,
-            username: user.username,
-            password: hash,
-            email: user.email,
           },
         });
       }),

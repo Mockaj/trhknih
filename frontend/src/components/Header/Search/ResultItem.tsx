@@ -5,8 +5,14 @@ interface ResultItemProps {
   bookName: string;
   subtitle?: string;
   id: string;
+  price: number;
 }
-export const ResultItem = ({ bookName, subtitle, id }: ResultItemProps) => {
+export const ResultItem = ({
+  bookName,
+  subtitle,
+  id,
+  price,
+}: ResultItemProps) => {
   const subtitleText = subtitle !== null ? `: ${subtitle}` : "";
   const [showSearch, setShowSearch] = useRecoilState(showSearchAtom);
   return (

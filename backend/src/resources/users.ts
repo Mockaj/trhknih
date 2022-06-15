@@ -2,50 +2,52 @@ import { Request, Response } from "express";
 import prisma from "../client";
 import { httpStatusCode } from "./httpStatusCodes";
 import { object, string, ValidationError } from "yup";
+import axios from "axios";
 
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-
-export const list = async (req: Request, res: Response) => {
-  try {
-    const username = req.query["username"]?.toString().trim();
-    const email = req.query["email"]?.toString().trim();
-
-    const users = await prisma.user.findMany({
-      select: {
-        username: true,
-        email: true,
-      },
-    }).then(users => users.filter(user => 
-      (username == undefined || username === user.username) &&
-      (email == undefined || email === user.email)
-    ));
-
-    return res.status(httpStatusCode.ok).send({
-      status: "success",
-      data: users,
-      message: `Found ${users.length} items`,
-    });
-  } catch (error) {
-    return res.status(httpStatusCode.serverError).send({
-      status: "error",
-      data: {},
-      message: "Something went wrong.",
-    });
-  }
-};
 
 export const show = async (req: Request, res: Response) => {
   try {
     const userId = req.params["id"] || "";
-    const user = await prisma.user.findFirst({
+    const token = await axios.post(
+      'https://readee.eu.auth0.com/oauth/token',
+      {
+        "client_id":"TfztdIfzI3dFBSfANqZrmZx1Stt1D7hZ",
+        "client_secret":"YijV4Ra40dtFpawUo5SwGyao4_zq1hEZNdMXXSk1x0gd4ZtDl70IfeWbhQtLw9C7",
+        "audience":"https://readee.eu.auth0.com/api/v2/",
+        "grant_type":"client_credentials"
+      },
+      {headers: { 'content-type': 'application/json' }}
+      );
+    const response = await axios.get(`https://readee.eu.auth0.com/api/v2/users/${userId}`,
+    {headers: { "authorization": `Bearer ${token.data.access_token}` }}
+    );
+    if (response.status == 404) {
+      return res.status(httpStatusCode.notFound).send({
+        status: "not found",
+        data: {},
+        message: `No user found with id = '${userId}'.`,
+      });
+    }
+    if (response.status != 200) {
+      return res.status(httpStatusCode.notFound).send({
+        status: "not found",
+        data: {},
+        message: `Internal server error.`,
+      });
+    }
+    const responseData = response.data;
+    const serverData = {
+      id: responseData.user_id,
+      username: responseData.username,
+      email: responseData.email,
+    }
+    
+    const userPrisma = await prisma.user.findFirst({
       where: {
         id: userId,
       },
       select: {
         id: true,
-        username: true,
-        email: true,
         orders: {
           include: {
             address: true,
@@ -64,8 +66,7 @@ export const show = async (req: Request, res: Response) => {
                 tags: true,
                 seller: {
                   select: {
-                    username: true,
-                    email: true,
+                    id: true,
                   },
                 },
               },
@@ -87,7 +88,11 @@ export const show = async (req: Request, res: Response) => {
             tags: true,
             order: {
               include: {
-                customer: true,
+                customer: {
+                  select: {
+                    id: true,
+                  }
+                },
                 address: true,
               },
             },
@@ -95,14 +100,11 @@ export const show = async (req: Request, res: Response) => {
         },
       }
     });
-
-    if (user == null) {
-      return res.status(httpStatusCode.notFound).send({
-        status: "not found",
-        data: {},
-        message: `No user found with id = '${userId}'.`,
-      });
+    const user = {
+      auth: serverData,
+      data: userPrisma
     }
+    
 
     return res.status(httpStatusCode.ok).send({
       status: "success",
@@ -119,10 +121,7 @@ export const show = async (req: Request, res: Response) => {
 };
 
 const requestSchema = object({
-  username: string().required(),
-  email: string().email().required(),
-  password: string().required().min(3).max(30),
-  name: string().default(""),
+  id: string().required(),
 });
 
 export const add = async (req: Request, res: Response) => {
@@ -130,7 +129,7 @@ export const add = async (req: Request, res: Response) => {
     var data = await requestSchema.validate(req.body);
     var existing = await prisma.user.findFirst({
       where: {
-        username: data.username,
+        id: data.id,
       },
     });
 
@@ -138,26 +137,9 @@ export const add = async (req: Request, res: Response) => {
       return res.status(httpStatusCode.badRequest).send({
         status: "bad request",
         data: {},
-        message: "Username already used.",
+        message: "User already exist.",
       });
     }
-
-    existing = await prisma.user.findFirst({
-      where: {
-        email: data.email,
-      },
-    });
-
-    if (existing != null) {
-      return res.status(httpStatusCode.badRequest).send({
-        status: "bad request",
-        data: {},
-        message: "Email already used.",
-      });
-    }
-
-    const password = data.password;
-    data = {...data, password: bcrypt.hashSync(password, saltRounds)};
 
     const user = await prisma.user.create({
       data
@@ -186,57 +168,15 @@ export const add = async (req: Request, res: Response) => {
 };
 
 const updateSchema = object({
-  username: string().required(),
-  email: string().required(),
+  username: string(),
+  email: string(),
+  password: string().min(3).max(30)
 });
 
 export const update = async (req: Request, res: Response) => {
   try {
     const userId = req.params["id"] || "";
-    const data = updateSchema.validate(req.body);
-    const updated = await prisma.user.update({
-      where: {
-        id: userId,
-      },
-      data,
-      select: {
-        id: true,
-        username: true,
-        email: true,
-      },
-    });
-
-    return res.status(httpStatusCode.ok).send({
-      status: "success",
-      data: updated,
-      message: "User updated",
-    });
-  } catch (error) {
-    if (error instanceof ValidationError) {
-      return res.status(httpStatusCode.badRequest).send({
-        status: "bad request",
-        data: error.errors,
-        message: error.message,
-      });
-    }
-
-    return res.status(httpStatusCode.serverError).send({
-      status: "error",
-      data: {},
-      message: "Something went wrong.",
-    });
-  }
-};
-
-const changePasswordSchema = object({
-  password: string().required().min(3).max(30),
-  newPassword: string().required().min(3).max(30),
-});
-
-export const changePassword = async (req: Request, res: Response) => {
-  try {
-    const userId = req.params["id"] || "";
-    const data = await changePasswordSchema.validate(req.body);
+    const data = await updateSchema.validate(req.body);
     const existing = await prisma.user.findUnique({
       where: {
         id: userId,
@@ -251,105 +191,30 @@ export const changePassword = async (req: Request, res: Response) => {
       });
     }
 
-    if (!bcrypt.compareSync(data.password, existing.password)) {
-      return res.status(httpStatusCode.badRequest).send({
-        status: "bad request",
-        data: {},
-        message: "Wrong password.",
-      });
-    }
-
-    const updated = await prisma.user.update({
-      where: {
-        id: userId,
+    const token = await axios.post(
+      'https://readee.eu.auth0.com/oauth/token',
+      {
+        "client_id":"TfztdIfzI3dFBSfANqZrmZx1Stt1D7hZ",
+        "client_secret":"YijV4Ra40dtFpawUo5SwGyao4_zq1hEZNdMXXSk1x0gd4ZtDl70IfeWbhQtLw9C7",
+        "audience":"https://readee.eu.auth0.com/api/v2/",
+        "grant_type":"client_credentials"
       },
-      data: {
-        password: bcrypt.hashSync(data.password, saltRounds),
-      },
-      select: {
-        username: true,
-        email: true,
-        id: true,
-      },
-    });
+      {headers: { 'content-type': 'application/json' }}
+      );
+    
+    const updated = await axios.patch(`https://readee.eu.auth0.com/api/v2/users/${userId}`,
+    {
+      password: data.password,
+      username: data.username,
+      email: data.email
+    },
+    {headers: { "authorization": `Bearer ${token.data.access_token}` }}
+    );
 
     return res.status(httpStatusCode.ok).send({
       status: "success",
-      data: updated,
-      message: "Password changed.",
-    });
-  } catch (error) {
-    if (error instanceof ValidationError) {
-      return res.status(httpStatusCode.badRequest).send({
-        status: "bad request",
-        data: error.errors,
-        message: error.message,
-      });
-    }
-
-    return res.status(httpStatusCode.serverError).send({
-      status: "error",
-      data: {},
-      message: "Something went wrong.",
-    });
-  }
-};
-
-const loginSchema = object({
-  password: string().required().min(3).max(30),
-  login: string().required(),
-});
-
-export const login = async (req: Request, res: Response) => {
-  try {
-    const data = await loginSchema.validate(req.body);
-
-    const user = await prisma.user.findFirst({
-      where: {
-        OR: [
-          {
-            username: {
-              equals: data.login,
-            },
-          },
-          {
-            email: {
-              equals: data.login,
-            },
-          },
-        ],
-      },
-      select: {
-        id: true,
-        username: true,
-        email: true,
-        password: true,
-      }
-    });
-
-    if (user == null) {
-      return res.status(httpStatusCode.notFound).send({
-        status: "not found",
-        data: {},
-        message: "Wrong login.",
-      });
-    }
-    if (!bcrypt.compareSync(data.password, user.password)) {
-      return res.status(httpStatusCode.badRequest).send({
-        status: "bad request",
-        data: {},
-        message: "Wrong password.",
-      });
-    }
-
-    return res.status(httpStatusCode.ok).send({
-      status: "success",
-      data: {
-        id: user.id,
-        email: user.email,
-        username: user.username
-      },
-      message: "User logged in",
+      data: updated.data,
+      message: "User updated",
     });
   } catch (error) {
     if (error instanceof ValidationError) {
