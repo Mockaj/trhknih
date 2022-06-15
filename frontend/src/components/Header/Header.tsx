@@ -91,7 +91,7 @@ export const Header = () => {
                 <Link to="/sell-a-book" onClick={onClickMenu}>
                   <li>Sell a book</li>
                 </Link>
-                <Link to="/how-to-sell-a-book" onClick={onClickMenu}>
+                <Link to="/faq?topic=sell" onClick={onClickMenu}>
                   <li>How to sell a book</li>
                 </Link>
                 <Link to="/contact" onClick={onClickMenu}>
