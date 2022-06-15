@@ -2,8 +2,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import width from "../widthCalculator";
 import { useRecoilState } from "recoil";
 import { cartItemListAtom } from "../../states/atoms/cartItemAtom";
-import { CartItem } from "./CartItem";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 
 interface IFormInput {
   firstName: string;
@@ -19,6 +21,14 @@ interface IFormInput {
 }
 
 export const CartForm = () => {
+  const {
+    loginWithRedirect,
+    isAuthenticated,
+    logout,
+    user,
+    getAccessTokenSilently,
+  } = useAuth0();
+
   const [cartItemList, setCartItemList] = useRecoilState(cartItemListAtom);
   const shortLabels =
     width() < 650 ? ["House n.", "ZIP"] : ["House number", "Postal code"];
@@ -28,17 +38,14 @@ export const CartForm = () => {
     watch,
     handleSubmit,
   } = useForm<IFormInput>();
-  console.log(cartItemList);
+  console.log(user?.sub);
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    const headers = {
-      "Content-Type": "application/json",
-    };
     const formatedData = cartItemList.map((item) => {
       return {
         phoneNumber: data.phone,
         offerId: item.id,
         // TODO: use actual customerId instead of this hardcoded one
-        customerId: "02a4c4fd-949c-458e-8709-6372c56470bc",
+        customerId: user?.sub,
         address: {
           firstName: data.firstName,
           lastName: data.lastName,
@@ -49,10 +56,17 @@ export const CartForm = () => {
         },
       };
     });
-    console.log("Formated DATA", formatedData);
 
-    axios
-      .post("http://localhost:4000/api/orders", formatedData, { headers })
+    getAccessTokenSilently()
+      .then((token) => {
+        console.log("TOKEN", token);
+        axios.post("http://localhost:4000/api/orders", formatedData, {
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+        });
+      })
       .then(
         (response) => {
           console.log(response);

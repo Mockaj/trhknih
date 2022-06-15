@@ -12,6 +12,7 @@ import { BookInfo } from "./BookInfo/BookInfo";
 import { Categories } from "./categories/Categories";
 import { Account } from "./Account/Account";
 import { ResultsPage } from "./Header/Search/ResultsPage";
+import OrderCreated from "./Cart/OrderCreated";
 
 export const App = () => {
   return (
@@ -25,10 +26,7 @@ export const App = () => {
             element={<MainPage Content={<Registration />} />}
           />
           <Route path="/login" element={<MainPage Content={<Login />} />} />
-          <Route
-            path="/faq"
-            element={<MainPage Content={<Faq />} />}
-          />
+          <Route path="/faq" element={<MainPage Content={<Faq />} />} />
           <Route
             path="/sell-a-book"
             element={<MainPage Content={<SellBook />} />}
@@ -45,6 +43,10 @@ export const App = () => {
           <Route
             path="/search"
             element={<MainPage Content={<ResultsPage />} />}
+          />
+          <Route
+            path="/orderPlaced"
+            element={<MainPage Content={<OrderCreated />} />}
           />
           <Route path="*" element={<Error404 />} />
         </Routes>

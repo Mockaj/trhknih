@@ -8,37 +8,42 @@ export const list = async (req: Request, res: Response) => {
   try {
     const customerId = req.query["customerId"]?.toString().trim();
 
-    const orders = await prisma.order.findMany({
-      include: {
-        customer: {
-          select: {
-            id: true
-          },
-        },
-        address: true,
-        offer: {
-          include: {
-            seller: {
-              select: {
-                id: true,
-              },
+    const orders = await prisma.order
+      .findMany({
+        include: {
+          customer: {
+            select: {
+              id: true,
             },
-            book: {
-              include: {
-                fromAutors: {
-                  include: {
-                    author: true,
-                  },
+          },
+          address: true,
+          offer: {
+            include: {
+              seller: {
+                select: {
+                  id: true,
                 },
-                publisher: true,
               },
+              book: {
+                include: {
+                  fromAutors: {
+                    include: {
+                      author: true,
+                    },
+                  },
+                  publisher: true,
+                },
+              },
+              tags: true,
             },
-            tags: true,
           },
         },
-      },
-    }).then(orders => orders.filter(x =>
-      (customerId == undefined || customerId === x.customerId)));
+      })
+      .then((orders) =>
+        orders.filter(
+          (x) => customerId == undefined || customerId === x.customerId
+        )
+      );
 
     return res.status(httpStatusCode.ok).send({
       status: "success",
@@ -65,7 +70,7 @@ export const show = async (req: Request, res: Response) => {
       include: {
         customer: {
           select: {
-            id: true
+            id: true,
           },
         },
         address: true,
@@ -73,7 +78,7 @@ export const show = async (req: Request, res: Response) => {
           include: {
             seller: {
               select: {
-                id: true
+                id: true,
               },
             },
             book: {
@@ -114,21 +119,25 @@ export const show = async (req: Request, res: Response) => {
   }
 };
 
-const requestSchema = array().of(object({
-  phoneNumber: string().required(),
-  created: date().default(new Date()),
-  finished: boolean().default(false),
-  offerId: string().required().uuid(),
-  customerId: string().required().uuid(),
-  address: object({
-    firstName: string().required(),
-    lastName: string().required(),
-    street: string().default(""),
-    houseNumber: string().required(),
-    city: string().required(),
-    postalCode: string().required(),
-  }).required(),
-})).required();
+const requestSchema = array()
+  .of(
+    object({
+      phoneNumber: string().required(),
+      created: date().default(new Date()),
+      finished: boolean().default(false),
+      offerId: string().required().uuid(),
+      customerId: string().required(),
+      address: object({
+        firstName: string().required(),
+        lastName: string().required(),
+        street: string().default(""),
+        houseNumber: string().required(),
+        city: string().required(),
+        postalCode: string().required(),
+      }).required(),
+    })
+  )
+  .required();
 
 export const add = async (req: Request, res: Response) => {
   try {
@@ -166,10 +175,11 @@ export const add = async (req: Request, res: Response) => {
             offerId: item.offerId,
             customerId: item.customerId,
           },
+
           include: {
             customer: {
               select: {
-                id: true
+                id: true,
               },
             },
             offer: {
@@ -191,11 +201,9 @@ export const add = async (req: Request, res: Response) => {
             address: true,
           },
         });
-
         orders.push(order);
       }
     }
-
     return res.status(httpStatusCode.created).send({
       status: "success",
       data: orders,
@@ -280,7 +288,7 @@ export const update = async (req: Request, res: Response) => {
       },
       include: {
         address: true,
-      }
+      },
     });
 
     return res.status(httpStatusCode.ok).send({
@@ -319,7 +327,7 @@ export const remove = async (req: Request, res: Response) => {
       },
       include: {
         offer: true,
-      }
+      },
     });
 
     if (order == null) {
@@ -330,7 +338,10 @@ export const remove = async (req: Request, res: Response) => {
       });
     }
 
-    if (order.customerId != data.userId && order.offer.sellerId != data.userId) {
+    if (
+      order.customerId != data.userId &&
+      order.offer.sellerId != data.userId
+    ) {
       return res.status(httpStatusCode.badRequest).send({
         status: "bad request",
         data: {},
