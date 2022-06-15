@@ -1,14 +1,16 @@
 import { GrDeliver } from "react-icons/gr";
-import { BiShow } from "react-icons/bi";
 import { ToastContainer, toast } from "react-toast";
 import { useState } from "react";
-import { MdDelete } from "react-icons/md";
 
 interface AcceptedOfferProps {
   item: {
-    image: string;
-    name: string;
-    price: number;
+    offer: {
+      book: {
+        photo: string;
+        title: string;
+      };
+      price: number;
+    };
   };
 }
 export const AcceptedOrder = ({ item }: AcceptedOfferProps) => {
@@ -31,13 +33,15 @@ export const AcceptedOrder = ({ item }: AcceptedOfferProps) => {
         className={`cart-row justify-between cart-row--mobile offers__img ${displayBorder}`}
       >
         <div className="col-1 img-container ">
-          <img src={item.image} className="cart__img " />
+          <img src={item.offer.book.photo} className="cart__img " />
         </div>
         <div className="item-info-container tosent-info-container">
           <div className="col-2 row-text item-name cart-page-name-price-container cart-offers-name-price-container">
-            <span className="offers-name-price__span">{item.name}</span>
             <span className="offers-name-price__span">
-              {item.price}$ + delivery
+              {item.offer.book.title}
+            </span>
+            <span className="offers-name-price__span">
+              {item.offer.price}$ + delivery
             </span>
           </div>
           <div className="col-4 row-text price-btn-wrapper cart-offers-name-price-container orders-received-button-container">
@@ -51,11 +55,6 @@ export const AcceptedOrder = ({ item }: AcceptedOfferProps) => {
             <ToastContainer delay={6000} />
           </div>
         </div>
-      </div>
-      <div className={`${displayAddress} offer-address-message`}>
-        <p>A user USERNAME has ordered your book.</p>
-        <p>Please send your book to the following address:</p>
-        <p>ADDRESS</p>
       </div>
     </div>
   );

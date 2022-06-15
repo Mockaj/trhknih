@@ -1,4 +1,4 @@
-import { Overview } from "./Overview";
+import { OffersOverview } from "./OffersOverview";
 import { OffersDelivery } from "./OffersDelivery";
 interface AccountContentProps {
   content: string;
@@ -11,7 +11,7 @@ export const RenderOffersContent = ({
 }: AccountContentProps) => {
   switch (content) {
     case "overview":
-      return <Overview />;
+      return <OffersOverview />;
     case "sent":
       return <OffersDelivery />;
     default:

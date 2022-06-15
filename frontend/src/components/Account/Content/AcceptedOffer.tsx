@@ -6,9 +6,25 @@ import { MdDelete } from "react-icons/md";
 
 export interface AcceptedOfferProps {
   item: {
-    image: string;
-    name: string;
+    book: {
+      photo: string;
+      title: string;
+    };
     price: number;
+    order: {
+      address: {
+        city: string;
+        firstName: string;
+        houseNumber: string;
+        lastName: string;
+        postalCode: string;
+        street?: string;
+      };
+      customer: {
+        username: string;
+      };
+      phoneNumber: string;
+    };
   };
 }
 export const AcceptedOffer = ({ item }: AcceptedOfferProps) => {
@@ -32,11 +48,11 @@ export const AcceptedOffer = ({ item }: AcceptedOfferProps) => {
         className={`cart-row justify-between cart-row--mobile offers__img ${displayBorder}`}
       >
         <div className="col-1 img-container ">
-          <img src={item.image} className="cart__img " />
+          <img src={item.book.photo} className="cart__img " />
         </div>
         <div className="item-info-container tosent-info-container">
           <div className="col-2 row-text item-name cart-page-name-price-container cart-offers-name-price-container">
-            <span className="offers-name-price__span">{item.name}</span>
+            <span className="offers-name-price__span">{item.book.title}</span>
             <span className="offers-name-price__span">
               {item.price}$ + delivery
             </span>
@@ -68,9 +84,23 @@ export const AcceptedOffer = ({ item }: AcceptedOfferProps) => {
         </div>
       </div>
       <div className={`${displayAddress} offer-address-message`}>
-        <p>A user USERNAME has ordered your book.</p>
+        <p>
+          User <b>{item.order.customer.username}</b> has ordered your book.
+        </p>
         <p>Please send your book to the following address:</p>
-        <p>ADDRESS</p>
+        <p className="account-text-align-right account-margin-top-1">
+          {item.order.address.city} {item.order.address.postalCode}
+        </p>
+        <p className="account-text-align-right">{item.order.address.street}</p>
+        <p className="account-text-align-right account-margin-bottom-1">
+          {item.order.address.firstName} {item.order.address.lastName}
+        </p>
+        <p>
+          You can contact <b>{item.order.customer.username}</b> on this number:
+        </p>
+        <p className="account-text-align-right  account-margin-top-1">
+          {item.order.phoneNumber}
+        </p>
       </div>
     </div>
   );

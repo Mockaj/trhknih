@@ -1,11 +1,15 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import width from "../widthCalculator";
+import { useRecoilState } from "recoil";
+import { cartItemListAtom } from "../../states/atoms/cartItemAtom";
+import { CartItem } from "./CartItem";
+import axios from "axios";
 
 interface IFormInput {
   firstName: string;
   lastName: string;
   email: string;
-  phone?: number;
+  phone: number;
   street?: string;
   houseNumber: string;
   city: string;
@@ -15,6 +19,7 @@ interface IFormInput {
 }
 
 export const CartForm = () => {
+  const [cartItemList, setCartItemList] = useRecoilState(cartItemListAtom);
   const shortLabels =
     width() < 650 ? ["House n.", "ZIP"] : ["House number", "Postal code"];
   const {
@@ -23,9 +28,41 @@ export const CartForm = () => {
     watch,
     handleSubmit,
   } = useForm<IFormInput>();
+  console.log(cartItemList);
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data), console.log("POST REQUEST");
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const formatedData = cartItemList.map((item) => {
+      return {
+        phoneNumber: data.phone,
+        offerId: item.id,
+        // TODO: use actual customerId instead of this hardcoded one
+        customerId: "02a4c4fd-949c-458e-8709-6372c56470bc",
+        address: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          street: data.street,
+          houseNumber: data.houseNumber,
+          city: data.city,
+          postalCode: data.postalCode,
+        },
+      };
+    });
+    console.log("Formated DATA", formatedData);
+
+    axios
+      .post("http://localhost:4000/api/orders", formatedData, { headers })
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
+
   return (
     <div className="delivery-form-container">
       <h3 className="small-header">Enter delivery address</h3>
@@ -119,7 +156,7 @@ export const CartForm = () => {
 
           <li className="form-item">
             <label className="label" htmlFor="phone">
-              Phone number
+              Phone number <span className="required-symbol">*</span>
             </label>
             <input
               className={`address__text-field ${
@@ -130,9 +167,16 @@ export const CartForm = () => {
               pattern="[0-9\s\+]{0,17}"
               title="Phone number can consist only from '+' sign and numbers, maximum of 17 characters is allowed"
               {...register("phone", {
-                required: false,
+                required: true,
               })}
             />
+            <p
+              className={`registration__error ${
+                !errors.phone ? "registration__error--hide" : ""
+              }`}
+            >
+              Phone is required.
+            </p>
           </li>
           <li className="form-item m-top">
             <div className="double-input-container">

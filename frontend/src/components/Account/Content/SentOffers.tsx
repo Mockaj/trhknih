@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toast";
 import { BiShow } from "react-icons/bi";
 export const SentOffers = ({ item }: AcceptedOfferProps) => {
   const [showAddress, setShowAddress] = useState(false);
+
   const onAddressClick = () => {
     setShowAddress(!showAddress);
   };
@@ -14,11 +15,11 @@ export const SentOffers = ({ item }: AcceptedOfferProps) => {
     <>
       <div className="cart-row full-width cart-row-sent-offers">
         <div className="col-1 img-container">
-          <img src={item.image} className="cart__img" />
+          <img src={item.book.photo} className="cart__img" />
         </div>
         <div className="item-info-container offers-sent-books-text">
           <div className="col-2 row-text item-name cart-page-name-price-container ">
-            <span className="offers-name-price__span">{item.name}</span>
+            <span className="offers-name-price__span">{item.book.title}</span>
             <span className="offers-name-price__span">{item.price}$</span>
           </div>
           <div className="col-4 row-text price-btn-wrapper">
@@ -38,9 +39,21 @@ export const SentOffers = ({ item }: AcceptedOfferProps) => {
         </div>
       </div>
       <div className={`${displayAddress} offer-address-message-have-sent`}>
-        <p>A user USERNAME has ordered your book.</p>
-        <p>Please send your book to the following address:</p>
-        <p>ADDRESS</p>
+        <p>
+          User <b>{item.order.customer.username}</b> has ordered your book.
+        </p>
+        <p>You have sent your book to the following address:</p>
+        <p className="account-text-align-right account-margin-top-1">
+          {item.order.address.city} {item.order.address.postalCode}
+        </p>
+        <p className="account-text-align-right">{item.order.address.street}</p>
+        <p className="account-text-align-right account-margin-bottom-1">
+          {item.order.address.firstName} {item.order.address.lastName}
+        </p>
+        <p>You can contact <b>{item.order.customer.username}</b> on this number:</p>
+        <p className="account-text-align-right  account-margin-top-1">
+          {item.order.phoneNumber}
+        </p>
       </div>
     </>
   );
