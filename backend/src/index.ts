@@ -2,16 +2,18 @@ import express, { Request, Response } from "express";
 import { auth } from "express-oauth2-jwt-bearer";
 import { users, offers, orders, tags } from "./resources";
 import { httpStatusCode } from "./resources/httpStatusCodes";
+import cors from "cors";
 
 const api = express();
 
 api.use(express.json());
 api.use(express.urlencoded({ extended: true }));
-api.use(function(_: Request, res: Response, next) {
-  res.set("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Headers", "*");
-  next();
-});
+//api.use(function(_: Request, res: Response, next) {
+//  res.set("Access-Control-Allow-Origin", "*");
+//  res.set("Access-Control-Allow-Headers", "*");
+//  next();
+//});
+api.use(cors());
 
 api.use(express.static("public"));
 
