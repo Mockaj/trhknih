@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toast";
+import { toast } from "react-toast";
 // import SellBookItem from "./Models/SellBookItem";
 
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -12,20 +11,19 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getBookByISBN } from "../../resources/isbnApi";
 import { Book } from "../../resources/types/book";
 import axios from "axios"
-import { Link, useNavigate } from "react-router-dom";
-import { useMantineEmotionOptions } from "@mantine/styles/lib/theme/MantineProvider";
+import { useNavigate } from "react-router-dom";
 
 const getBooks = async (data: IFormInput) => {
   let responses: Book[] = []
 
-  await Promise.all(data.books.map(async ({ISBN}) => {
+  await Promise.all(data.books.map(async ({ ISBN }) => {
     // null already checked with validation
     const val = await getBookByISBN(ISBN)
     if (val !== null) {
       responses.push(val)
     }
   }))
-  
+
   return (responses);
 }
 
@@ -34,8 +32,8 @@ export default function SellBookList() {
   const [SellBooks, setSellBookList] = useRecoilState(sellBookListAtom);
 
   const useFormRet = useForm<IFormInput>({
-    defaultValues: {books: [{ ISBN: "", price: undefined, note: "" }]}
-    }
+    defaultValues: { books: [{ ISBN: "", price: undefined, note: "" }] }
+  }
   );
   const nav = useNavigate();
   const { handleSubmit } = useFormRet
@@ -49,67 +47,67 @@ export default function SellBookList() {
       return {
         isbn: book.ISBN,
         bookCondition: book.note,
-        price: book.price, 
-        userId: user?.sub, 
+        price: book.price,
+        userId: user?.sub,
         book: {
-        authors: responses[index].authors,
-        cover: responses[index].cover,
-        key: responses[index].key,
-        notes: responses[index].notes,
-        number_of_pages: responses[index].number_of_pages,
-        publish_date: responses[index].publish_date,
-        publish_places: responses[index].publish_places,
-        publishers: responses[index].publishers,
-        subjects: responses[index].subjects,
-        subtitle: responses[index].subtitle,
-        title: responses[index].title,
-        url: responses[index].url,
-      }}
+          authors: responses[index].authors,
+          cover: responses[index].cover,
+          key: responses[index].key,
+          notes: responses[index].notes,
+          number_of_pages: responses[index].number_of_pages,
+          publish_date: responses[index].publish_date,
+          publish_places: responses[index].publish_places,
+          publishers: responses[index].publishers,
+          subjects: responses[index].subjects,
+          subtitle: responses[index].subtitle,
+          title: responses[index].title,
+          url: responses[index].url,
+        }
+      }
     })
     getAccessTokenSilently()
-    .then((token) => {
-      console.log(token);
-      console.log(offers);
-      axios
-      .post(`http://localhost:4000/api/offers`,
-      offers,
-      {headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${token}`,
-      }})
-      .then(() => {
-         toast.success("Your offers was succesfully created");
-         setTimeout(() => {
-          nav("/", {replace: true});
-        }, 6000)
-        }
-      )
+      .then((token) => {
+        console.log(token);
+        console.log(offers);
+        axios
+          .post(`http://localhost:4000/api/offers`,
+            offers,
+            {
+              headers: {
+                "content-type": "application/json",
+                "authorization": `Bearer ${token}`,
+              }
+            })
+          .then((response) => {
+            toast.success(response.data.message);
+            setTimeout(() => {
+              nav("/");
+            }, 50);
+          }
+          )
+          .catch((error) => {
+            console.log(`Error: ${error}`);
+            toast.error("Offers creation failed. Try it again.");
+          })
+      })
       .catch((error) => {
         console.log(`Error: ${error}`);
-        toast.error("Offers creation failed. Try it again.");
-      })
-    })
-    .catch((error) => {
-      console.log(`Error: ${error}`);
-      toast.error("You cannot sell book right now, try it again later")
-    });
-    
+        toast.error("You cannot sell book right now, try it again later")
+      });
+
   }
 
   return (
-    <>
-    <form  className="sell-book__form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="sell-book__form" onSubmit={handleSubmit(onSubmit)}>
       <ul>
-      {SellBooks.map((item, index) => (
+        {SellBooks.map((item, index) => (
           <SellBookLine index={index} useFormRet={useFormRet} key={item.id} />
-      ))}
+        ))}
       </ul>
       <div className="sell-book__buttons">
-        <input className="sell-book__smaller-button submit-button-round submit-button-round--green" type="submit" value="Submit" onSubmit={(data) => {console.log(data)}} />
+        <input className="sell-book__smaller-button submit-button-round submit-button-round--green" type="submit" value="Submit" onSubmit={(data) => { console.log(data) }} />
         <NewBook />
       </div>
     </form>
-    <ToastContainer delay={6000}/>
-  </>
   )
 }

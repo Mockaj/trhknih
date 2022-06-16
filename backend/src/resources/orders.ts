@@ -119,7 +119,7 @@ const requestSchema = array().of(object({
   created: date().default(new Date()),
   finished: boolean().default(false),
   offerId: string().required().uuid(),
-  customerId: string().required().uuid(),
+  customerId: string().required(),
   address: object({
     firstName: string().required(),
     lastName: string().required(),
@@ -306,7 +306,7 @@ export const update = async (req: Request, res: Response) => {
 };
 
 const removeSchema = object({
-  userId: string().required().uuid(),
+  userId: string().required(),
 });
 export const remove = async (req: Request, res: Response) => {
   try {

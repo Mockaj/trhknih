@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toast";
 import { Footer } from "./footer/footer";
 import { Header } from "./Header/Header";
 import "./mainpage.css";
@@ -16,6 +17,7 @@ export const MainPage = ({ Content }: ContentProps) => {
       <footer className="main-page__footer-container">
         <Footer />
       </footer>
+      <ToastContainer delay={6000} />
     </div>
   );
 };
