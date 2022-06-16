@@ -219,7 +219,7 @@ const requestSchema = array().of(
     }).required(),
     price: number().required().min(0),
     bookCondition: string(),
-    userId: string().required().uuid(),
+    userId: string().required(),
     created: date().default(new Date()),
     isbn: string().required(),
   }),
@@ -231,14 +231,13 @@ export const add = async (req: Request, res: Response) => {
     const offers: Offer[] = [];
 
     for (var i = 0; i < data.length; i++) {
-      const item = data[0];
+      const item = data[i];
       if (item != undefined) {
         var existingBook = await prisma.book.findFirst({
           where: {
             isbn: item.isbn,
           },
         });
-
         if (existingBook == null) {
           if (item.book.publishers[0]) {
             var existingPublisher = await prisma.publisher.findFirst({
@@ -246,7 +245,6 @@ export const add = async (req: Request, res: Response) => {
                 name: item.book.publishers[0].name,
               }
             });
-
             if (existingPublisher == null) {
               existingPublisher = await prisma.publisher.create({
                 data: {
@@ -254,7 +252,6 @@ export const add = async (req: Request, res: Response) => {
                 },
               });
             }
-
             var authors: Author[] = [];
             for (var j = 0; j < item.book.authors.length; j++) {
               const author = item.book.authors[j];
@@ -301,6 +298,7 @@ export const add = async (req: Request, res: Response) => {
               });
             }
           }
+
         }
 
         const tags = item.book.subjects.map(x => x.name);
@@ -325,7 +323,7 @@ export const add = async (req: Request, res: Response) => {
             },
           },
         });
-
+        
         const offer = await prisma.offer.create({
           data: {
             createTime: item.created,
@@ -334,7 +332,11 @@ export const add = async (req: Request, res: Response) => {
             price: item.price,
             sellerId: item.userId,
             tags: {
-              connect: existingTags,
+              connect: existingTags.map((tag) => {
+                return {
+                  id: tag.id,
+                }
+              }),
             }
           },
           include: {
