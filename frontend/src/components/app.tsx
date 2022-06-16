@@ -12,19 +12,46 @@ import { BookInfo } from "./BookInfo/BookInfo";
 import { Categories } from "./categories/Categories";
 import { Account } from "./Account/Account";
 import { ResultsPage } from "./Header/Search/ResultsPage";
-
+import { useAuth0 } from "@auth0/auth0-react";
 export const App = () => {
+  const { isLoading, isAuthenticated } = useAuth0();
+  if (isLoading){
+    return (<div></div>)
+  }
+  if (!isAuthenticated) {
+    return (
+      <RecoilRoot>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<MainPage Content={<BasePage />} />} />
+            <Route
+              path="/faq"
+              element={<MainPage Content={<Faq />} />}
+            />
+            <Route
+              path="/books/:id"
+              element={<MainPage Content={<BookInfo />} />}
+            />
+            <Route
+              path="/categories/:category/:page"
+              element={<MainPage Content={<Categories />} />}
+            />
+            <Route
+              path="/search"
+              element={<MainPage Content={<ResultsPage />} />}
+            />
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+        </BrowserRouter>
+      </RecoilRoot>
+    )
+  }
   return (
     <RecoilRoot>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage Content={<BasePage />} />} />
           <Route path="/cart" element={<MainPage Content={<Cart />} />} />
-          <Route
-            path="/register"
-            element={<MainPage Content={<Registration />} />}
-          />
-          <Route path="/login" element={<MainPage Content={<Login />} />} />
           <Route
             path="/faq"
             element={<MainPage Content={<Faq />} />}

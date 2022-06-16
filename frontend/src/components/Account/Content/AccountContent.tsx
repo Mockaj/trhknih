@@ -1,6 +1,9 @@
 import "../styles/accountContent.css";
 import { useForm, SubmitHandler } from "react-hook-form";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { toast, ToastContainer } from "react-toast";
+import axios from "axios";
+import { useEffect, useState } from "react";
 interface IFormInputAccount {
   email: string;
   username: string;
@@ -10,10 +13,39 @@ interface AccountContentProps {
 }
 
 export const AccountContent = ({ disabled = true }: AccountContentProps) => {
-  const accountDetails = {
-    username: "AlanTuring",
-    email: "alan@turing.com",
-  };
+  const { getAccessTokenSilently, user } = useAuth0()
+  const [accountDetails, setAccountDetails] = useState();
+  const [refresh, setRefresh] = useState(true);
+  
+  useEffect(() => {
+    if (refresh) {
+      getAccountDetails();
+      setRefresh(false);
+    }
+    
+  }, [refresh]);
+
+  const getAccountDetails = () => {
+    getAccessTokenSilently()
+    .then((token) => {
+      axios
+        .get(`http://localhost:4000/api/users/${user?.sub}`,
+        {headers: {
+          "content-type": "application/json",
+          "authorization": `Bearer ${token}`,
+        }})
+        .then((response) => {
+          setAccountDetails({
+            ...response.data.data.auth
+          });
+    })
+    .catch((error) => {
+      console.log(`Error: ${error}`);
+      toast.error("You cannot see your profile right now, try it again later")
+    });
+  })
+  }; 
+  
   const {
     register,
     formState: { errors },
@@ -22,6 +54,45 @@ export const AccountContent = ({ disabled = true }: AccountContentProps) => {
   } = useForm<IFormInputAccount>();
   const onSubmitAccount: SubmitHandler<IFormInputAccount> = (data) => {
     console.log(data), console.log("POST REQUEST");
+    getAccessTokenSilently()
+    .then((token) => {
+      axios
+        .put(`http://localhost:4000/api/users/${user?.sub}`,
+        {"username": data.username},
+        {headers: {
+          "content-type": "application/json",
+          "authorization": `Bearer ${token}`,
+        }})
+        .then(() => {
+          axios
+          .put(`http://localhost:4000/api/users/${user?.sub}`,
+          {"email": data.email},
+          {headers: {
+            "content-type": "application/json",
+            "authorization": `Bearer ${token}`,
+          }})
+          .then(() => {
+            toast.success("Your data were succesfully created");
+            setRefresh(true);
+          })
+          .catch((error) => {
+            console.log(`Error: ${error}`);
+            toast.error("Your email change failed, but username succeded. Try it again later")
+            setRefresh(true);
+          });
+          
+          })
+        .catch((error) => {
+          console.log(`Error: ${error}`);
+          toast.error("Your data change failed, try it again later")
+        });
+        
+    })
+    .catch((error) => {
+      console.log(`Error: ${error}`);
+      toast.error("You cannot change your profile right now, try it again later")
+    });
+
   };
   const submitButtonContainer = disabled
     ? "submit-button-container--disabled"
@@ -43,12 +114,12 @@ export const AccountContent = ({ disabled = true }: AccountContentProps) => {
                   className={`address__text-field ${
                     !errors.username ? "text-field--error" : ""
                   }`}
-                  defaultValue={accountDetails.username}
+                  defaultValue={accountDetails?.username}
                   disabled={disabled}
                   {...register("username", {
                     required: true,
                     minLength: 2,
-                    maxLength: 30,
+                    maxLength: 15,
                   })}
                 />
                 <p
@@ -75,7 +146,7 @@ export const AccountContent = ({ disabled = true }: AccountContentProps) => {
                   className={`address__text-field ${
                     !errors.email ? "text-field--error" : ""
                   }`}
-                  defaultValue={accountDetails.email}
+                  defaultValue={accountDetails?.email}
                   disabled={disabled}
                   type="email"
                   {...register("email", {
@@ -101,6 +172,7 @@ export const AccountContent = ({ disabled = true }: AccountContentProps) => {
           </form>
         </div>
       </div>
+      <ToastContainer delay={6000} />
     </div>
   );
 };

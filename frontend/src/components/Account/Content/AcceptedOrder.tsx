@@ -1,19 +1,28 @@
 import { GrDeliver } from "react-icons/gr";
 import { ToastContainer, toast } from "react-toast";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 interface AcceptedOfferProps {
   item: {
+    id: string;
     offer: {
+      id: string;
       book: {
         photo: string;
         title: string;
       };
       price: number;
+      order: {
+        id: string;
+      }
     };
   };
+  refresh: React.Dispatch<React.SetStateAction<boolean>>
 }
-export const AcceptedOrder = ({ item }: AcceptedOfferProps) => {
+export const AcceptedOrder = ({ item, refresh }: AcceptedOfferProps ) => {
+  const { getAccessTokenSilently, user } = useAuth0();
   const [showAddress, setShowAddress] = useState(false);
   const onAddressClick = () => {
     setShowAddress(!showAddress);
@@ -22,10 +31,33 @@ export const AcceptedOrder = ({ item }: AcceptedOfferProps) => {
     ? "offers-address"
     : "offers-address offers-address--hide";
   const displayBorder = showAddress ? "cart-row-border--hide" : "";
-  const onMarkSentClick = () =>
-    toast.success(
-      "Thank you for using your books effectively! We will now notify the sender 😊"
-    );
+  const onMarkSentClick = () => {
+    console.log(item);
+    getAccessTokenSilently()
+    .then((token) => {
+      axios
+        .put(`http://localhost:4000/api/orders/${item.id}`,
+        {finished: true},
+        {headers: {
+          "content-type": "application/json",
+          "authorization": `Bearer ${token}`,
+        }})
+        .then(() => {
+          toast.success(
+            "Thank you for using your books effectively! We will now notify the sender 😊"
+          );
+          refresh(true);
+        })
+        .catch((error) => {
+          console.log(`Error: ${error}`)
+          toast.error("Your data change failed, try it again later");  
+        });
+    })
+    .catch((error) => {
+      console.log(`Error: ${error}`);
+      toast.error("You cannot change your profile right now, try it again later")
+    });
+  };
 
   return (
     <div className="cart-row-container">
