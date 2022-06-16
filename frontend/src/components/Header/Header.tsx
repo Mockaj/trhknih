@@ -209,9 +209,13 @@ export const Header = () => {
               <Link to="/categories/bestsellers/1" onClick={onClickMenu}>
                 <li>Buy a book</li>
               </Link>
-              <Link to="/sell-a-book" onClick={onClickMenu}>
-                <li>Sell a book</li>
-              </Link>
+                <li onClick={() =>
+                  loginWithRedirect({
+                    redirectUri: "http://localhost:3000/sell-a-book",
+                  })
+                }>
+                  Sell a book
+                </li>
               <Link to="/faq?topic=sell" onClick={onClickMenu}>
                 <li>How to sell a book</li>
               </Link>
@@ -233,12 +237,15 @@ export const Header = () => {
           <div className="upperbar-container">
             <ReadeeLogo onAction={onClick} />
             <ul className="upperbar__list">
-              <Link to="/sell-a-book">
-                <li>
+
+                <li onClick={() =>
+                  loginWithRedirect({
+                    redirectUri: "http://localhost:3000/sell-a-book",
+                  })
+                }>
                   <BiBookAdd size={iconSize} className="react-icons" />
                   &nbsp;Sell a book
                 </li>
-              </Link>
               <li onClick={() => loginWithRedirect()}>
                 <FiLogIn size={iconSize} className="react-icons" />
                 &nbsp;Log in

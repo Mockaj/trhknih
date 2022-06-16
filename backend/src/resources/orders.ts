@@ -8,37 +8,42 @@ export const list = async (req: Request, res: Response) => {
   try {
     const customerId = req.query["customerId"]?.toString().trim();
 
-    const orders = await prisma.order.findMany({
-      include: {
-        customer: {
-          select: {
-            id: true
-          },
-        },
-        address: true,
-        offer: {
-          include: {
-            seller: {
-              select: {
-                id: true,
-              },
+    const orders = await prisma.order
+      .findMany({
+        include: {
+          customer: {
+            select: {
+              id: true,
             },
-            book: {
-              include: {
-                fromAutors: {
-                  include: {
-                    author: true,
-                  },
+          },
+          address: true,
+          offer: {
+            include: {
+              seller: {
+                select: {
+                  id: true,
                 },
-                publisher: true,
               },
+              book: {
+                include: {
+                  fromAutors: {
+                    include: {
+                      author: true,
+                    },
+                  },
+                  publisher: true,
+                },
+              },
+              tags: true,
             },
-            tags: true,
           },
         },
-      },
-    }).then(orders => orders.filter(x =>
-      (customerId == undefined || customerId === x.customerId)));
+      })
+      .then((orders) =>
+        orders.filter(
+          (x) => customerId == undefined || customerId === x.customerId
+        )
+      );
 
     return res.status(httpStatusCode.ok).send({
       status: "success",
@@ -65,7 +70,7 @@ export const show = async (req: Request, res: Response) => {
       include: {
         customer: {
           select: {
-            id: true
+            id: true,
           },
         },
         address: true,
@@ -73,7 +78,7 @@ export const show = async (req: Request, res: Response) => {
           include: {
             seller: {
               select: {
-                id: true
+                id: true,
               },
             },
             book: {
@@ -156,7 +161,14 @@ export const add = async (req: Request, res: Response) => {
             });
           }
         }
-
+        console.log({data: {
+          phoneNumber: item.phoneNumber,
+          createTime: item.created,
+          finished: item.finished,
+          addressId: address.id,
+          offerId: item.offerId,
+          customerId: item.customerId,
+        }})
         const order = await prisma.order.create({
           data: {
             phoneNumber: item.phoneNumber,
@@ -166,15 +178,20 @@ export const add = async (req: Request, res: Response) => {
             offerId: item.offerId,
             customerId: item.customerId,
           },
+
           include: {
             customer: {
               select: {
-                id: true
+                id: true,
               },
             },
             offer: {
               include: {
-                seller: true,
+                seller: {
+                  select: {
+                    id: true,
+                  }
+                },
                 tags: true,
                 book: {
                   include: {
@@ -191,11 +208,9 @@ export const add = async (req: Request, res: Response) => {
             address: true,
           },
         });
-
         orders.push(order);
       }
     }
-
     return res.status(httpStatusCode.created).send({
       status: "success",
       data: orders,
@@ -219,17 +234,8 @@ export const add = async (req: Request, res: Response) => {
 };
 
 const updateSchema = object({
-  sent: boolean().required(),
-  finished: boolean().required(),
-  phoneNumber: string().required(),
-  address: object({
-    firstName: string().required(),
-    lastName: string().required(),
-    street: string().required(),
-    houseNumber: string().required(),
-    city: string().required(),
-    postalCode: string().required(),
-  }).required(),
+  sent: boolean(),
+  finished: boolean(),
 });
 export const update = async (req: Request, res: Response) => {
   try {
@@ -250,21 +256,11 @@ export const update = async (req: Request, res: Response) => {
 
     const data = await updateSchema.validate(req.body);
 
-    if (!data.sent && data.finished) {
+    if (!order.sent && data.finished) {
       return res.status(httpStatusCode.badRequest).send({
         status: "bad request",
         data: {},
         message: "Order cannot be finished before the book was sent.",
-      });
-    }
-
-    var address = await prisma.address.findFirst({
-      where: data.address,
-    });
-
-    if (address == null) {
-      address = await prisma.address.create({
-        data: data.address,
       });
     }
 
@@ -273,14 +269,12 @@ export const update = async (req: Request, res: Response) => {
         id: orderId,
       },
       data: {
-        sent: data.sent,
-        finished: data.finished,
-        phoneNumber: data.phoneNumber,
-        addressId: address.id,
+        sent: data.sent ?? order.sent,
+        finished: data.finished ?? order.finished,
       },
       include: {
         address: true,
-      }
+      },
     });
 
     return res.status(httpStatusCode.ok).send({
@@ -305,13 +299,9 @@ export const update = async (req: Request, res: Response) => {
   }
 };
 
-const removeSchema = object({
-  userId: string().required(),
-});
 export const remove = async (req: Request, res: Response) => {
   try {
     const orderId = req.params["id"] || "";
-    const data = await removeSchema.validate(req.body);
 
     const order = await prisma.order.findFirst({
       where: {
@@ -319,7 +309,7 @@ export const remove = async (req: Request, res: Response) => {
       },
       include: {
         offer: true,
-      }
+      },
     });
 
     if (order == null) {
@@ -327,14 +317,6 @@ export const remove = async (req: Request, res: Response) => {
         status: "not found",
         data: {},
         message: `No order found with id = '${orderId}'.`,
-      });
-    }
-
-    if (order.customerId != data.userId && order.offer.sellerId != data.userId) {
-      return res.status(httpStatusCode.badRequest).send({
-        status: "bad request",
-        data: {},
-        message: "Only customer or seller can remove an order",
       });
     }
 

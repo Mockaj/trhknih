@@ -165,7 +165,7 @@ export const show = async (req: Request, res: Response) => {
   } catch (error) {
     return res.status(httpStatusCode.serverError).send({
       status: "error",
-      data: {},
+      data: {error},
       message: "Something went wrong.",
     });
   }
@@ -233,7 +233,6 @@ export const update = async (req: Request, res: Response) => {
         id: userId,
       },
     });
-
     if (existing == null) {
       return res.status(httpStatusCode.notFound).send({
         status: "not found",
@@ -252,16 +251,15 @@ export const update = async (req: Request, res: Response) => {
       },
       {headers: { 'content-type': 'application/json' }}
       );
-    
     const updated = await axios.patch(`https://readee.eu.auth0.com/api/v2/users/${userId}`,
     {
       password: data.password,
       username: data.username,
-      email: data.email
+      email: data.email,
+      connection: "Username-Password-Authentication"
     },
     {headers: { "authorization": `Bearer ${token.data.access_token}` }}
     );
-
     return res.status(httpStatusCode.ok).send({
       status: "success",
       data: updated.data,
@@ -278,7 +276,7 @@ export const update = async (req: Request, res: Response) => {
 
     return res.status(httpStatusCode.serverError).send({
       status: "error",
-      data: {},
+      data: {error},
       message: "Something went wrong.",
     });
   }

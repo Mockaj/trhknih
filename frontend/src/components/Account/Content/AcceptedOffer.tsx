@@ -3,15 +3,19 @@ import { BiShow } from "react-icons/bi";
 import { ToastContainer, toast } from "react-toast";
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 export interface AcceptedOfferProps {
   item: {
+    id: string;
     book: {
       photo: string;
       title: string;
     };
     price: number;
     order: {
+      id: string;
       address: {
         city: string;
         firstName: string;
@@ -26,8 +30,10 @@ export interface AcceptedOfferProps {
       phoneNumber: string;
     };
   };
+  refresh: React.Dispatch<React.SetStateAction<boolean>>
 }
-export const AcceptedOffer = ({ item }: AcceptedOfferProps) => {
+export const AcceptedOffer = ({ item, refresh }: AcceptedOfferProps) => {
+  const {getAccessTokenSilently, user} = useAuth0();
   const [showAddress, setShowAddress] = useState(false);
   const onAddressClick = () => {
     setShowAddress(!showAddress);
@@ -36,12 +42,56 @@ export const AcceptedOffer = ({ item }: AcceptedOfferProps) => {
     ? "offers-address"
     : "offers-address offers-address--hide";
   const displayBorder = showAddress ? "cart-row-border--hide" : "";
-  const onMarkSentClick = () =>
-    toast.success(
-      "Thank you for using your books effectively! You will be notified when the buyer receives the book 😊"
-    );
-  const onCancelClick = () =>
-    toast.info("You have canceled an order for one of your books");
+  const onMarkSentClick = () => {
+  console.log(item);
+  getAccessTokenSilently()
+  .then((token) => {
+    axios
+      .put(`http://localhost:4000/api/orders/${item.order.id}`,
+      {sent: true},
+      {headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`,
+      }})
+      .then(() => {
+        toast.success(
+          "Thank you for using your books effectively! We will now notify the customer 😊"
+        );
+        refresh(true);
+      })
+      .catch((error) => {
+        console.log(`Error: ${error}`)
+        toast.error("Your data change failed, try it again later");  
+      });
+      
+  })
+  .catch((error) => {
+    console.log(`Error: ${error}`);
+    toast.error("You cannot change your profile right now, try it again later")
+  }); }
+  const onCancelClick = () => {
+    getAccessTokenSilently()
+    .then((token) => {
+    axios
+      .delete(`http://localhost:4000/api/orders/${item.order.id}`,
+      {headers: {
+        "content-type": "application/json",
+        "authorization": `Bearer ${token}`,
+      }})
+      .then(() => {
+        toast.info("You have canceled an order for one of your books");
+        refresh(true);
+      })
+      .catch((error) => {
+        console.log(`Error: ${error}`)
+        toast.error("Your data change failed, try it again later");  
+      });
+  })
+  .catch((error) => {
+    console.log(`Error: ${error}`);
+    toast.error("You cannot change your profile right now, try it again later")
+  });
+    }
   return (
     <div className="cart-row-container">
       <div

@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles/account.css";
 import { AiOutlineSetting } from "react-icons/ai";
 import { RenderContent } from "./RenderContent";
+import { useAuth0 } from "@auth0/auth0-react";
+import { toast, ToastContainer } from "react-toast";
+import axios from "axios";
 
 export const Account = () => {
   const [content, setContent] = useState("account");
@@ -15,6 +18,28 @@ export const Account = () => {
       return "account-navbar__label";
     }
   };
+  const { getAccessTokenSilently, user } = useAuth0()
+  useEffect(() => {
+    getAccessTokenSilently()
+  .then((token) => {
+    axios
+    .post(`http://localhost:4000/api/users`,
+    {id: user?.sub},
+    {headers: {
+      "content-type": "application/json",
+      "authorization": `Bearer ${token}`,
+    }})
+    .catch(() => {
+    })
+  })
+  .catch((error) => {
+    console.log(`Error: ${error}`);
+    toast.error("You cannot view your profile right now, try it again later")
+  });
+  }, [])
+  
+  
+
   return (
     <div className="account-content">
       <div className="account-navbar-container">
@@ -86,6 +111,7 @@ export const Account = () => {
         </div>
       </div>
       <RenderContent content={content} setContent={setContent} />
+      <ToastContainer delay={6000} />
     </div>
-  );
+    );
 };
