@@ -2,8 +2,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import width from "../widthCalculator";
 import { useRecoilState } from "recoil";
 import { cartItemListAtom } from "../../states/atoms/cartItemAtom";
-import { CartItem } from "./CartItem";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import { toast } from "react-toast";
+import { useNavigate } from "react-router-dom";
 
 interface IFormInput {
   firstName: string;
@@ -29,16 +31,14 @@ export const CartForm = () => {
     handleSubmit,
   } = useForm<IFormInput>();
   console.log(cartItemList);
+  const { user, getAccessTokenSilently } = useAuth0();
+  const nav = useNavigate();
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    const headers = {
-      "Content-Type": "application/json",
-    };
     const formatedData = cartItemList.map((item) => {
       return {
         phoneNumber: data.phone,
         offerId: item.id,
-        // TODO: use actual customerId instead of this hardcoded one
-        customerId: "02a4c4fd-949c-458e-8709-6372c56470bc",
+        customerId: user?.sub,
         address: {
           firstName: data.firstName,
           lastName: data.lastName,
@@ -51,16 +51,34 @@ export const CartForm = () => {
     });
     console.log("Formated DATA", formatedData);
 
-    axios
-      .post("http://localhost:4000/api/orders", formatedData, { headers })
-      .then(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    getAccessTokenSilently()
+      .then((token) => {
+        axios
+          .post("http://localhost:4000/api/orders", formatedData, {
+            headers: {
+              "content-type": "application/json",
+              "authorization": `Bearer ${token}`
+            }
+          })
+          .then(
+            (response) => {
+              console.log("Create orders response:", response);
+              toast.success(response.data.message);
+                setCartItemList([]);
+                setTimeout(() => {
+                  nav("/");
+                }, 50);
+            }
+          )
+          .catch((error) => {
+            console.log("Create orders error:", error);
+            toast.error("Orders creation failed. Try it again.");
+          });
+      })
+      .catch((error) => {
+        console.log("Get access token error:", error);
+        toast.error("You cannot make an order for the books right now, try it again later.");
+      });
   };
 
   return (

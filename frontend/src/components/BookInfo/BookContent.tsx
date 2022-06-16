@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { randomId } from "@mantine/hooks";
 import { cartItemListAtom } from "../../states/atoms/cartItemAtom";
-import { ToastContainer, toast } from "react-toast";
-import { Alert } from "@mantine/core";
-import { AlertCircle } from "tabler-icons-react";
+import { toast } from "react-toast";
 
 export const BookContent = (props: any) => {
   const [cartItemList, setCartItemList] = useRecoilState(cartItemListAtom);
@@ -68,7 +65,6 @@ export const BookContent = (props: any) => {
                 <button className="price-wrapper__button" onClick={addItem}>
                   Add to cart
                 </button>
-                <ToastContainer delay={6000} />
               </div>
               <div className="info">
                 <div className="info__part-wrapper">

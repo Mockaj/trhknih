@@ -57,11 +57,11 @@
   display: flex;
   flex-wrap: wrap;
   list-style: none;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
 .categories__book-preview-wrapper {
-  margin: 0.5rem;
+  margin: 0.5rem 0.3rem;
 }
 
 .page-choice__list {

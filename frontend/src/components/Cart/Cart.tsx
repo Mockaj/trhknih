@@ -9,7 +9,6 @@ import { useDocumentTitle } from "@mantine/hooks";
 import { useRecoilState } from "recoil";
 import { cartItemListAtom } from "../../states/atoms/cartItemAtom";
 import { CartItem } from "./CartItem";
-import { ToastContainer, toast } from "react-toast";
 
 export const Cart = () => {
   useDocumentTitle("Cart and Order \u00B7 Readee - recycle books");
@@ -59,7 +58,6 @@ export const Cart = () => {
                       <MdDelete />
                       Remove
                     </button>
-                    <ToastContainer delay={6000} />
                   </div>
                 </div>
               </div>
