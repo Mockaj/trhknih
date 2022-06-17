@@ -1,5 +1,5 @@
 import { GrDeliver } from "react-icons/gr";
-import { ToastContainer, toast } from "react-toast";
+import { toast } from "react-toast";
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
@@ -21,6 +21,7 @@ interface AcceptedOfferProps {
   };
   refresh: React.Dispatch<React.SetStateAction<boolean>>
 }
+
 export const AcceptedOrder = ({ item, refresh }: AcceptedOfferProps ) => {
   const { getAccessTokenSilently, user } = useAuth0();
   const [showAddress, setShowAddress] = useState(false);
@@ -84,7 +85,6 @@ export const AcceptedOrder = ({ item, refresh }: AcceptedOfferProps ) => {
               <GrDeliver />
               &nbsp; Mark received
             </button>
-            <ToastContainer delay={6000} />
           </div>
         </div>
       </div>

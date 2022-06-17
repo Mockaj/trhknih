@@ -1,10 +1,10 @@
 import { FaSearch } from "react-icons/fa";
-import { Search } from "./Search/Search";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { showSearchAtom } from "../../states/atoms/showSearchAtom";
+
 interface SearchBarProps {
   placeholder?: string;
   data?: string;
@@ -47,8 +47,6 @@ export const SearchBar = ({
             <FaSearch className="react-icons" id="searchButton" />
           </Link>
         </div>
-
-        <Search searchBarContent={searchBarContent} />
       </form>
     </div>
   );

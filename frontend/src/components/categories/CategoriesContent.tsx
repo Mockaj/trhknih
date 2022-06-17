@@ -2,7 +2,8 @@ import { useState } from "react"
 import { BookPreview } from "../BookPreview/BookPreview"
 import { CategoriesBooks } from "./CategoriesBooks"
 import { CategoriesSidebar } from "./CategoriesSidebar"
-import { PageChoice } from "./PageChoice"
+import { PageChoice } from "./PageChoice";
+import { SpinnerInfinity } from 'spinners-react';
 
 export const CategoriesContent = (props) => {
   const CategoriesPage = (props) => {
@@ -18,7 +19,7 @@ export const CategoriesContent = (props) => {
       );
     } else {
       return (
-        <h1>Loading</h1>
+        <div className="loading-wrapper"><SpinnerInfinity size={100} thickness={100} speed={100} color="rgba(57, 172, 96, 1)" secondaryColor="rgba(255, 255, 255, 1)" /></div>
       )
     }
   }

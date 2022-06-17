@@ -1,12 +1,9 @@
 import "../../Cart/styles/cart.css";
 import "../styles/accountContent.css";
 import "../styles/offersContent.css";
-import { BookPreviewProps } from "../../BookPreview/BookPreview";
-import { MdDelete } from "react-icons/md";
-import { ToastContainer, toast } from "react-toast";
-import { AcceptedOffer } from "./AcceptedOffer";
 import { useState } from "react";
 import { RenderOffersContent } from "./RenderOffersContent";
+
 export const OffersContent = () => {
   const [content, setContent] = useState("overview");
   const handleChange = (event: any) => {

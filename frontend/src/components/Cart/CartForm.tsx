@@ -65,9 +65,7 @@ export const CartForm = () => {
               console.log("Create orders response:", response);
               toast.success(response.data.message);
                 setCartItemList([]);
-                setTimeout(() => {
-                  nav("/");
-                }, 50);
+                nav("/");
             }
           )
           .catch((error) => {

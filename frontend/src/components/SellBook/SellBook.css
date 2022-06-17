@@ -177,13 +177,43 @@ input[type=number] {
   min-height: 3.79rem;
 }
 
+.submit-button-round {
+  border-radius: 2rem;
+  width: fit-content;
+  padding: 0.5rem 3rem;
+  margin: 1rem;
+  border: 0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  font-family: Montserrat;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.submit-button-round:hover {
+  cursor: pointer;
+}
+.submit-button-round--green {
+  background: var(--readee-green);
+  color: var(--readee-white);
+}
+.submit-button-round--green:hover {
+  cursor: pointer;
+  background: var(--readee-green-hover);
+}
+.submit-button-round--green:active {
+  background: var(--readee-green-active);
+}
+
 @media only screen and (min-width: 950px) {
   .sell-book__wrapper {
     flex-direction: row;
   }
 }
 
-@media only screen and (max-width: 510px) {
+@media only screen and (max-width: 560px) {
   .sell-book {
     margin: 5vh 5vw 0 5vw;
   }

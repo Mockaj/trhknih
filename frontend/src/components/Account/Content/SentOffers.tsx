@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AcceptedOfferProps } from "./AcceptedOffer";
-import { ToastContainer, toast } from "react-toast";
 import { BiShow } from "react-icons/bi";
+
 export const SentOffers = ({ item }: AcceptedOfferProps) => {
   const [showAddress, setShowAddress] = useState(false);
 
@@ -25,7 +25,6 @@ export const SentOffers = ({ item }: AcceptedOfferProps) => {
           <div className="col-4 row-text price-btn-wrapper">
             <div className="item-info-container tosent-info-container">
               <div className="col-4 row-text price-btn-wrapper cart-offers-name-price-container">
-                <ToastContainer delay={6000} />
                 <button
                   className="remove-btn remove-btn-offers--mobile remove-btn-offers-tosent remove-btn-offers-havesent"
                   onClick={onAddressClick}

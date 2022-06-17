@@ -49,6 +49,9 @@
   justify-content: space-between;
   align-items: center;
 }
+.mobile-menu__list li {
+  cursor: pointer;
+}
 .mobile-menu__list a:first-child {
   padding: 0.8rem;
   border: none;

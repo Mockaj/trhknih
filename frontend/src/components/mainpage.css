@@ -14,3 +14,17 @@
   margin-top: auto;
 }
 
+.loading-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 12rem 0;
+}
+
+.loading-wrapper--small {
+  padding: 9rem 0;
+}
+
+.loading-wrapper--big {
+  padding: 20rem 0;
+}

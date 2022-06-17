@@ -1,10 +1,11 @@
 .card {
   display: flex;
   flex-direction: column;
-  height: 24rem;
-  width: 12rem;
   align-items: center;
+  width: 12rem;
   border-radius: 1rem;
+  margin: 0.4rem 0.2rem;
+  padding: 0 0.4rem;
 }
 
 .card:hover {
@@ -58,4 +59,10 @@
   text-align: center;
   color: var(--readee-green);
   padding: 0.2rem;
+}
+
+@media only screen and (min-width: 900px) {
+  .card {
+    width: 12.4rem;
+  }
 }

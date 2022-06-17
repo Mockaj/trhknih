@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { cartItemListAtom } from "../../states/atoms/cartItemAtom";
 import { toast } from "react-toast";
+import { useAuth0 } from "@auth0/auth0-react";
+import { SpinnerInfinity } from 'spinners-react';
 
 export const BookContent = (props: any) => {
   const [cartItemList, setCartItemList] = useRecoilState(cartItemListAtom);
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   console.log("Props", props);
   const BookPage = (props: any) => {
@@ -62,9 +65,15 @@ export const BookContent = (props: any) => {
               </div>
               <div className="price-wrapper">
                 <p className="price-wrapper__price">{data.data.price} €</p>
-                <button className="price-wrapper__button" onClick={addItem}>
-                  Add to cart
-                </button>
+                {isAuthenticated ?
+                  <button className="price-wrapper__button" onClick={addItem}>
+                    Add to cart
+                  </button> :
+                  <button className="price-wrapper__button" onClick={() => loginWithRedirect()}>
+                    Add to cart
+                  </button>
+                }
+
               </div>
               <div className="info">
                 <div className="info__part-wrapper">
@@ -102,7 +111,7 @@ export const BookContent = (props: any) => {
                 <Link
                   key={category}
                   className="book-info__category"
-                  to={`/categories?category=${category}`}
+                  to={`/categories/bestsellers/1?tags=${category}`}
                 >
                   {category}
                 </Link>
@@ -118,7 +127,7 @@ export const BookContent = (props: any) => {
         </div>
       );
     } else {
-      return <h3>loading</h3>;
+      return <div className="loading-wrapper"><SpinnerInfinity size={100} thickness={100} speed={100} color="rgba(57, 172, 96, 1)" secondaryColor="rgba(255, 255, 255, 1)" /></div>;
     }
   };
 

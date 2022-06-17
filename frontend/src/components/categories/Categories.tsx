@@ -13,14 +13,14 @@ interface ITags {
 
 export const Categories = () => {
   useDocumentTitle("Readee - recycle books");
-  const params = useParams()
-  const query = useLocation()
+  const params = useParams();
+  const query = useLocation();
+  const queryParams = new URLSearchParams(query.search);
 
-  const [filteredBooks, setFilteredBooks] = useState<BookPreviewProps[]>()
-  const [tags, setTags] = useState([])
-  const [numOfPages, setNumOfPages] = useState<number>(1)
-
-  const [selected, setSelected] = useState<ITags[]>([]);
+  const [filteredBooks, setFilteredBooks] = useState<BookPreviewProps[]>();
+  const [tags, setTags] = useState([]);
+  const [numOfPages, setNumOfPages] = useState<number>(1);
+  const [selected, setSelected] = useState<ITags[]>(queryParams.get("tags")?.split(",").map((x) => ({ ["label"]: x, ["value"]: x})) || []);
 
   useEffect(() => {
     getTags();
@@ -37,8 +37,6 @@ export const Categories = () => {
       setTags(tags);
     })
   }
-
-  const queryParams = new URLSearchParams(query.search);
   
   const getBooks = () => {
     axios.get(`http://localhost:4000/api/offers?${params.category}=true&page=${params.page}&tags=${queryParams.get("tags")}&search=${queryParams.get("search")}`)

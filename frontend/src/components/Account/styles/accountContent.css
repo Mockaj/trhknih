@@ -33,3 +33,13 @@
   display: flex;
   justify-content: center;
 }
+.registration__error {
+  font-size: 0.8rem;
+  color: rgb(144, 69, 69);
+  margin-top: 0;
+  margin-left: 1rem;
+}
+
+.registration__error--hide {
+  visibility: hidden;
+}
