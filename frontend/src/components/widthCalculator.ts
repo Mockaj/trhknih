@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 export const width = () => {
   const getWindowDimensions = () => {
     const { innerWidth: width } = window;

@@ -5,9 +5,9 @@ export const CategoriesBooks = (props) => {
   const { books, pages } = props
   return (
   <div className="categories-main-content">
-    <ul className="categories-book-list">
-      {books.map((book) => <li key={book.id} className="categories__book-preview-wrapper"><BookPreview {...book} /></li>)}
-    </ul>
+    <div className="categories-book-list">
+      {books.map((book) => <BookPreview {...book} />)}
+    </div>
     <nav>
       <PageChoice numOfPages={pages}/>
     </nav>

@@ -3,7 +3,7 @@ import { object, ValidationError, array, string, number, date } from "yup";
 import prisma from "../client";
 import { queryHelper } from "../helpers";
 import { httpStatusCode } from "./httpStatusCodes";
-import { Author, Offer } from "@prisma/client";
+import { Author, Offer, Publisher } from "@prisma/client";
 
 export const list = async (req: Request, res: Response) => {
   try {
@@ -86,7 +86,7 @@ export const list = async (req: Request, res: Response) => {
         offer.book.fromAutors.map(x => x.author.name.toLowerCase().includes(search.toLowerCase())).reduce((a, b) => a || b) ||
         offer.book.title.toLowerCase().includes(search.toLowerCase())
       ));
-    } 
+    }
     if (bestsellers) {
       offers = offers.sort((a, b) => {
         const offerDiff = a.book.offered.filter(x => x.order).length - b.book.offered.filter(x => x.order).length;
@@ -191,12 +191,12 @@ const requestSchema = array().of(
       ).required(),
       cover: object({
         large: string(),
-        medium: string().required(),
+        medium: string(),
         small: string(),
-      }).required(),
+      }),
       key: string(),
       notes: string().default(""),
-      number_of_pages: number().required(),
+      number_of_pages: number().default(0),
       publish_date: string().required(),
       publish_places: array().of(
         object({
@@ -207,12 +207,12 @@ const requestSchema = array().of(
         object({
           name: string().required(),
         })
-      ).required(),
+      ),
       subjects: array().of(
         object({
           name: string().required(),
         }),
-      ).required(),
+      ),
       subtitle: string(),
       title: string().required(),
       url: string(),
@@ -239,8 +239,10 @@ export const add = async (req: Request, res: Response) => {
           },
         });
         if (existingBook == null) {
-          if (item.book.publishers[0]) {
-            var existingPublisher = await prisma.publisher.findFirst({
+          var existingPublisher: Publisher | null = null;
+
+          if (item.book.publishers && item.book.publishers[0]) {
+            existingPublisher = await prisma.publisher.findFirst({
               where: {
                 name: item.book.publishers[0].name,
               }
@@ -252,56 +254,56 @@ export const add = async (req: Request, res: Response) => {
                 },
               });
             }
-            var authors: Author[] = [];
-            for (var j = 0; j < item.book.authors.length; j++) {
-              const author = item.book.authors[j];
-              if (author != undefined) {
-                var existingAuthor = await prisma.author.findFirst({
-                  where: {
+          }
+
+          var authors: Author[] = [];
+          for (var j = 0; j < item.book.authors.length; j++) {
+            const author = item.book.authors[j];
+            if (author != undefined) {
+              var existingAuthor = await prisma.author.findFirst({
+                where: {
+                  name: author.name,
+                },
+              });
+              if (existingAuthor == null) {
+                existingAuthor = await prisma.author.create({
+                  data: {
                     name: author.name,
                   },
                 });
-                if (existingAuthor == null) {
-                  existingAuthor = await prisma.author.create({
-                    data: {
-                      name: author.name,
-                    },
-                  });
-                }
-                authors.push(existingAuthor);
               }
-            }
-
-            existingBook = await prisma.book.create({
-              data: {
-                isbn: item.isbn,
-                title: item.book.title,
-                subtitle: item.book.subtitle || null,
-                numberOfPages: item.book.number_of_pages,
-                publishedDate: item.book.publish_date,
-                notes: item.book.notes,
-                photo: item.book.cover.medium,
-                publisherId: existingPublisher.id,
-                fromAutors: {
-                  createMany: {
-                    data: authors.map(x => ({ bookId: existingBook?.id, authorId: x.id })),
-                  },
-                },
-              },
-            });
-
-            if (existingBook == null) {
-              return res.status(httpStatusCode.serverError).send({
-                status: "error",
-                data: [],
-                message: "Something went wrong.",
-              });
+              authors.push(existingAuthor);
             }
           }
 
+          existingBook = await prisma.book.create({
+            data: {
+              isbn: item.isbn,
+              title: item.book.title,
+              subtitle: item.book.subtitle || null,
+              numberOfPages: item.book.number_of_pages,
+              publishedDate: item.book.publish_date,
+              notes: item.book.notes,
+              photo: item.book.cover.medium || "https://www.peopleandprocess.ie/wp-content/uploads/2015/08/placeholder-640x480-263x263.png",
+              publisherId: existingPublisher?.id || "",
+              fromAutors: {
+                createMany: {
+                  data: authors.map(x => ({ bookId: existingBook?.id, authorId: x.id })),
+                },
+              },
+            },
+          });
+
+          if (existingBook == null) {
+            return res.status(httpStatusCode.serverError).send({
+              status: "error",
+              data: [],
+              message: "Something went wrong.",
+            });
+          }
         }
 
-        const tags = item.book.subjects.map(x => x.name);
+        const tags = item.book.subjects?.map(x => x.name) || [];
         var existingTags = await prisma.tag.findMany({
           where: {
             name: {
@@ -323,7 +325,7 @@ export const add = async (req: Request, res: Response) => {
             },
           },
         });
-        
+
         const offer = await prisma.offer.create({
           data: {
             createTime: item.created,

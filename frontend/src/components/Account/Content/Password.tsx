@@ -1,8 +1,9 @@
 import "../styles/accountContent.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAuth0 } from "@auth0/auth0-react";
-import { toast, ToastContainer } from "react-toast";
+import { toast } from "react-toast";
 import axios from "axios";
+import { useState } from "react";
 
 interface IFormInputPassword {
   currentPassword: string;
@@ -15,6 +16,7 @@ interface AccountContentProps {
 
 export const Password = ({ disabled = true }: AccountContentProps) => {
   const { getAccessTokenSilently, user} = useAuth0()
+  const [ passwordsMatch, setPasswordsMatch ] = useState(true);
   const {
     register,
     formState: { errors },
@@ -35,6 +37,7 @@ export const Password = ({ disabled = true }: AccountContentProps) => {
           }})
           .then(() => {
             toast.success("Your password was succesfully created");
+            setPasswordsMatch(true);
           })
           .catch((error) => {
             console.log(`Error: ${error}`);
@@ -47,7 +50,7 @@ export const Password = ({ disabled = true }: AccountContentProps) => {
         toast.error("You cannot change your profile right now, try it again later")
       });
     } else {
-      toast.error("Your passwords weren't same");  
+      setPasswordsMatch(false);
     }
   };
   const submitButtonContainer = disabled
@@ -73,7 +76,7 @@ export const Password = ({ disabled = true }: AccountContentProps) => {
                   disabled={disabled}
                   {...register("newPassword", {
                     required: true,
-                    minLength: 2,
+                    minLength: 8,
                     maxLength: 30,
                   })}
                 />
@@ -87,7 +90,7 @@ export const Password = ({ disabled = true }: AccountContentProps) => {
                     "New password is required"}
                   {errors.newPassword &&
                     errors.newPassword.type === "minLength" &&
-                    "New password must be at least 2 characters long"}
+                    "New password must be at least 8 characters long"}
                   {errors.newPassword &&
                     errors.newPassword.type === "maxLength" &&
                     "New password maximum length is 30 characters"}
@@ -109,12 +112,13 @@ export const Password = ({ disabled = true }: AccountContentProps) => {
                 />
                 <p
                   className={`registration__error ${
-                    !errors.newPasswordConfirm
+                    !errors.newPasswordConfirm && passwordsMatch
                       ? "registration__error--hide"
                       : ""
                   }`}
                 >
-                  {/* TODO: Check if newPassword and newPasswordConfirm match */}
+                  {errors.newPasswordConfirm && "Confirm password is required."}
+                  {!errors.newPasswordConfirm && !passwordsMatch && "Passwords don't match."}
                 </p>
               </li>
             </ul>
@@ -128,7 +132,6 @@ export const Password = ({ disabled = true }: AccountContentProps) => {
           </form>
         </div>
       </div>
-      <ToastContainer delay={6000} />
     </div>
   );
 };

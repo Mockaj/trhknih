@@ -80,9 +80,7 @@ export default function SellBookList() {
             })
           .then((response) => {
             toast.success(response.data.message);
-            setTimeout(() => {
-              nav("/");
-            }, 50);
+            nav("/");
           }
           )
           .catch((error) => {

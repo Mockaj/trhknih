@@ -1,6 +1,6 @@
 import { GrDeliver } from "react-icons/gr";
 import { BiShow } from "react-icons/bi";
-import { ToastContainer, toast } from "react-toast";
+import { toast } from "react-toast";
 import { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -122,7 +122,6 @@ export const AcceptedOffer = ({ item, refresh }: AcceptedOfferProps) => {
               <GrDeliver />
               &nbsp; Mark sent
             </button>
-            <ToastContainer delay={6000} />
             <button
               className="remove-btn remove-btn-offers--mobile remove-btn-offers-tosent"
               onClick={onAddressClick}

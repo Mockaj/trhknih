@@ -2,6 +2,7 @@ import { Accordion, AccordionProps, createStyles } from "@mantine/core";
 import ISBN from "./assets/ISBN.png";
 import { Link } from "react-router-dom";
 import "./styles/accordion.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   icon: { ref: getRef("icon") },
@@ -53,6 +54,7 @@ export function StyledAccordion(props: AccordionProps) {
   return <Accordion classNames={classes} {...props} iconPosition="right" />;
 }
 export const accordion = (questions: string, setQuestions: any) => {
+  const { loginWithRedirect } = useAuth0();
   switch (questions) {
     case "faq":
       return (
@@ -119,6 +121,13 @@ export const accordion = (questions: string, setQuestions: any) => {
     case "sell":
       return (
         <StyledAccordion initialItem={1}>
+          <Accordion.Item label="Log in">
+            To be able to sell a book you have to be logged in. If you are not logged in (there is a "Log in" button in the top menu)
+            click on the "Log in" button (or click
+            <span onClick={() => loginWithRedirect()} className="accordion-links"> here</span>) 
+            and fill out the username/email and password or register to our page if you don't have an account.
+          </Accordion.Item>
+
           <Accordion.Item label="Take a picture of the book">
             Take anything from 1 up to 5 pictures of the book you wish to sell.
             For safety reason, when selling a book more expensive than 50$, a
@@ -127,7 +136,7 @@ export const accordion = (questions: string, setQuestions: any) => {
           </Accordion.Item>
 
           <Accordion.Item label="Fill out the form">
-            Go to sell books [Tady bude odkaz na sell books] page and fill out
+            Go to sell books [<Link to="/sell-a-book" className="accordion-links">sell books</Link>] page and fill out
             the form. You can choose from two variants. Either you provide the
             book info manually (not recommended as there is high chance you make
             a mistake and confuse future customer) or provide{" "}
